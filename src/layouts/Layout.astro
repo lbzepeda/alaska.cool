@@ -1,50 +1,100 @@
 ---
+import { SEO } from "astro-seo";
+
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Alaska Cool - Expertos en climatización y aires acondicionados. Venta, instalación y mantenimiento de sistemas de aire acondicionado residencial e industrial",
+  image = "/imagen-social-default.webp",
+  canonicalURL = Astro.url,
+} = Astro.props;
+
+const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <SEO
+      title={seoTitle}
+      description={description}
+      canonical={canonicalURL}
+      noindex={false}
+      nofollow={false}
+      openGraph={{
+        basic: {
+          title: seoTitle,
+          type: "website",
+          image: image,
+          url: Astro.url,
+        },
+        optional: {
+          description: description,
+          locale: "es",
+          siteName: "Alaska Cool",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: seoTitle,
+        description: description,
+        image: image,
+        imageAlt: "Alaska Cool",
+      }}
+      extend={{
+        meta: [
+          {
+            name: "keywords",
+            content:
+              "aire acondicionado, climatización, instalación aire acondicionado, mantenimiento aire acondicionado, Alaska Cool, sistemas de climatización, extracción forzada, aires residenciales, aires industriales",
+          },
+          {
+            name: "author",
+            content: "Alaska Cool",
+          },
+          {
+            name: "generator",
+            content: Astro.generator,
+          },
+        ],
+        link: [
+          {
+            rel: "icon",
+            type: "image/png",
+            href: "/favicon/favicon-32x32.png",
+          },
+        ],
+      }}
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <slot />
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --accent: #1e40af; /* Main color - Blue 800 */
+    --accent-light: #3b82f6; /* Blue 500 */
+    --accent-dark: #1e3a8a; /* Blue 900 */
+  }
+
+  html {
+    @apply antialiased;
+  }
 </style>
