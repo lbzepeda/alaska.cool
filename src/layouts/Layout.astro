@@ -1,5 +1,6 @@
 ---
 import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -16,6 +17,12 @@ const {
 } = Astro.props;
 
 const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
+
+// Precargar imágenes críticas
+const criticalImages = [
+  "./industrial_fan_preview.webp",
+  "./residencial_ac_preview.webp",
+];
 ---
 
 <!doctype html>
@@ -23,6 +30,9 @@ const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <!-- Compression headers -->
+    <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width" />
 
     <SEO
       title={seoTitle}
@@ -76,25 +86,56 @@ const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
       }}
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Preconexiones optimizadas -->
+    {
+      criticalImages.map((image) => (
+        <link rel="preload" as="image" href={image} fetchpriority="high" />
+      ))
+    }
+
+    <!-- Font optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+
+    <!-- Enable view transitions -->
+    <ViewTransitions />
+
+    <!-- Inline critical CSS -->
+    <style is:inline>
+      /* Critical CSS here */
+      :root {
+        --accent: #1e40af;
+        --accent-light: #3b82f6;
+        --accent-dark: #1e3a8a;
+      }
+      html {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+      .no-js {
+        display: none;
+      }
+    </style>
   </head>
   <body class="bg-white dark:bg-gray-900">
     <slot />
+
+    <!-- Defer non-critical JS -->
+    <script defer>
+      // Remove no-js class
+      document.documentElement.classList.remove("no-js");
+
+      // Register service worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+    </script>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --accent: #1e40af; /* Main color - Blue 800 */
-    --accent-light: #3b82f6; /* Blue 500 */
-    --accent-dark: #1e3a8a; /* Blue 900 */
-  }
-
-  html {
-    @apply antialiased;
-  }
-</style>
