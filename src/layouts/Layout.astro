@@ -99,7 +99,7 @@ const criticalImages = [
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300&display=swap"
       rel="stylesheet"
       media="print"
-      onload="this.media='all'"
+      onload="all"
     />
 
     <!-- Enable view transitions -->
@@ -126,8 +126,7 @@ const criticalImages = [
     <slot />
 
     <!-- Defer non-critical JS -->
-    <script defer>
-      // Remove no-js class
+    <script>
       document.documentElement.classList.remove("no-js");
 
       // Register service worker

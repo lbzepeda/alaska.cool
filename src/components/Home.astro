@@ -76,7 +76,7 @@ const IMAGES = {
           <img
             src={IMAGES.residential.src}
             alt="AC Residencial Preview"
-            class="absolute inset-0 w-full h-full object-cover"
+            class="absolute inset-0 w-full h-full object-cover dark:invert"
             loading="eager"
             width={IMAGES.residential.width}
             height={IMAGES.residential.height}
@@ -239,7 +239,7 @@ const IMAGES = {
       const video = container.querySelector("video");
       if (!video) return;
 
-      let playTimeout: number;
+      let playTimeout: ReturnType<typeof setTimeout>;
 
       const playVideo = () => {
         video.classList.remove("opacity-0");

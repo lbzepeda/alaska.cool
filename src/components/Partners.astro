@@ -1,0 +1,60 @@
+---
+const logos = await Astro.glob("/public/partners/*.webp");
+
+// Function to extract the company name from the file path
+const getCompanyName = (path: string) => {
+  const fileName = path.split("/").pop()?.split(".")[0] || "";
+  return fileName
+    .replace(/[-_]/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+---
+
+<section class="py-6 bg-white dark:bg-black">
+  <div class="max-w-4xl mx-auto px-4">
+    <!-- Section header -->
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
+        Leading Companies Supporting Our Expertise
+      </span>
+      <h2
+        class="text-4xl md:text-3xl font-semibold text-slate-900 dark:text-white mb-4"
+      >
+        Your Comfort is Our Next Goal
+      </h2>
+    </div>
+
+    <!-- Compact logo grid -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      {
+        logos.map((logo) => (
+          <div class="group relative w-20 h-16 flex items-center justify-center p-1">
+            <img
+              src={logo.default.src}
+              alt={getCompanyName(logo.default.src)}
+              class="max-h-full w-auto saturate-0 hover:saturate-100 transition-all duration-300 object-contain dark:invert"
+              loading="lazy"
+            />
+            {/* Tooltip */}
+            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+              <div class="bg-gray-900 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded">
+                {getCompanyName(logo.default.src)}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .group {
+    z-index: 1;
+  }
+  .group:hover {
+    z-index: 10;
+  }
+</style>
