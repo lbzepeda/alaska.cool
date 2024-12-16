@@ -4,27 +4,26 @@ const brand = {
   image: "/brands/rheem_logo.webp",
   description: "La nueva era del confort",
   highlight: "Distribuidor Autorizado Oficial",
-  highlightDetails: "Única empresa certificada en la región",
   details: [
     "Garantía oficial de fábrica",
     "Técnicos certificados Rheem",
     "Repuestos originales",
     "Soporte premium",
   ],
-  stats: [{ label: "Años de experiencia", value: "50+" }],
+  experience: "50+",
 };
 ---
 
 <section
-  class="relative bg-white dark:bg-gradient-to-br dark:from-black dark:to-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300"
+  class="bg-white dark:bg-gradient-to-br dark:from-black dark:to-neutral-900 transition-colors duration-300"
 >
+  <!-- Decorative elements -->
   <div
     class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-neutral-200 dark:via-neutral-800 to-transparent"
   >
   </div>
-
   <div
-    class="absolute inset-0 pointer-events-none isolate overflow-hidden dark:block hidden"
+    class="absolute inset-0 pointer-events-none overflow-hidden dark:block hidden"
   >
     <div
       class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-red-500/10 rounded-full blur-[100px] -translate-y-1/2 -z-10"
@@ -32,35 +31,36 @@ const brand = {
     </div>
   </div>
 
-  <div class="container mx-auto px-4 lg:px-8 py-12">
-    <div class="flex flex-col lg:flex-row lg:items-center">
-      <div class="lg:w-5/12 space-y-8">
-        <div class="space-y-6">
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-50 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 shadow-sm"
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-center">
+      <!-- Left Column -->
+      <div class="lg:w-4/12 space-y-6">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-50 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10"
+        >
+          <span class="flex gap-2 items-center">
+            <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
+            <span
+              class="text-xs font-medium text-neutral-600 dark:text-white/80"
+              >{brand.highlight}</span
+            >
+          </span>
+          <div class="h-3 w-[1px] bg-neutral-200 dark:bg-white/10"></div>
+          <span class="text-xs font-medium text-red-500 dark:text-red-400"
+            >{brand.experience} años</span
           >
-            <div class="flex gap-2 items-center">
-              <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
-              <span
-                class="text-xs font-medium tracking-wider text-neutral-600 dark:text-white/80"
-              >
-                {brand.highlight}
-              </span>
-            </div>
-            <div class="h-3 w-[1px] bg-neutral-200 dark:bg-white/10 mx-1"></div>
-            <span class="text-xs font-medium text-red-500 dark:text-red-400">
-              {brand.stats[0].value}
-            </span>
-          </div>
-
-          <div class="space-y-3">
-            <img src={brand.image} alt={brand.name} class="h-14 w-auto" />
-            <p class="text-base text-neutral-600 dark:text-neutral-400">
-              {brand.description}
-            </p>
-          </div>
         </div>
 
+        <!-- Logo and Description -->
+        <div class="space-y-3">
+          <img src={brand.image} alt={brand.name} class="h-14 w-auto" />
+          <p class="text-neutral-600 dark:text-neutral-400">
+            {brand.description}
+          </p>
+        </div>
+
+        <!-- Features Grid -->
         <div class="grid grid-cols-2 gap-4">
           {
             brand.details.map((detail) => (
@@ -74,13 +74,14 @@ const brand = {
           }
         </div>
 
+        <!-- Action Buttons -->
         <div class="flex items-center gap-4">
           <button
-            class="flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium relative overflow-hidden group transition-all duration-200"
+            class="flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium group"
           >
-            <span class="relative z-10">Explorar productos</span>
+            <span>Explorar productos</span>
             <svg
-              class="h-4 w-4 relative z-10 transform transition-transform group-hover:translate-x-1"
+              class="h-4 w-4 transform transition-transform group-hover:translate-x-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -93,14 +94,15 @@ const brand = {
             </svg>
           </button>
           <button
-            class="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
+            class="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
           >
             Contactar a ventas
           </button>
         </div>
       </div>
 
-      <div class="lg:w-7/12 mt-8 lg:mt-0 lg:pl-16">
+      <!-- Right Column - Image -->
+      <div class="lg:w-6/12 mt-8 lg:mt-0 lg:pl-12">
         <div
           class="relative aspect-[16/9] rounded-xl overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900/50 dark:to-neutral-900 group"
         >

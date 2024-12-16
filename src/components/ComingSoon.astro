@@ -1,0 +1,59 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  message?: string;
+  date?: string;
+}
+
+const {
+  title = "Muy Pronto",
+  subtitle = "¡Nuestra Propia Marca!",
+  message = "Con orgullo anunciamos el lanzamiento de nuestra primera marca propia. Un nuevo capítulo en la historia de Alaska Cool.",
+  date = "2024",
+} = Astro.props;
+---
+
+<section
+  class="relative w-full bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply"
+>
+  <div class="absolute inset-0">
+    <div
+      class="absolute inset-0 bg-grid-slate-900/[0.04] dark:bg-grid-slate-100/[0.03] bg-[size:20px_20px]"
+    >
+    </div>
+  </div>
+
+  <div class="relative w-full px-4 sm:px-6 py-24">
+    <div class="text-center max-w-3xl mx-auto">
+      <span
+        class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium text-white bg-blue-600/80 rounded-full mb-4"
+      >
+        {title}
+      </span>
+
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        {subtitle}
+      </h2>
+
+      <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+        {message}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-grid-slate-900 {
+    background-image: linear-gradient(rgb(51 65 85 / 0.1) 1px, transparent 1px),
+      linear-gradient(to right, rgb(51 65 85 / 0.1) 1px, transparent 1px);
+  }
+
+  .bg-grid-slate-100 {
+    background-image: linear-gradient(
+        rgb(241 245 249 / 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to right, rgb(241 245 249 / 0.1) 1px, transparent 1px);
+  }
+</style>
