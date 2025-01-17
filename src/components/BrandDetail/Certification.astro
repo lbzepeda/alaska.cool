@@ -19,7 +19,7 @@ interface Props {
   };
 }
 
-const { brand, styles } = Astro.props;
+const { brand } = Astro.props;
 
 if (!brand.certifications?.length) return null;
 ---

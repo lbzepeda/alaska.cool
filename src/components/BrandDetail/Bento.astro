@@ -45,18 +45,8 @@ interface Props {
   styles: any;
 }
 
-const { brand, styles } = Astro.props;
+const { brand } = Astro.props;
 const content = brand.bentoContent;
-
-// Modal content para el script
-const modalContent = Object.fromEntries(
-  content?.features.flatMap(
-    (feature) =>
-      feature.content.items
-        ?.filter((item) => item.modalContent)
-        .map((item) => [item.name, item.modalContent]) || [],
-  ) || [],
-);
 
 // Helper para definir altura de tarjetas
 const heightClasses = {
