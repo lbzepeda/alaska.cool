@@ -1,0 +1,166 @@
+---
+// src/components/brand/Hero.astro
+import { Image } from "astro:assets";
+
+interface Props {
+  brand: {
+    name: string;
+    colorBrand: string;
+    description: string;
+    tagline: string;
+    imageBrand: string;
+    videoBrand?: string;
+    specs?: {
+      number: string;
+      label: string;
+    }[];
+  };
+  brandKey: string;
+}
+
+const { brand } = Astro.props;
+const specs = brand.specs;
+---
+
+<section class="bg-white dark:bg-black py-20">
+  <div class="text-center max-w-2xl mx-auto mb-12 px-4" data-text="reveal">
+    <span class="text-blue-600 font-semibold"></span>
+    <h1
+      class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-5xl"
+    >
+      <span class={`text-transparent bg-clip-text ${brand.colorBrand}`}
+        >{brand.name}</span
+      >
+      {brand.tagline}
+    </h1>
+    <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      {brand.description}
+    </p>
+  </div>
+
+  {
+    brand.videoBrand ? (
+      <div class="w-full mb-16" data-media="video-container">
+        <video
+          id="brandVideo"
+          class="w-full h-[80vh] object-cover"
+          autoplay
+          muted
+          playsinline
+          controls
+          data-video="reveal"
+        >
+          <source src={brand.videoBrand} type="video/webm" />
+          Su navegador no soporta el elemento de video.
+        </video>
+      </div>
+    ) : null
+  }
+
+  <div
+    class="relative max-w-4xl mx-auto px-4 mb-16"
+    data-media="image-container"
+  >
+    <Image
+      src={brand.imageBrand}
+      alt={brand.name}
+      width={800}
+      height={600}
+      format="webp"
+      loading="eager"
+      decoding="async"
+      class={`w-full h-auto object-contain ${brand.videoBrand ? "hidden" : ""}`}
+      data-image={brand.videoBrand ? "hidden" : "reveal"}
+    />
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-4">
+    <div
+      class="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-x-6"
+      data-stats="reveal"
+    >
+      {
+        specs &&
+          specs.map((stat) => (
+            <div class="text-center">
+              <div class="text-lg font-semibold lg:text-xl text-slate-900 dark:text-white">
+                {stat.number}
+              </div>
+              <div class="text-xs lg:text-sm text-slate-500 dark:text-slate-400">
+                {stat.label}
+              </div>
+            </div>
+          ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const video = document.getElementById("brandVideo") as HTMLVideoElement;
+  const videoContainer = document.querySelector(
+    '[data-media="video-container"]',
+  ) as HTMLElement;
+  const image = document.querySelector(
+    '[data-image="hidden"]',
+  ) as HTMLImageElement;
+
+  if (video && image && videoContainer) {
+    video.addEventListener("ended", () => {
+      videoContainer.style.display = "none";
+      image.classList.remove("hidden");
+      image.dataset.image = "reveal";
+    });
+  }
+</script>
+
+<style>
+  section {
+    container-type: inline-size;
+  }
+
+  [data-text="reveal"] {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  [data-video="reveal"],
+  [data-image="reveal"] {
+    opacity: 0;
+    animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+  }
+
+  [data-stats="reveal"] {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.4s;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  video::-webkit-media-controls-panel {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+  }
+
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-volume-slider,
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-timeline {
+    cursor: pointer;
+  }
+
+  video::-webkit-media-controls {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  video:hover::-webkit-media-controls {
+    opacity: 1;
+  }
+</style>

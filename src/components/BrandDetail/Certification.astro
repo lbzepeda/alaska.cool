@@ -1,0 +1,101 @@
+---
+// src/components/brand/Certification.astro
+import { Image } from "astro:assets";
+
+interface Certification {
+  name: string;
+  image: string;
+  description?: string;
+  link?: string;
+}
+
+interface Props {
+  brand: {
+    certifications?: Certification[];
+  };
+  styles: {
+    cardStyle: string;
+    heroSection: string;
+  };
+}
+
+const { brand, styles } = Astro.props;
+
+if (!brand.certifications?.length) return null;
+---
+
+<section class={`py-16`}>
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6">
+    <!-- <div class="text-center mb-12">
+      <h2 class="text-4xl font-semibold text-slate-900 dark:text-white mb-3">
+        Certificaciones
+      </h2>
+    </div> -->
+
+    <div
+      class="flex flex-wrap justify-center items-center gap-12 md:gap-16"
+      data-certs="reveal"
+    >
+      {
+        brand.certifications.map((cert) => (
+          <div class="group relative">
+            {cert.link ? (
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center relative"
+                title={cert.name}
+              >
+                <Image
+                  src={cert.image}
+                  alt={cert.name}
+                  width={120}
+                  height={60}
+                  class="h-8 w-auto grayscale opacity-70 dark:invert dark:opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 dark:group-hover:opacity-90 dark:group-hover:invert-0"
+                />
+                {cert.description && (
+                  <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 translate-y-full w-48 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs rounded-lg py-2 px-3 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white dark:bg-slate-800 rotate-45" />
+                    {cert.description}
+                  </div>
+                )}
+              </a>
+            ) : (
+              <div class="text-center relative" title={cert.name}>
+                <Image
+                  src={cert.image}
+                  alt={cert.name}
+                  width={120}
+                  height={60}
+                  class="h-8 w-auto grayscale opacity-70 dark:invert dark:opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 dark:group-hover:opacity-90 dark:group-hover:invert-0"
+                />
+                {cert.description && (
+                  <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 translate-y-full w-48 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs rounded-lg py-2 px-3 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white dark:bg-slate-800 rotate-45" />
+                    {cert.description}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-certs="reveal"] {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

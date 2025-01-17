@@ -1,0 +1,174 @@
+---
+// src/pages/rheem.astro
+import BrandPage from "../components/BrandDetail/BrandPage.astro";
+import Layout from "../layouts/Layout.astro";
+
+const rheemData = {
+  name: "Rheem",
+  colorBrand: "bg-gradient-to-r from-red-600 to-red-400",
+  logo: "/brands/rheem/rheem_logo.webp",
+  tagline: "Innovación en climatización.",
+  imageBrand: "/brands/rheem/hero-rheem.webp",
+  description:
+    "Descubre el poder de la climatización inteligente con Rheem. Nuestros sistemas Full Inverter ofrecen un rendimiento excepcional y eficiencia energética líder en la industria.",
+  specs: [
+    {
+      number: "18 SEER",
+      label: "Eficiencia energética",
+    },
+    {
+      number: "60,000 BTU",
+      label: "Capacidad máxima",
+    },
+    {
+      number: "220V",
+      label: "Voltaje",
+    },
+    {
+      number: "🌱 R410A",
+      label: "Refrigerante ecológico",
+    },
+  ],
+  bentoContent: {
+    title: "Climatización Profesional",
+    subtitle: "Potencia y eficiencia para grandes espacios.",
+    features: [
+      {
+        type: "mainImage",
+        colSpan: 2,
+        height: "tall",
+        content: {
+          image: "/brands/rheem/Rheem-Best-Air-Conditioner-Brand.webp",
+          title: "Tecnología Full Inverter",
+          description: "Máxima eficiencia energética",
+        },
+      },
+      {
+        type: "stat",
+        height: "tall",
+        content: {
+          title: "Alto Rendimiento",
+          value: "60K",
+          subtitle: "BTU",
+          note: "Ideal para espacios comerciales",
+        },
+        style: {
+          textGradient: "bg-gradient-to-r from-red-600 to-red-400",
+        },
+      },
+      {
+        type: "stat",
+        content: {
+          title: "Eficiencia Premium",
+          value: "18",
+          unit: "SEER",
+          description: "Tecnología Full Inverter",
+        },
+        style: {
+          textGradient: "bg-gradient-to-r from-green-600 to-green-400",
+        },
+      },
+      {
+        type: "stat",
+        content: {
+          title: "Versatilidad",
+          value: "Piso",
+          unit: "Techo",
+          description: "Instalación flexible",
+        },
+        style: {
+          background:
+            "bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800",
+        },
+      },
+      {
+        type: "modal",
+        content: {
+          title: "Características Premium",
+          icon: "⚡",
+          items: [
+            {
+              name: "R410A",
+              description: "Refrigerante ecológico de alto rendimiento",
+              modalContent: {
+                title: "R410A - Eficiencia Ecológica",
+                content:
+                  "Refrigerante de última generación que combina eficiencia y respeto al medio ambiente...",
+              },
+            },
+            {
+              name: "Full Inverter",
+              description: "Control preciso de temperatura",
+              modalContent: {
+                title: "Tecnología Full Inverter",
+                content:
+                  "Sistema avanzado que optimiza el consumo energético...",
+              },
+            },
+          ],
+        },
+        style: {
+          border: "red-500",
+        },
+      },
+    ],
+  },
+  models: [
+    {
+      id: "rtaf-60",
+      name: "60,000 BTU",
+      voltage: "220V",
+      voltageType: "purple",
+      seer: 18.0,
+      area: "45-60",
+      recommended: "Espacios comerciales y grandes áreas",
+      features: {
+        noise: "45/38/32 dB",
+        current: "15.5A",
+        energyRating: "A++",
+      },
+      highlight: "Máxima potencia",
+      certificate: "Certificado_Rheem_60K_RTAF.pdf",
+    },
+  ],
+  certifications: [
+    {
+      name: "AHRI",
+      image: "/brands/rheem/certificates/ahri.webp",
+      description: "Certificación AHRI",
+      size: "medium",
+      hoverEffect: "glow",
+    },
+  ],
+  FAQ: [
+    {
+      question: "¿Qué hace único al sistema Full Inverter de Rheem?",
+      answer:
+        "El sistema Full Inverter de Rheem ofrece un control preciso de la temperatura y una eficiencia energética superior, alcanzando los 18 SEER. Esto se traduce en un menor consumo eléctrico y un rendimiento óptimo en espacios comerciales.",
+    },
+    {
+      question: "¿Cuáles son las ventajas del modelo piso/techo?",
+      answer:
+        "El modelo piso/techo ofrece una versatilidad excepcional en su instalación, adaptándose a diferentes configuraciones de espacio. Su capacidad de 60,000 BTU lo hace ideal para áreas comerciales grandes, manteniendo un funcionamiento eficiente y silencioso.",
+    },
+    {
+      question: "¿Qué tipo de mantenimiento requiere?",
+      answer:
+        "Recomendamos un mantenimiento preventivo cada 6 meses para garantizar el óptimo funcionamiento del equipo. Esto incluye limpieza de filtros, revisión del sistema eléctrico y verificación del refrigerante R410A.",
+    },
+    {
+      question: "¿Qué garantía incluye?",
+      answer:
+        "Ofrecemos una garantía completa que cubre componentes y mano de obra por 12 meses, además de garantía extendida en el compresor por 5 años, sujeto a mantenimientos regulares.",
+    },
+  ],
+};
+---
+
+<Layout
+  title="Rheem - Climatización Profesional"
+  description="Rheem ofrece soluciones de climatización de alto rendimiento con tecnología Full Inverter. Descubre nuestros sistemas para espacios comerciales."
+  image="/brands/rheem-social.webp"
+>
+  <BrandPage brand={rheemData} brandKey="rheem" />
+</Layout>

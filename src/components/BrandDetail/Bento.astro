@@ -1,0 +1,228 @@
+---
+// src/components/brand/BentoSection.astro
+import { Image } from "astro:assets";
+
+interface BentoFeature {
+  type: "mainImage" | "stat" | "info" | "modal" | "custom";
+  colSpan?: 1 | 2 | 3;
+  height?: "short" | "tall" | "full";
+  content: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    image?: string;
+    value?: string;
+    unit?: string;
+    note?: string;
+    icon?: string;
+    bgGradient?: string;
+    items?: {
+      name: string;
+      description: string;
+      modalContent?: {
+        title: string;
+        content: string;
+      };
+    }[];
+    customContent?: any;
+  };
+  style?: {
+    textGradient?: string;
+    background?: string;
+    border?: string;
+  };
+}
+
+interface Props {
+  brand: {
+    name: string;
+    bentoContent?: {
+      title: string;
+      subtitle: string;
+      features: BentoFeature[];
+    };
+  };
+  styles: any;
+}
+
+const { brand, styles } = Astro.props;
+const content = brand.bentoContent;
+
+// Modal content para el script
+const modalContent = Object.fromEntries(
+  content?.features.flatMap(
+    (feature) =>
+      feature.content.items
+        ?.filter((item) => item.modalContent)
+        .map((item) => [item.name, item.modalContent]) || [],
+  ) || [],
+);
+
+// Helper para definir altura de tarjetas
+const heightClasses = {
+  short: "h-[300px]",
+  tall: "h-[400px]",
+  full: "h-full min-h-[400px]",
+};
+---
+
+<section class="bg-[#FBFBFD] dark:bg-black py-16">
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <h2 class="text-4xl font-semibold text-slate-900 dark:text-white mb-3">
+        {content?.title || "Características"}
+      </h2>
+      <p class="text-xl font-light text-slate-500 dark:text-slate-400">
+        {content?.subtitle || "Diseñado para tu comfort"}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {
+        content?.features.map((feature) => {
+          const heightClass = heightClasses[feature.height || "tall"];
+          const colSpanClass = feature.colSpan
+            ? `md:col-span-${feature.colSpan}`
+            : "";
+
+          return (
+            <div class={`group ${colSpanClass}`}>
+              {/* Tarjeta tipo imagen principal */}
+              {feature.type === "mainImage" && (
+                <div
+                  class={`${heightClass} rounded-2xl overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-500`}
+                >
+                  {feature.content.image && (
+                    <Image
+                      src={feature.content.image}
+                      width={800}
+                      height={800}
+                      alt={feature.content.title || ""}
+                      class="w-full h-full object-cover opacity-90"
+                      loading="eager"
+                      format="webp"
+                      quality={80}
+                    />
+                  )}
+                  {feature.content.title && (
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+                      <h3 class="text-3xl font-medium text-white mb-2">
+                        {feature.content.title}
+                      </h3>
+                      {feature.content.description && (
+                        <p class="text-lg text-slate-200">
+                          {feature.content.description}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tarjeta tipo estadística */}
+              {feature.type === "stat" && (
+                <div
+                  class={`${heightClass} ${feature.style?.background || "bg-white dark:bg-gradient-to-r dark:from-slate-900 dark:to-slate-800"} rounded-2xl p-8 overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-500`}
+                >
+                  <div class="relative z-10 h-full flex flex-col">
+                    {feature.content.title && (
+                      <h3 class="text-4xl font-medium text-slate-900 dark:text-white mb-4">
+                        {feature.content.title}
+                      </h3>
+                    )}
+                    <div class="flex items-baseline gap-2">
+                      <span
+                        class={`text-7xl font-bold ${feature.style?.textGradient || "bg-gradient-to-r from-blue-600 to-blue-400"} bg-clip-text text-transparent`}
+                      >
+                        {feature.content.value}
+                      </span>
+                      {feature.content.unit && (
+                        <span class="text-xl text-slate-500">
+                          {feature.content.unit}
+                        </span>
+                      )}
+                    </div>
+                    {feature.content.description && (
+                      <p class="text-sm text-slate-600 dark:text-slate-400 mt-4">
+                        {feature.content.description}
+                      </p>
+                    )}
+                    {feature.content.note && (
+                      <p class="text-sm text-right font-medium text-slate-400 dark:text-slate-300 mt-auto">
+                        {feature.content.note}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Tarjeta tipo información con modal */}
+              {feature.type === "modal" && (
+                <div
+                  class={`${heightClass} ${feature.style?.border ? "border-" + feature.style.border : ""} border dark:from-slate-900 dark:to-slate-800 rounded-2xl p-8 overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-500`}
+                >
+                  <div class="flex items-center gap-3 mb-6">
+                    {feature.content.icon && (
+                      <span class="text-4xl">{feature.content.icon}</span>
+                    )}
+                    <h3 class="text-2xl font-semibold text-slate-900 dark:text-white relative">
+                      {feature.content.title}
+                      <span
+                        class={`absolute bottom-0 left-0 w-full h-0.5 ${feature.style?.border ? "bg-" + feature.style.border : "bg-green-500"}`}
+                      />
+                    </h3>
+                  </div>
+                  {feature.content.items?.map((item) => (
+                    <div class="mb-4">
+                      <h4 class="text-base font-semibold text-slate-900 dark:text-white">
+                        {item.modalContent ? (
+                          <button
+                            data-modal-type={item.name}
+                            class="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-medium underline-offset-4 hover:underline transition-all modal-trigger"
+                          >
+                            {item.name}
+                          </button>
+                        ) : (
+                          item.name
+                        )}
+                      </h4>
+                      <p class="text-sm text-slate-600 dark:text-slate-400">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Tarjeta personalizada */}
+              {feature.type === "custom" && (
+                <div
+                  class={`${heightClass} ${feature.style?.background || "bg-white"} rounded-2xl p-8 overflow-hidden relative shadow-lg hover:shadow-xl transition-all duration-500`}
+                >
+                  {/* Contenido personalizado */}
+                  {feature.content.customContent}
+                </div>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes soundWave {
+    0% {
+      transform: translate(-50%, -50%) scale(0.2);
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.2);
+      opacity: 0;
+    }
+  }
+</style>

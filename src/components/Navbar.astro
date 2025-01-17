@@ -31,25 +31,6 @@ const NAVIGATION_ITEMS = [
 const phoneNumber = "+505 7723-3432";
 ---
 
-<!-- Prevenir flash del tema incorrecto -->
-<script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-</script>
-
 <header
   class="fixed top-0 left-0 right-0 z-40 bg-white/70 dark:bg-black/70 backdrop-blur-md transition-transform duration-300"
 >
@@ -237,6 +218,31 @@ const phoneNumber = "+505 7723-3432";
 </header>
 
 <script>
+  function handleThemeToggle() {
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains("dark");
+      const newTheme = isDark ? "light" : "dark";
+
+      html.classList.toggle("dark", newTheme === "dark");
+      localStorage.setItem("theme", newTheme);
+    }
+
+    themeToggle?.addEventListener("click", toggleTheme);
+    themeToggleMobile?.addEventListener("click", toggleTheme);
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener("DOMContentLoaded", handleThemeToggle);
+  // También manejar las View Transitions de Astro
+  document.addEventListener("astro:after-swap", handleThemeToggle);
+</script>
+
+<script>
+  // Mobile menu functionality
   const header = document.querySelector("header");
   const mobileMenu = document.getElementById("mobile-menu");
   const menuToggle = document.getElementById("menu-toggle");
@@ -280,16 +286,13 @@ const phoneNumber = "+505 7723-3432";
     menuToggle.setAttribute("aria-expanded", isExpanded.toString());
 
     if (isExpanded) {
-      if (menuIcon) {
-        menuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12");
-      }
+      menuIcon?.setAttribute("d", "M6 18L18 6M6 6l12 12");
     } else {
-      if (menuIcon) {
-        menuIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
-      }
+      menuIcon?.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
     }
   });
 
+  // Manejo de enlaces de anclaje
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (this: HTMLAnchorElement, e) {
       e.preventDefault();
@@ -312,46 +315,4 @@ const phoneNumber = "+505 7723-3432";
       }
     });
   });
-
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-
-  function setTheme(theme: string) {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }
-
-  function initTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  }
-
-  initTheme();
-
-  function toggleTheme() {
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "light" : "dark");
-  }
-
-  themeToggle?.addEventListener("click", toggleTheme);
-  themeToggleMobile?.addEventListener("click", toggleTheme);
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme")) {
-        setTheme(e.matches ? "dark" : "light");
-      }
-    });
 </script>

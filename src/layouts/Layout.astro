@@ -1,6 +1,9 @@
 ---
+// src/layouts/Layout.astro
 import { SEO } from "astro-seo";
 import { ViewTransitions } from "astro:transitions";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -11,14 +14,13 @@ interface Props {
 
 const {
   title,
-  description = "Alaska Cool - Expertos en climatización y aires acondicionados. Venta, instalación y mantenimiento de sistemas de aire acondicionado residencial e industrial",
+  description = "Alaska Cool - Expertos en climatización y aires acondicionados...",
   image = "/imagen-social-default.webp",
   canonicalURL = Astro.url,
 } = Astro.props;
 
 const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
 
-// Precargar imágenes críticas
 const criticalImages = [
   "./industrial_fan_preview.webp",
   "./residencial_ac_preview.webp",
@@ -30,8 +32,49 @@ const criticalImages = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <!-- Compression headers -->
+    <!-- Theme script -->
+    <script is:inline>
+      (function () {
+        function setTheme(newTheme) {
+          localStorage.setItem("theme", newTheme);
+          document.documentElement.classList.toggle(
+            "dark",
+            newTheme === "dark",
+          );
+        }
+
+        const theme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+
+        setTheme(theme);
+
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+              setTheme(e.matches ? "dark" : "light");
+            }
+          });
+
+        window.__setTheme = setTheme;
+      })();
+    </script>
+
+    <!-- View Transitions handler -->
+    <script>
+      document.addEventListener("astro:after-swap", () => {
+        const theme = localStorage.getItem("theme");
+        if (theme) {
+          document.documentElement.classList.toggle("dark", theme === "dark");
+        }
+      });
+    </script>
+
     <meta http-equiv="Accept-CH" content="DPR, Width, Viewport-Width" />
 
     <SEO
@@ -86,14 +129,13 @@ const criticalImages = [
       }}
     />
 
-    <!-- Preconexiones optimizadas -->
+    <!-- Preload critical images -->
     {
       criticalImages.map((image) => (
         <link rel="preload" as="image" href={image} fetchpriority="high" />
       ))
     }
 
-    <!-- Font optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300&display=swap"
@@ -102,12 +144,9 @@ const criticalImages = [
       onload="all"
     />
 
-    <!-- Enable view transitions -->
     <ViewTransitions />
 
-    <!-- Inline critical CSS -->
     <style is:inline>
-      /* Critical CSS here */
       :root {
         --accent: #1e40af;
         --accent-light: #3b82f6;
@@ -121,20 +160,21 @@ const criticalImages = [
         display: none;
       }
     </style>
-  </head>
-  <body class="bg-white dark:bg-gray-900">
-    <slot />
 
-    <!-- Defer non-critical JS -->
+    <!-- Theme TypeScript support -->
     <script>
-      document.documentElement.classList.remove("no-js");
-
-      // Register service worker
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js");
-        });
+      declare global {
+        interface Window {
+          __setTheme?: (theme: string) => void;
+        }
       }
     </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <Navbar />
+    <main class="relative z-10">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

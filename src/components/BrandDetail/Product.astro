@@ -1,0 +1,280 @@
+---
+// src/components/brand/ProductsSection.astro
+interface Props {
+  brand: {
+    name: string;
+    models: {
+      name: string;
+      voltage: string;
+      voltageType: string;
+      seer: number;
+      area: string;
+      recommended: string;
+      features: {
+        noise: string;
+      };
+      highlight: string;
+      certificate?: string;
+    }[];
+  };
+}
+
+const { brand } = Astro.props;
+
+function createWhatsAppMessage(model: Props["brand"]["models"][0]) {
+  const message =
+    `Hola, estoy interesado en el aire acondicionado ${brand.name} WX Inverter:\n\n` +
+    `Modelo: ${model.name}\n` +
+    `Capacidad: ${model.highlight}\n` +
+    `Voltaje: ${model.voltage}\n` +
+    `SEER: ${model.seer}\n` +
+    `Área: ${model.area} m²\n` +
+    `Uso: ${model.recommended}`;
+  return encodeURIComponent(message);
+}
+---
+
+<section id="products" class="bg-[#FBFBFD] dark:bg-black py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-xl mx-auto mb-16">
+      <h2 class="text-4xl font-semibold text-slate-900 dark:text-white mb-3">
+        Modelos WX Inverter
+      </h2>
+      <p class="text-xl font-light text-slate-500 dark:text-slate-400">
+        Encuentra el aire acondicionado perfecto para tu espacio
+      </p>
+
+      <a
+        href={`/documents/${brand.name.toLowerCase()}_WX_series.pdf`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 w-full px-6 py-3 mt-6 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors group"
+      >
+        <span>Descargar Ficha Técnica</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 transition-transform group-hover:translate-y-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    {/* Vista Desktop */}
+    <div class="hidden lg:block overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-slate-200 dark:border-slate-700">
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >Capacidad</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >Voltaje</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >SEER</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >Área Sugerida</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >Uso Recomendado</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >Nivel de Ruido</th
+            >
+            <th
+              class="text-left py-4 px-4 text-slate-900 dark:text-white font-medium"
+              >AHRI</th
+            >
+            <th class="text-left py-4 px-4"></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+          {
+            brand.models.map((model) => (
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                <td class="py-4 px-4">
+                  <div class="font-medium text-slate-900 dark:text-white">
+                    {model.name}
+                  </div>
+                  <div class="text-sm text-slate-500">{model.highlight}</div>
+                </td>
+                <td class="py-4 px-4">
+                  <span
+                    class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      model.voltageType === "blue"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                        : "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                    }`}
+                  >
+                    {model.voltage}
+                  </span>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="font-bold text-blue-600">{model.seer}</div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="text-slate-700 dark:text-slate-300">
+                    {model.area} m²
+                  </div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="text-slate-700 dark:text-slate-300">
+                    {model.recommended}
+                  </div>
+                </td>
+                <td class="py-4 px-4">
+                  <div class="text-slate-700 dark:text-slate-300">
+                    {model.features.noise}
+                  </div>
+                </td>
+                <td class="py-4 px-4">
+                  {model.certificate && (
+                    <a
+                      href={`/certificates/${model.certificate}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-blue-800 dark:hover:text-blue-400"
+                    >
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                </td>
+                <td class="py-4 px-4">
+                  <a
+                    href={`https://wa.me/50577233432?text=${createWhatsAppMessage(model)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 hover:text-blue-800 dark:hover:text-blue-400 font-medium flex items-center gap-2"
+                  >
+                    Contactar <span class="text-lg">→</span>
+                  </a>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    {/* Vista Móvil */}
+    <div class="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      {
+        brand.models.map((model) => (
+          <div class="bg-white dark:bg-slate-800/50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start gap-2 mb-3">
+              <div>
+                <h3 class="font-medium text-slate-900 dark:text-white">
+                  {model.name}
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">{model.highlight}</p>
+              </div>
+              <span
+                class={`shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
+                  model.voltageType === "blue"
+                    ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                    : "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                }`}
+              >
+                {model.voltage}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500">SEER:</span>
+                <span class="font-medium text-blue-600">{model.seer}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500">Área:</span>
+                <span class="text-slate-700 dark:text-slate-300">
+                  {model.area} m²
+                </span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 py-2 border-t border-slate-200 dark:border-slate-700 mb-3">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex gap-2">
+                  <span class="text-xs text-slate-500">Uso:</span>
+                  <span class="text-xs text-slate-700 dark:text-slate-300">
+                    {model.recommended}
+                  </span>
+                </div>
+                {model.certificate && (
+                  <div class="flex gap-2">
+                    <span class="text-xs text-slate-500">AHRI:</span>
+                    <a
+                      href={`/certificates/${model.certificate}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:text-blue-800 dark:hover:text-blue-400"
+                    >
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+              <div class="flex gap-2">
+                <span class="text-xs text-slate-500">Ruido:</span>
+                <span class="text-xs text-slate-700 dark:text-slate-300">
+                  {model.features.noise}
+                </span>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/50577233432?text=${createWhatsAppMessage(model)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-1.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors text-xs font-medium flex items-center justify-center gap-1"
+            >
+              Contactar <span class="text-sm">→</span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

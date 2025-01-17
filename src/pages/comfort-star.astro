@@ -1,0 +1,210 @@
+---
+// src/pages/comfortstar.astro
+import BrandPage from "../components/BrandDetail/BrandPage.astro";
+import Layout from "../layouts/Layout.astro";
+
+const comfortStarData = {
+  name: "ComfortStar",
+  colorBrand: "bg-gradient-to-r from-blue-600 to-sky-400",
+  logo: "/brands/comfortstar_logo.webp",
+  tagline: "Innovación y eficiencia en climatización",
+  imageBrand: "/brands/comfortstar/hero-comforstar.webp",
+  description:
+    "ComfortStar ofrece una amplia gama de soluciones de climatización, desde sistemas mini-split de alta eficiencia hasta equipos comerciales de gran capacidad, todos respaldados por tecnología inverter y refrigerante ecológico R-410A.",
+  specs: [
+    {
+      number: "21.5 SEER",
+      label: "Máxima eficiencia",
+    },
+    {
+      number: "60,000 BTU",
+      label: "Máxima capacidad",
+    },
+    {
+      number: "Multi-Formato",
+      label: "Versatilidad de instalación",
+    },
+    {
+      number: "🌱 R410A",
+      label: "Refrigerante ecológico",
+    },
+  ],
+  bentoContent: {
+    title: "Climatización Inteligente",
+    subtitle: "Diseñado para tu confort. Tecnológicamente avanzado.",
+    features: [
+      {
+        type: "mainImage",
+        colSpan: 2,
+        height: "tall",
+        content: {
+          image: "/brands/comfortstar/bento-imagen.webp",
+          title: "Tecnología Inverter Premium",
+          description: "Hasta 60% de ahorro energético con 21.5 SEER",
+        },
+      },
+      {
+        type: "stat",
+        height: "tall",
+        content: {
+          title: "Instalación Flexible",
+          value: "Multi",
+          subtitle: "Formato",
+          note: "Mini-Split, Piso/Techo, Cassette y Ducto *",
+        },
+        style: {
+          textGradient: "bg-gradient-to-r from-blue-600 to-blue-400",
+        },
+      },
+      {
+        type: "stat",
+        content: {
+          value: "32",
+          unit: "dB",
+          title: "Ultra Silencioso",
+          description: "Ideal para dormitorios y oficinas",
+        },
+        style: {
+          background:
+            "bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800",
+        },
+      },
+      {
+        type: "stat",
+        content: {
+          title: "Alta Eficiencia Energética",
+          value: "21.5",
+          unit: "SEER",
+          description: "Hasta 40% menos consumo energético",
+        },
+        style: {
+          textGradient: "bg-gradient-to-r from-green-600 to-green-400",
+        },
+      },
+      {
+        type: "modal",
+        content: {
+          title: "Tecnología Verde",
+          icon: "🌱",
+          items: [
+            {
+              name: "R410A",
+              description: "Refrigerante ecológico de última generación",
+              modalContent: {
+                title: "R410A - Refrigerante Ecológico",
+                content:
+                  "El R410A es un refrigerante que no daña la capa de ozono y permite mayor eficiencia energética, contribuyendo a la reducción de la huella de carbono.",
+              },
+            },
+            {
+              name: "Inverter Premium",
+              description: "Control preciso de temperatura y ahorro",
+              modalContent: {
+                title: "Tecnología Inverter Premium",
+                content:
+                  "El sistema Inverter de ComfortStar ajusta la velocidad del compresor según la demanda, logrando ahorros de hasta 60% en consumo eléctrico y manteniendo una temperatura más estable.",
+              },
+            },
+          ],
+        },
+        style: {
+          border: "blue-500",
+        },
+      },
+    ],
+  },
+  models: [
+    {
+      id: "cip12cd-l",
+      name: "CIP12CD-L",
+      voltage: "230V",
+      voltageType: "purple",
+      seer: 21.5,
+      area: "12-15",
+      recommended: "Espacios residenciales",
+      features: {
+        noise: "32/26/21 dB",
+        current: "4.5A",
+        energyRating: "A+++",
+      },
+      highlight: "Máxima eficiencia",
+    },
+    {
+      id: "cip12ca-el",
+      name: "CIP12CA-EL",
+      voltage: "115V",
+      voltageType: "blue",
+      seer: 20.0,
+      area: "12-15",
+      recommended: "Espacios residenciales",
+      features: {
+        noise: "32/26/21 dB",
+        current: "8.5A",
+        energyRating: "A++",
+      },
+      highlight: "Versión 115V",
+    },
+    {
+      id: "cip18cd-l",
+      name: "CIP18CD-L",
+      voltage: "230V",
+      voltageType: "purple",
+      seer: 21.0,
+      area: "18-20",
+      recommended: "Espacios medianos",
+      features: {
+        noise: "34/28/23 dB",
+        current: "6.5A",
+        energyRating: "A+++",
+      },
+      highlight: "Alto rendimiento",
+    },
+    {
+      id: "neo60sc-t",
+      name: "NEO60SC-T",
+      voltage: "230V",
+      voltageType: "purple",
+      seer: 18.0,
+      area: "45-60",
+      recommended: "Espacios comerciales",
+      features: {
+        noise: "45/40/35 dB",
+        current: "15.5A",
+        energyRating: "A++",
+        type: "Piso/Techo",
+      },
+      highlight: "Máxima potencia",
+    },
+  ],
+  FAQ: [
+    {
+      question: "¿Qué tecnologías incluyen los equipos ComfortStar?",
+      answer:
+        "Los equipos ComfortStar incorporan tecnología Inverter de última generación, alcanzando eficiencias de hasta 21.5 SEER. Utilizan refrigerante ecológico R-410A y están disponibles en diversos formatos como mini-split, piso/techo, cassette y ducto.",
+    },
+    {
+      question: "¿Qué capacidades están disponibles?",
+      answer:
+        "ComfortStar ofrece una amplia gama de capacidades desde 12,000 BTU hasta 60,000 BTU, con opciones tanto en 115V como en 230V, adaptándose a diferentes necesidades de climatización, desde espacios residenciales hasta comerciales.",
+    },
+    {
+      question: "¿Qué tipos de instalación ofrece ComfortStar?",
+      answer:
+        "ComfortStar ofrece múltiples opciones de instalación: mini-split para instalación en pared, unidades piso/techo para mayor versatilidad, cassette para instalación en cielo falso, y sistemas de ducto para climatización centralizada.",
+    },
+    {
+      question: "¿Qué garantía incluyen los equipos?",
+      answer:
+        "Los equipos ComfortStar incluyen garantía contra defectos de fabricación y el respaldo de una marca reconocida en el mercado de climatización. Consulta con tu distribuidor autorizado los términos específicos de garantía para cada modelo.",
+    },
+  ],
+};
+---
+
+<Layout
+  title="ComfortStar - Soluciones de Climatización"
+  description="ComfortStar ofrece una amplia gama de soluciones de climatización con tecnología Inverter y alta eficiencia energética."
+  image="/brands/comfortstar-social.webp"
+>
+  <BrandPage brand={comfortStarData} brandKey="comfortStar" />
+</Layout>

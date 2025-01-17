@@ -1,0 +1,93 @@
+---
+// src/components/BrandPage.astro
+import { brandStyles } from "../../styles/brandStyles";
+import Bento from "./Bento.astro";
+import Certification from "./Certification.astro";
+import FAQ from "./FAQ.astro";
+import Hero from "./Hero.astro";
+import Product from "./Product.astro";
+
+interface Props {
+  brand: {
+    name: string;
+    logo: string;
+    colorBrand: string;
+    tagline: string;
+    imageBrand: string;
+    videoBrand?: string;
+    description: string;
+    models: {
+      id: string;
+      name: string;
+      voltage: string;
+      voltageType: string;
+      seer: number;
+      area: string;
+      recommended: string;
+      features: {
+        noise: string;
+        current: string;
+        energyRating: string;
+      };
+      highlight: string;
+      certificate?: string;
+    }[];
+    certifications?: {
+      name: string;
+      image: string;
+      description: string;
+    }[];
+    highlights?: {
+      title: string;
+      value: string;
+      description: string;
+    }[];
+    FAQ: {
+      question: string;
+      answer: string;
+    }[];
+  };
+  brandKey: "tempblue" | "rheem" | "comfortStar" | "midea" | "solerPalau";
+}
+
+const { brand, brandKey } = Astro.props;
+const styles = brandStyles[brandKey];
+---
+
+<main class="bg-white dark:bg-black">
+  <Hero brand={brand} brandKey={brandKey} />
+  <Bento brand={brand} styles={styles} />
+  <Product brand={brand} />
+  <FAQ brand={brand} styles={styles} />
+  <Certification brand={brand} styles={styles} />
+</main>
+
+<style>
+  [data-text="reveal"],
+  [data-stats="reveal"],
+  [data-features="reveal"],
+  [data-products="reveal"],
+  [data-certs="reveal"] {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  [data-image="reveal"] {
+    opacity: 0;
+    animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
