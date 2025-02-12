@@ -15,12 +15,12 @@ interface Props {
 
 const {
   title,
-  description = "Alaska Cool - Expertos en climatización y aires acondicionados...",
+  description = "Alaska Cool Nicaragua - Expertos en climatización y aires acondicionados. Distribuidor autorizado de Tempblue, Rheem, Midea y ComfortStar. Venta, instalación y mantenimiento en todo el país.",
   image = "/imagen-social-default.webp",
   canonicalURL = Astro.url,
 } = Astro.props;
 
-const seoTitle = `${title} | Alaska Cool - Aire Acondicionado`;
+const seoTitle = `${title} | Alaska Cool - Aire Acondicionado | Nicaragua`;
 
 const criticalImages = [
   "./industrial_fan_preview.webp",
@@ -29,11 +29,21 @@ const criticalImages = [
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-NI" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000" />
+    <meta http-equiv="Expires" content="31536000" />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="NI" />
+    <meta name="geo.placename" content="Nicaragua" />
+    <meta name="geo.position" content="12.865416;-85.207229" />
+    <meta name="ICBM" content="12.865416, -85.207229" />
 
     <!-- Theme script -->
     <script is:inline>
@@ -82,7 +92,7 @@ const criticalImages = [
       title={seoTitle}
       description={description}
       canonical={canonicalURL}
-      noindex={false}
+      noindex={import.meta.env.PROD ? false : true}
       nofollow={false}
       openGraph={{
         basic: {
@@ -93,23 +103,28 @@ const criticalImages = [
         },
         optional: {
           description: description,
-          locale: "es",
+          locale: "es_NI",
           siteName: "Alaska Cool",
+        },
+        image: {
+          alt: "Alaska Cool Nicaragua",
         },
       }}
       twitter={{
         card: "summary_large_image",
+        site: "@AlaskaCoolNI",
+        creator: "@AlaskaCoolNI",
         title: seoTitle,
         description: description,
         image: image,
-        imageAlt: "Alaska Cool",
+        imageAlt: "Alaska Cool Nicaragua",
       }}
       extend={{
         meta: [
           {
             name: "keywords",
             content:
-              "aire acondicionado, climatización, instalación aire acondicionado, mantenimiento aire acondicionado, Alaska Cool, sistemas de climatización, extracción forzada, aires residenciales, aires industriales",
+              "aire acondicionado Nicaragua, climatización Managua, instalación aire acondicionado Nicaragua, mantenimiento aire acondicionado, Alaska Cool Nicaragua, sistemas de climatización comercial, extracción forzada industrial, aires residenciales Managua, aires industriales Nicaragua, Tempblue, Rheem, Midea, ComfortStar",
           },
           {
             name: "author",
@@ -119,12 +134,46 @@ const criticalImages = [
             name: "generator",
             content: Astro.generator,
           },
+          {
+            name: "robots",
+            content:
+              "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+          },
+          {
+            name: "google-site-verification",
+            content: "TU_CODIGO_DE_VERIFICACION",
+          },
+          {
+            name: "facebook-domain-verification",
+            content: "TU_CODIGO_DE_VERIFICACION",
+          },
+          {
+            property: "fb:app_id",
+            content: "TU_APP_ID",
+          },
+          {
+            name: "format-detection",
+            content: "telephone=no",
+          },
         ],
         link: [
           {
             rel: "icon",
             type: "image/png",
             href: "/favicon/favicon-32x32.png",
+          },
+          {
+            rel: "apple-touch-icon",
+            href: "/favicon/apple-touch-icon.png",
+          },
+          {
+            rel: "manifest",
+            href: "/manifest.json",
+          },
+          {
+            rel: "alternate",
+            hreflang: "es-NI",
+            href: Astro.url.toString(),
           },
         ],
       }}
@@ -137,7 +186,9 @@ const criticalImages = [
       ))
     }
 
+    <!-- Font Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,300&display=swap"
       rel="stylesheet"
@@ -170,6 +221,38 @@ const criticalImages = [
         }
       }
     </script>
+
+    <!-- Schema.org markup -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Alaska Cool",
+        description:
+          "Expertos en climatización y aires acondicionados en Nicaragua",
+        url: Astro.url,
+        logo: "/logo.webp",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "Nicaragua",
+          addressRegion: "Managua",
+          addressLocality: "Managua",
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "TU-TELEFONO",
+          contactType: "customer service",
+          areaServed: "NI",
+          availableLanguage: "Spanish",
+        },
+        sameAs: [
+          "https://facebook.com/alaskacool",
+          "https://instagram.com/alaskacool",
+        ],
+      })}
+    />
   </head>
   <body class="bg-white dark:bg-gray-900">
     <Navbar />

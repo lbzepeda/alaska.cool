@@ -28,10 +28,12 @@ const specs = brand.specs;
     <h1
       class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-5xl"
     >
-      <span class={`text-transparent bg-clip-text ${brand.colorBrand}`}
-        >{brand.name}</span
-      >
-      {brand.tagline}
+      <span class={`text-transparent bg-clip-text ${brand.colorBrand}`}>
+        {brand.name}
+      </span>
+      <span class="block mt-2">
+        {brand.tagline}
+      </span>
     </h1>
     <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
       {brand.description}

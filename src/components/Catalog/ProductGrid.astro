@@ -1,0 +1,224 @@
+---
+import { brandsData } from "../../shared/brandsData";
+import type { Category } from "../../shared/brandsData";
+
+interface Props {
+  defaultCategory?: Category;
+}
+
+const { defaultCategory } = Astro.props;
+
+// Obtener todos los productos
+const allProducts = Object.values(brandsData).flatMap(brand => brand.models);
+
+// Filtrar por categoría si se proporciona
+const initialProducts = defaultCategory 
+  ? allProducts.filter(product => product.area === defaultCategory)
+  : allProducts;
+---
+
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6">
+  <div class="flex gap-8">
+    <aside class="w-64 flex-shrink-0">
+      <div class="sticky top-24">
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+          <h3 class="text-lg font-medium mb-4">Categorías</h3>
+          <div class="space-y-2" id="category-filters">
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                value="residential"
+                data-filter="category"
+                class="mr-2"
+                checked={defaultCategory === 'residential'}
+              />
+              <span>Residencial</span>
+            </label>
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                value="industrial"
+                data-filter="category"
+                class="mr-2"
+                checked={defaultCategory === 'industrial'}
+              />
+              <span>Industrial</span>
+            </label>
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                value="fan"
+                data-filter="category"
+                class="mr-2"
+                checked={defaultCategory === 'fan'}
+              />
+              <span>Ventilación</span>
+            </label>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-lg font-medium mb-4">Voltaje</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" value="110V" data-filter="voltage" class="mr-2"/>
+                <span>110V</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" value="220V" data-filter="voltage" class="mr-2"/>
+                <span>220V</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-lg font-medium mb-4">BTU</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  value="12000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>12,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  value="18000"
+                  data-filter="btu" 
+                  class="mr-2"
+                />
+                <span>18,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  value="24000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>24,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  value="36000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>36,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  value="60000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>60,000 BTU</span>
+              </label>
+            </div>
+           </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1">
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {initialProducts.map(product => (
+          <div 
+            class="product-card"
+            data-id={product.id}
+            data-category={product.area}
+            data-voltage={product.voltage}
+            data-btu={product.name}
+          >
+            <!-- Card content -->
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
+              {/* <img 
+                src={product.imageBrand} 
+                alt={product.name}
+                class="w-full h-48 object-cover rounded-lg mb-4"
+              /> */}
+              <h3 class="text-lg font-medium mb-2">{product.name}</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+                  {product.name} BTU
+                </span>
+                <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
+                  {product.voltage}
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+                  Ver detalles
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let filters: {
+  categories: string[],
+  voltages: string[],
+  btus: number[]
+} = {
+  categories: [],
+  voltages: [],
+  btus: []
+};
+
+function updateFilters() {
+  const categoryInputs = document.querySelectorAll('[data-filter="category"]');
+  const voltageInputs = document.querySelectorAll('[data-filter="voltage"]');
+  const btuInputs = document.querySelectorAll('[data-filter="btu"]');
+
+  filters = {
+    categories: Array.from(categoryInputs)
+      .filter((input) => (input as HTMLInputElement).checked)
+      .map((input) => (input as HTMLInputElement).value),
+    voltages: Array.from(voltageInputs)
+      .filter((input) => (input as HTMLInputElement).checked)
+      .map((input) => (input as HTMLInputElement).value),
+    btus: Array.from(btuInputs)
+      .filter((input) => (input as HTMLInputElement).checked)
+      .map((input) => parseInt((input as HTMLInputElement).value))
+  };
+
+  applyFilters();
+}
+
+function applyFilters() {
+  const cards = document.querySelectorAll('.product-card');
+  
+  cards.forEach(card => {
+    const category = card.getAttribute('data-category');
+    const voltage = card.getAttribute('data-voltage');
+    const btu = parseInt(card.getAttribute('data-btu') || '0');
+
+    const matchesCategory = filters.categories.length === 0 || (category && filters.categories.includes(category));
+    const matchesVoltage = filters.voltages.length === 0 || (voltage && filters.voltages.includes(voltage));
+    const matchesBTU = filters.btus.length === 0 || (btu && filters.btus.includes(btu));
+
+    card.classList.toggle('hidden', !(matchesCategory && matchesVoltage && matchesBTU));
+  });
+}
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterInputs = document.querySelectorAll('[data-filter]');
+    filterInputs.forEach(input => {
+      input.addEventListener('change', updateFilters);
+      input.addEventListener('input', updateFilters);
+    });
+
+    // Inicializa los filtros
+    updateFilters();
+  });
+</script>
