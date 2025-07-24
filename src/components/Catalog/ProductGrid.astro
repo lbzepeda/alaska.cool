@@ -1,20 +1,33 @@
 ---
 import { brandsData } from "../../shared/brandsData";
 import type { Category } from "../../shared/brandsData";
+import { ProductService } from "../../services/productApi";
+import { brandMapping, type BrandKey, type ApiProduct } from "../../types/product";
+import BrandFilter from "./BrandFilter.astro";
 
 interface Props {
   defaultCategory?: Category;
+  selectedBrand?: BrandKey;
 }
 
-const { defaultCategory } = Astro.props;
+const { defaultCategory, selectedBrand } = Astro.props;
 
-// Obtener todos los productos
-const allProducts = Object.values(brandsData).flatMap(brand => brand.models);
+let apiProducts: ApiProduct[] = [];
+let staticProducts = Object.values(brandsData).flatMap(brand => brand.models);
 
-// Filtrar por categoría si se proporciona
-const initialProducts = defaultCategory 
-  ? allProducts.filter(product => product.area === defaultCategory)
-  : allProducts;
+// Si hay una marca seleccionada, obtener productos de la API
+if (selectedBrand) {
+  try {
+    apiProducts = await ProductService.getProductsByBrand(brandMapping[selectedBrand].apiParam);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+}
+
+// Filtrar productos estáticos por categoría si se proporciona
+const initialStaticProducts = defaultCategory 
+  ? staticProducts.filter(product => product.area === defaultCategory)
+  : staticProducts;
 ---
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -22,6 +35,8 @@ const initialProducts = defaultCategory
     <aside class="w-64 flex-shrink-0">
       <div class="sticky top-24">
         <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+          {!selectedBrand && <BrandFilter />}
+          
           <h3 class="text-lg font-medium mb-4">Categorías</h3>
           <div class="space-y-2" id="category-filters">
             <label class="flex items-center">
@@ -126,38 +141,104 @@ const initialProducts = defaultCategory
 
     <div class="flex-1">
       <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {initialProducts.map(product => (
-          <div 
-            class="product-card"
-            data-id={product.id}
-            data-category={product.area}
-            data-voltage={product.voltage}
-            data-btu={product.name}
-          >
-            <!-- Card content -->
-            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
-              {/* <img 
-                src={product.imageBrand} 
-                alt={product.name}
-                class="w-full h-48 object-cover rounded-lg mb-4"
-              /> */}
-              <h3 class="text-lg font-medium mb-2">{product.name}</h3>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                  {product.name} BTU
-                </span>
-                <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
-                  {product.voltage}
-                </span>
+        {selectedBrand && apiProducts.length > 0 ? (
+          apiProducts.map(product => {
+            const btu = ProductService.extractBTU(product.display_name);
+            const voltage = ProductService.extractVoltage(product.display_name);
+            const category = ProductService.categorizeProduct(product);
+            const totalStock = ProductService.getTotalStock(product);
+            const price = ProductService.formatPrice(product.precio_venta);
+            
+            return (
+              <div 
+                class="product-card"
+                data-id={product.producto_id}
+                data-category={category}
+                data-voltage={voltage}
+                data-btu={btu}
+                data-brand={selectedBrand}
+              >
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
+                  <div class="flex items-center gap-2 mb-3">
+                    <img 
+                      src={brandMapping[selectedBrand].logo} 
+                      alt={brandMapping[selectedBrand].name}
+                      class="h-8 w-auto"
+                    />
+                    <span class="text-sm text-gray-500">{product.prod_codigo}</span>
+                  </div>
+                  
+                  <h3 class="text-lg font-medium mb-2 line-clamp-2">
+                    {product.display_name}
+                  </h3>
+                  
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {btu && (
+                      <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+                        {parseInt(btu).toLocaleString()} BTU
+                      </span>
+                    )}
+                    {voltage && (
+                      <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
+                        {voltage}
+                      </span>
+                    )}
+                    <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
+                      Stock: {totalStock}
+                    </span>
+                  </div>
+                  
+                  <div class="mb-4">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      {product.categoria_producto_nombre}
+                    </p>
+                    <p class="text-sm text-gray-500">
+                      {product.tipo_producto_nombre}
+                    </p>
+                  </div>
+                  
+                  <div class="flex justify-between items-center">
+                    <div class="text-right">
+                      <p class="text-lg font-semibold text-green-600">
+                        {price}
+                      </p>
+                    </div>
+                    <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                      Ver detalles
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="flex justify-between items-center">
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
-                  Ver detalles
-                </button>
+            );
+          })
+        ) : (
+          initialStaticProducts.map(product => (
+            <div 
+              class="product-card"
+              data-id={product.id}
+              data-category={product.area}
+              data-voltage={product.voltage}
+              data-btu={product.name}
+            >
+              <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
+                <h3 class="text-lg font-medium mb-2">{product.name}</h3>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+                    {product.name} BTU
+                  </span>
+                  <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
+                    {product.voltage}
+                  </span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+                    Ver detalles
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   </div>
@@ -167,17 +248,20 @@ const initialProducts = defaultCategory
 let filters: {
   categories: string[],
   voltages: string[],
-  btus: number[]
+  btus: number[],
+  brands: string[]
 } = {
   categories: [],
   voltages: [],
-  btus: []
+  btus: [],
+  brands: []
 };
 
 function updateFilters() {
   const categoryInputs = document.querySelectorAll('[data-filter="category"]');
   const voltageInputs = document.querySelectorAll('[data-filter="voltage"]');
   const btuInputs = document.querySelectorAll('[data-filter="btu"]');
+  const brandInputs = document.querySelectorAll('[data-filter="brand"]');
 
   filters = {
     categories: Array.from(categoryInputs)
@@ -188,7 +272,10 @@ function updateFilters() {
       .map((input) => (input as HTMLInputElement).value),
     btus: Array.from(btuInputs)
       .filter((input) => (input as HTMLInputElement).checked)
-      .map((input) => parseInt((input as HTMLInputElement).value))
+      .map((input) => parseInt((input as HTMLInputElement).value)),
+    brands: Array.from(brandInputs)
+      .filter((input) => (input as HTMLInputElement).checked)
+      .map((input) => (input as HTMLInputElement).value)
   };
 
   applyFilters();
@@ -197,16 +284,33 @@ function updateFilters() {
 function applyFilters() {
   const cards = document.querySelectorAll('.product-card');
   
+  // Handle brand filter changes with page navigation
+  const brandFilters = filters.brands.filter(b => b !== '');
+  if (brandFilters.length === 1) {
+    // Navigate to brand page
+    window.location.href = `/catalogo/marca/${brandFilters[0]}`;
+    return;
+  } else if (brandFilters.length === 0 && filters.brands.includes('')) {
+    // Navigate back to general catalog if "all brands" is selected
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/marca/')) {
+      window.location.href = '/catalogo';
+      return;
+    }
+  }
+  
   cards.forEach(card => {
     const category = card.getAttribute('data-category');
     const voltage = card.getAttribute('data-voltage');
     const btu = parseInt(card.getAttribute('data-btu') || '0');
+    const brand = card.getAttribute('data-brand');
 
     const matchesCategory = filters.categories.length === 0 || (category && filters.categories.includes(category));
     const matchesVoltage = filters.voltages.length === 0 || (voltage && filters.voltages.includes(voltage));
     const matchesBTU = filters.btus.length === 0 || (btu && filters.btus.includes(btu));
+    const matchesBrand = filters.brands.length === 0 || filters.brands.includes('') || (brand && filters.brands.includes(brand));
 
-    card.classList.toggle('hidden', !(matchesCategory && matchesVoltage && matchesBTU));
+    card.classList.toggle('hidden', !(matchesCategory && matchesVoltage && matchesBTU && matchesBrand));
   });
 }
 

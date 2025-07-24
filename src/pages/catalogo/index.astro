@@ -1,0 +1,22 @@
+---
+import ProductGrid from "../../components/Catalog/ProductGrid.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Catálogo Completo - Equipos de Climatización"
+  description="Explora nuestro catálogo completo de equipos de climatización de todas las marcas"
+>
+  <section class="py-16">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <h1 class="text-4xl font-semibold mb-4">
+        Catálogo Completo
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Encuentra el equipo perfecto para tus necesidades entre todas nuestras marcas
+      </p>
+    </div>
+
+    <ProductGrid />
+  </section>
+</Layout>

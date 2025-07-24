@@ -1,0 +1,46 @@
+---
+import ProductGrid from "../../../components/Catalog/ProductGrid.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { brandMapping, type BrandKey } from "../../../types/product";
+import type { Category } from "../../../shared/brandsData";
+
+export function getStaticPaths() {
+  const brands = Object.keys(brandMapping) as BrandKey[];
+  return brands.map(brand => ({
+    params: { brand }
+  }));
+}
+
+const { brand } = Astro.params as { brand: BrandKey };
+
+if (!brandMapping[brand]) {
+  return Astro.redirect('/404');
+}
+
+const brandInfo = brandMapping[brand];
+---
+
+<Layout
+  title={`Catálogo ${brandInfo.name} - Aires Acondicionados`}
+  description={`Explora toda la gama de productos ${brandInfo.name} disponibles en nuestro inventario`}
+>
+  <section class="py-16">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <div class="flex items-center justify-center mb-6">
+        <img 
+          src={brandInfo.logo} 
+          alt={`Logo ${brandInfo.name}`}
+          class="h-16 w-auto"
+        />
+      </div>
+      <h1 class="text-4xl font-semibold mb-4">
+        Catálogo {brandInfo.name}
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Encuentra todos los productos {brandInfo.name} disponibles en nuestro inventario
+      </p>
+    </div>
+
+    <ProductGrid selectedBrand={brand} />
+  </section>
+</Layout>
