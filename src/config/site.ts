@@ -3,8 +3,8 @@ export const siteConfig = {
   description: 'Especialistas en sistemas de climatización y refrigeración en Nicaragua. Distribuidores oficiales de las mejores marcas de aires acondicionados.',
   url: 'https://alaska.cool',
   contact: {
-    phone: '+505 7723-3432',
-    whatsapp: '50577233432',
+    phone: '+505 7772-6999',
+    whatsapp: '50577726999',
     email: 'info@alaska.cool',
   },
   business: {
@@ -22,7 +22,7 @@ export const siteConfig = {
   social: {
     facebook: 'https://facebook.com/alaskacoolnicaragua',
     instagram: 'https://instagram.com/alaskacoolnicaragua',
-    whatsapp: 'https://wa.me/50577233432',
+    whatsapp: 'https://wa.me/50577726999',
   },
   seo: {
     keywords: [
