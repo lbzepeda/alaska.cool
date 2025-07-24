@@ -1,9 +1,9 @@
 ---
-import { brandsData } from "../../shared/brandsData";
-import type { Category } from "../../shared/brandsData";
 import { ProductService } from "../../services/productApi";
 import { brandMapping, type BrandKey, type ApiProduct } from "../../types/product";
 import BrandFilter from "./BrandFilter.astro";
+
+type Category = 'residential' | 'industrial' | 'fan';
 
 interface Props {
   defaultCategory?: Category;
@@ -13,21 +13,24 @@ interface Props {
 const { defaultCategory, selectedBrand } = Astro.props;
 
 let apiProducts: ApiProduct[] = [];
-let staticProducts = Object.values(brandsData).flatMap(brand => brand.models);
 
-// Si hay una marca seleccionada, obtener productos de la API
-if (selectedBrand) {
-  try {
+// Obtener productos de la API
+try {
+  if (selectedBrand) {
+    // Si hay una marca seleccionada, buscar por esa marca
     apiProducts = await ProductService.getProductsByBrand(brandMapping[selectedBrand].apiParam);
-  } catch (error) {
-    console.error('Error fetching products:', error);
+  } else {
+    // Si no hay marca seleccionada, obtener todos los productos
+    apiProducts = await ProductService.getProducts();
   }
+} catch (error) {
+  console.error('Error fetching products:', error);
 }
 
-// Filtrar productos estáticos por categoría si se proporciona
-const initialStaticProducts = defaultCategory 
-  ? staticProducts.filter(product => product.area === defaultCategory)
-  : staticProducts;
+// Filtrar productos por categoría si se proporciona
+const filteredProducts = defaultCategory 
+  ? apiProducts.filter(product => ProductService.categorizeProduct(product) === defaultCategory)
+  : apiProducts;
 ---
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
@@ -141,8 +144,8 @@ const initialStaticProducts = defaultCategory
 
     <div class="flex-1">
       <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {selectedBrand && apiProducts.length > 0 ? (
-          apiProducts.map(product => {
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map(product => {
             const btu = ProductService.extractBTU(product.display_name);
             const voltage = ProductService.extractVoltage(product.display_name);
             const category = ProductService.categorizeProduct(product);
@@ -156,15 +159,17 @@ const initialStaticProducts = defaultCategory
                 data-category={category}
                 data-voltage={voltage}
                 data-btu={btu}
-                data-brand={selectedBrand}
+                data-brand={selectedBrand || ''}
               >
                 <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
                   <div class="flex items-center gap-2 mb-3">
-                    <img 
-                      src={brandMapping[selectedBrand].logo} 
-                      alt={brandMapping[selectedBrand].name}
-                      class="h-8 w-auto"
-                    />
+                    {selectedBrand && (
+                      <img 
+                        src={brandMapping[selectedBrand].logo} 
+                        alt={brandMapping[selectedBrand].name}
+                        class="h-8 w-auto"
+                      />
+                    )}
                     <span class="text-sm text-gray-500">{product.prod_codigo}</span>
                   </div>
                   
@@ -212,32 +217,9 @@ const initialStaticProducts = defaultCategory
             );
           })
         ) : (
-          initialStaticProducts.map(product => (
-            <div 
-              class="product-card"
-              data-id={product.id}
-              data-category={product.area}
-              data-voltage={product.voltage}
-              data-btu={product.name}
-            >
-              <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
-                <h3 class="text-lg font-medium mb-2">{product.name}</h3>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                    {product.name} BTU
-                  </span>
-                  <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
-                    {product.voltage}
-                  </span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">
-                    Ver detalles
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
+          <div class="col-span-full text-center py-12">
+            <p class="text-gray-500">No se encontraron productos</p>
+          </div>
         )}
       </div>
     </div>

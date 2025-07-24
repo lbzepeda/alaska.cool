@@ -13,7 +13,12 @@ export class ProductService {
       
       const url = `${API_BASE_URL}${params.toString() ? `?${params.toString()}` : ''}`;
       
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'auth-token': 'qjICtGMK6ntMQvbZHB6A3Qtt',
+          'user-email': 'lzepeda@alaska-cool.com'
+        }
+      });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
