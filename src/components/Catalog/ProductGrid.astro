@@ -1,9 +1,13 @@
 ---
 import { ProductService } from "../../services/productApi";
-import { brandMapping, type BrandKey, type ApiProduct } from "../../types/product";
+import {
+  brandMapping,
+  type BrandKey,
+  type ApiProduct,
+} from "../../types/product";
 import BrandFilter from "./BrandFilter.astro";
 
-type Category = 'residential' | 'industrial' | 'fan';
+type Category = "residential" | "industrial" | "fan";
 
 interface Props {
   defaultCategory?: Category;
@@ -18,18 +22,23 @@ let apiProducts: ApiProduct[] = [];
 try {
   if (selectedBrand) {
     // Si hay una marca seleccionada, buscar por esa marca
-    apiProducts = await ProductService.getProductsByBrand(brandMapping[selectedBrand].apiParam);
+    apiProducts = await ProductService.getProductsByBrand(
+      brandMapping[selectedBrand].apiParam,
+    );
   } else {
     // Si no hay marca seleccionada, obtener todos los productos
     apiProducts = await ProductService.getProducts();
   }
 } catch (error) {
-  console.error('Error fetching products:', error);
+  console.error("Error fetching products:", error);
 }
 
 // Filtrar productos por categoría si se proporciona
-const filteredProducts = defaultCategory 
-  ? apiProducts.filter(product => ProductService.categorizeProduct(product) === defaultCategory)
+const filteredProducts = defaultCategory
+  ? apiProducts.filter(
+      (product) =>
+        ProductService.categorizeProduct(product) === defaultCategory,
+    )
   : apiProducts;
 ---
 
@@ -39,7 +48,7 @@ const filteredProducts = defaultCategory
       <div class="sticky top-24">
         <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
           {!selectedBrand && <BrandFilter />}
-          
+
           <h3 class="text-lg font-medium mb-4">Categorías</h3>
           <div class="space-y-2" id="category-filters">
             <label class="flex items-center">
@@ -48,7 +57,7 @@ const filteredProducts = defaultCategory
                 value="residential"
                 data-filter="category"
                 class="mr-2"
-                checked={defaultCategory === 'residential'}
+                checked={defaultCategory === "residential"}
               />
               <span>Residencial</span>
             </label>
@@ -58,7 +67,7 @@ const filteredProducts = defaultCategory
                 value="industrial"
                 data-filter="category"
                 class="mr-2"
-                checked={defaultCategory === 'industrial'}
+                checked={defaultCategory === "industrial"}
               />
               <span>Industrial</span>
             </label>
@@ -68,7 +77,7 @@ const filteredProducts = defaultCategory
                 value="fan"
                 data-filter="category"
                 class="mr-2"
-                checked={defaultCategory === 'fan'}
+                checked={defaultCategory === "fan"}
               />
               <span>Ventilación</span>
             </label>
@@ -78,11 +87,30 @@ const filteredProducts = defaultCategory
             <h3 class="text-lg font-medium mb-4">Voltaje</h3>
             <div class="space-y-2">
               <label class="flex items-center">
-                <input type="checkbox" value="110V" data-filter="voltage" class="mr-2"/>
+                <input
+                  type="checkbox"
+                  value="110V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
                 <span>110V</span>
               </label>
               <label class="flex items-center">
-                <input type="checkbox" value="220V" data-filter="voltage" class="mr-2"/>
+                <input
+                  type="checkbox"
+                  value="115V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
+                <span>115V</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="220V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
                 <span>220V</span>
               </label>
             </div>
@@ -92,8 +120,8 @@ const filteredProducts = defaultCategory
             <h3 class="text-lg font-medium mb-4">BTU</h3>
             <div class="space-y-2">
               <label class="flex items-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   value="12000"
                   data-filter="btu"
                   class="mr-2"
@@ -101,17 +129,17 @@ const filteredProducts = defaultCategory
                 <span>12,000 BTU</span>
               </label>
               <label class="flex items-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   value="18000"
-                  data-filter="btu" 
+                  data-filter="btu"
                   class="mr-2"
                 />
                 <span>18,000 BTU</span>
               </label>
               <label class="flex items-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   value="24000"
                   data-filter="btu"
                   class="mr-2"
@@ -119,8 +147,8 @@ const filteredProducts = defaultCategory
                 <span>24,000 BTU</span>
               </label>
               <label class="flex items-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   value="36000"
                   data-filter="btu"
                   class="mr-2"
@@ -128,8 +156,8 @@ const filteredProducts = defaultCategory
                 <span>36,000 BTU</span>
               </label>
               <label class="flex items-center">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   value="60000"
                   data-filter="btu"
                   class="mr-2"
@@ -137,171 +165,206 @@ const filteredProducts = defaultCategory
                 <span>60,000 BTU</span>
               </label>
             </div>
-           </div>
+          </div>
         </div>
       </div>
     </aside>
 
     <div class="flex-1">
-      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => {
-            const btu = ProductService.extractBTU(product.display_name);
-            const voltage = ProductService.extractVoltage(product.display_name);
-            const category = ProductService.categorizeProduct(product);
-            const totalStock = ProductService.getTotalStock(product);
-            const price = ProductService.formatPrice(product.precio_venta);
-            
-            return (
-              <div 
-                class="product-card"
-                data-id={product.producto_id}
-                data-category={category}
-                data-voltage={voltage}
-                data-btu={btu}
-                data-brand={selectedBrand || ''}
-              >
-                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
-                  <div class="flex items-center gap-2 mb-3">
-                    {selectedBrand && (
-                      <img 
-                        src={brandMapping[selectedBrand].logo} 
-                        alt={brandMapping[selectedBrand].name}
-                        class="h-8 w-auto"
-                      />
-                    )}
-                    <span class="text-sm text-gray-500">{product.prod_codigo}</span>
-                  </div>
-                  
-                  <h3 class="text-lg font-medium mb-2 line-clamp-2">
-                    {product.display_name}
-                  </h3>
-                  
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    {btu && (
-                      <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                        {parseInt(btu).toLocaleString()} BTU
-                      </span>
-                    )}
-                    {voltage && (
-                      <span class="px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded-full">
-                        {voltage}
-                      </span>
-                    )}
-                    <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
-                      Stock: {totalStock}
-                    </span>
-                  </div>
-                  
-                  <div class="mb-4">
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                      {product.categoria_producto_nombre}
-                    </p>
-                    <p class="text-sm text-gray-500">
-                      {product.tipo_producto_nombre}
-                    </p>
-                  </div>
-                  
-                  <div class="flex justify-between items-center">
-                    <div class="text-right">
-                      <p class="text-lg font-semibold text-green-600">
-                        {price}
-                      </p>
+      <div
+        id="products-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        {
+          filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => {
+              const btu = ProductService.extractBTU(product.display_name);
+              const voltage = ProductService.extractVoltage(
+                product.display_name,
+              );
+              const category = ProductService.categorizeProduct(product);
+              const totalStock = ProductService.getTotalStock(product);
+              const price = ProductService.formatPrice(product.precio_venta);
+
+              return (
+                <div
+                  class="product-card group"
+                  data-id={product.producto_id}
+                  data-category={category}
+                  data-voltage={voltage}
+                  data-btu={btu}
+                  data-brand={selectedBrand || ""}
+                >
+                  <div class="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 hover:border-gray-200 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-lg group-hover:-translate-y-1">
+                    <div class="p-6">
+
+                      <!-- Title -->
+                      <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-tight">
+                        {product.display_name.replace(product.prod_codigo, '').replace(/^\s*-\s*/, '').trim()}
+                      </h3>
+
+                      <!-- Specs -->
+                      <div class="flex flex-wrap gap-2 mb-4">
+                        {btu && (
+                          <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            {parseInt(btu).toLocaleString()} BTU
+                          </div>
+                        )}
+                        {voltage && (
+                          <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                            </svg>
+                            {voltage}
+                          </div>
+                        )}
+                      </div>
+
+                      <!-- Category info -->
+                      <div class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                        <p class="font-medium">{product.categoria_producto_nombre}</p>
+                        <p>{product.tipo_producto_nombre}</p>
+                      </div>
+
+                      <!-- Price and CTA -->
+                      <div class="pt-4 border-t border-gray-100 dark:border-slate-700">
+                        {parseFloat(product.precio_venta) > 0 && (
+                          <div class="mb-4">
+                            <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                              {price}
+                            </p>
+                          </div>
+                        )}
+                        <a 
+                          href={`https://wa.me/50577726999?text=${encodeURIComponent(
+                            `Hola, estoy interesado en el siguiente producto:\n\n` +
+                            `Código: ${product.prod_codigo}\n` +
+                            `Producto: ${product.display_name}\n` +
+                            `Categoría: ${product.categoria_producto_nombre}\n` +
+                            `Tipo: ${product.tipo_producto_nombre}\n` +
+                            (btu ? `BTU: ${parseInt(btu).toLocaleString()}\n` : '') +
+                            (voltage ? `Voltaje: ${voltage}\n` : '') +
+                            (parseFloat(product.precio_venta) > 0 ? `Precio: ${price}\n` : '') +
+                            `\n¿Podrían brindarme más información y disponibilidad?`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors group"
+                        >
+                          Consultar
+                          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.955 8.955 0 01-4.126-.98L3 21l1.98-5.874A8.955 8.955 0 013 12c0-4.418 3.582-8 8-8S21 7.582 21 12z"/>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
-                    <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-                      Ver detalles
-                    </button>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <div class="col-span-full text-center py-12">
-            <p class="text-gray-500">No se encontraron productos</p>
-          </div>
-        )}
+              );
+            })
+          ) : (
+            <div class="col-span-full text-center py-12">
+              <p class="text-gray-500">No se encontraron productos</p>
+            </div>
+          )
+        }
       </div>
     </div>
   </div>
 </div>
 
 <script>
-let filters: {
-  categories: string[],
-  voltages: string[],
-  btus: number[],
-  brands: string[]
-} = {
-  categories: [],
-  voltages: [],
-  btus: [],
-  brands: []
-};
-
-function updateFilters() {
-  const categoryInputs = document.querySelectorAll('[data-filter="category"]');
-  const voltageInputs = document.querySelectorAll('[data-filter="voltage"]');
-  const btuInputs = document.querySelectorAll('[data-filter="btu"]');
-  const brandInputs = document.querySelectorAll('[data-filter="brand"]');
-
-  filters = {
-    categories: Array.from(categoryInputs)
-      .filter((input) => (input as HTMLInputElement).checked)
-      .map((input) => (input as HTMLInputElement).value),
-    voltages: Array.from(voltageInputs)
-      .filter((input) => (input as HTMLInputElement).checked)
-      .map((input) => (input as HTMLInputElement).value),
-    btus: Array.from(btuInputs)
-      .filter((input) => (input as HTMLInputElement).checked)
-      .map((input) => parseInt((input as HTMLInputElement).value)),
-    brands: Array.from(brandInputs)
-      .filter((input) => (input as HTMLInputElement).checked)
-      .map((input) => (input as HTMLInputElement).value)
+  let filters: {
+    categories: string[];
+    voltages: string[];
+    btus: number[];
+    brands: string[];
+  } = {
+    categories: [],
+    voltages: [],
+    btus: [],
+    brands: [],
   };
 
-  applyFilters();
-}
+  function updateFilters() {
+    const categoryInputs = document.querySelectorAll(
+      '[data-filter="category"]',
+    );
+    const voltageInputs = document.querySelectorAll('[data-filter="voltage"]');
+    const btuInputs = document.querySelectorAll('[data-filter="btu"]');
+    const brandInputs = document.querySelectorAll('[data-filter="brand"]');
 
-function applyFilters() {
-  const cards = document.querySelectorAll('.product-card');
-  
-  // Handle brand filter changes with page navigation
-  const brandFilters = filters.brands.filter(b => b !== '');
-  if (brandFilters.length === 1) {
-    // Navigate to brand page
-    window.location.href = `/catalogo/marca/${brandFilters[0]}`;
-    return;
-  } else if (brandFilters.length === 0 && filters.brands.includes('')) {
-    // Navigate back to general catalog if "all brands" is selected
-    const currentPath = window.location.pathname;
-    if (currentPath.includes('/marca/')) {
-      window.location.href = '/catalogo';
-      return;
-    }
+    filters = {
+      categories: Array.from(categoryInputs)
+        .filter((input) => (input as HTMLInputElement).checked)
+        .map((input) => (input as HTMLInputElement).value),
+      voltages: Array.from(voltageInputs)
+        .filter((input) => (input as HTMLInputElement).checked)
+        .map((input) => (input as HTMLInputElement).value),
+      btus: Array.from(btuInputs)
+        .filter((input) => (input as HTMLInputElement).checked)
+        .map((input) => parseInt((input as HTMLInputElement).value)),
+      brands: Array.from(brandInputs)
+        .filter((input) => (input as HTMLInputElement).checked)
+        .map((input) => (input as HTMLInputElement).value),
+    };
+
+    applyFilters();
   }
-  
-  cards.forEach(card => {
-    const category = card.getAttribute('data-category');
-    const voltage = card.getAttribute('data-voltage');
-    const btu = parseInt(card.getAttribute('data-btu') || '0');
-    const brand = card.getAttribute('data-brand');
 
-    const matchesCategory = filters.categories.length === 0 || (category && filters.categories.includes(category));
-    const matchesVoltage = filters.voltages.length === 0 || (voltage && filters.voltages.includes(voltage));
-    const matchesBTU = filters.btus.length === 0 || (btu && filters.btus.includes(btu));
-    const matchesBrand = filters.brands.length === 0 || filters.brands.includes('') || (brand && filters.brands.includes(brand));
+  function applyFilters() {
+    const cards = document.querySelectorAll(".product-card");
 
-    card.classList.toggle('hidden', !(matchesCategory && matchesVoltage && matchesBTU && matchesBrand));
-  });
-}
+    // Handle brand filter changes with page navigation
+    const brandFilters = filters.brands.filter((b) => b !== "");
+    if (brandFilters.length === 1) {
+      // Navigate to brand page
+      window.location.href = `/catalogo/marca/${brandFilters[0]}`;
+      return;
+    } else if (brandFilters.length === 0 && filters.brands.includes("")) {
+      // Navigate back to general catalog if "all brands" is selected
+      const currentPath = window.location.pathname;
+      if (currentPath.includes("/marca/")) {
+        window.location.href = "/catalogo";
+        return;
+      }
+    }
+
+    cards.forEach((card) => {
+      const category = card.getAttribute("data-category");
+      const voltage = card.getAttribute("data-voltage");
+      const btu = parseInt(card.getAttribute("data-btu") || "0");
+      const brand = card.getAttribute("data-brand");
+
+      const matchesCategory =
+        filters.categories.length === 0 ||
+        (category && filters.categories.includes(category));
+      const matchesVoltage =
+        filters.voltages.length === 0 ||
+        (voltage && filters.voltages.includes(voltage));
+      const matchesBTU =
+        filters.btus.length === 0 || (btu && filters.btus.includes(btu));
+      const matchesBrand =
+        filters.brands.length === 0 ||
+        filters.brands.includes("") ||
+        (brand && filters.brands.includes(brand));
+
+      card.classList.toggle(
+        "hidden",
+        !(matchesCategory && matchesVoltage && matchesBTU && matchesBrand),
+      );
+    });
+  }
 
   // Event listeners
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterInputs = document.querySelectorAll('[data-filter]');
-    filterInputs.forEach(input => {
-      input.addEventListener('change', updateFilters);
-      input.addEventListener('input', updateFilters);
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterInputs = document.querySelectorAll("[data-filter]");
+    filterInputs.forEach((input) => {
+      input.addEventListener("change", updateFilters);
+      input.addEventListener("input", updateFilters);
     });
 
     // Inicializa los filtros
