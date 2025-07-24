@@ -33,13 +33,22 @@ try {
   console.error("Error fetching products:", error);
 }
 
-// Filtrar productos por categoría si se proporciona
-const filteredProducts = defaultCategory
+// Filtrar productos por categoría y por voltaje/BTU si se proporciona
+let filteredProducts = defaultCategory
   ? apiProducts.filter(
       (product) =>
         ProductService.categorizeProduct(product) === defaultCategory,
     )
   : apiProducts;
+
+// Si estamos en una página de marca específica, filtrar solo productos con voltaje o BTU
+if (selectedBrand) {
+  filteredProducts = filteredProducts.filter((product) => {
+    const btu = ProductService.extractBTU(product.display_name);
+    const voltage = ProductService.extractVoltage(product.display_name);
+    return btu || voltage; // Solo productos que tengan al menos uno de los dos datos
+  });
+}
 ---
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
