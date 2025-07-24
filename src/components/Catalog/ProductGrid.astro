@@ -62,123 +62,123 @@ const filteredProducts = defaultCategory
   <div class="flex gap-8">
     <aside class="w-64 flex-shrink-0 hidden lg:block">
       <div class="sticky top-24">
-        <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-100 dark:border-slate-700 p-6">
           {!selectedBrand && <BrandFilter />}
 
-          <h3 class="text-lg font-medium mb-4">Categorías</h3>
+          <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Categorías</h3>
           <div class="space-y-2" id="category-filters">
-            <label class="flex items-center">
+            <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
               <input
                 type="checkbox"
                 value="residential"
                 data-filter="category"
-                class="mr-2"
+                class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 checked={defaultCategory === "residential"}
               />
-              <span>Residencial</span>
+              <span class="text-gray-700 dark:text-gray-300">Residencial</span>
             </label>
-            <label class="flex items-center">
+            <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
               <input
                 type="checkbox"
                 value="industrial"
                 data-filter="category"
-                class="mr-2"
+                class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 checked={defaultCategory === "industrial"}
               />
-              <span>Industrial</span>
+              <span class="text-gray-700 dark:text-gray-300">Industrial</span>
             </label>
-            <label class="flex items-center">
+            <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
               <input
                 type="checkbox"
                 value="fan"
                 data-filter="category"
-                class="mr-2"
+                class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 checked={defaultCategory === "fan"}
               />
-              <span>Ventilación</span>
+              <span class="text-gray-700 dark:text-gray-300">Ventilación</span>
             </label>
           </div>
 
           <div class="mt-6">
-            <h3 class="text-lg font-medium mb-4">Voltaje</h3>
+            <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Voltaje</h3>
             <div class="space-y-2">
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="110V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>110V</span>
+                <span class="text-gray-700 dark:text-gray-300">110V</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="115V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>115V</span>
+                <span class="text-gray-700 dark:text-gray-300">115V</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="220V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>220V</span>
+                <span class="text-gray-700 dark:text-gray-300">220V</span>
               </label>
             </div>
           </div>
 
           <div class="mt-6">
-            <h3 class="text-lg font-medium mb-4">BTU</h3>
+            <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">BTU</h3>
             <div class="space-y-2">
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="12000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>12,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">12,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="18000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
-                <span>18,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">18,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="24000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>24,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">24,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="36000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>36,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">36,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="60000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>60,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">60,000 BTU</span>
               </label>
             </div>
           </div>
@@ -208,121 +208,121 @@ const filteredProducts = defaultCategory
           {!selectedBrand && <BrandFilter />}
 
           <div>
-            <h3 class="text-lg font-medium mb-4">Categorías</h3>
+            <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Categorías</h3>
             <div class="space-y-2">
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="residential"
                   data-filter="category"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                   checked={defaultCategory === "residential"}
                 />
-                <span>Residencial</span>
+                <span class="text-gray-700 dark:text-gray-300">Residencial</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="industrial"
                   data-filter="category"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                   checked={defaultCategory === "industrial"}
                 />
-                <span>Industrial</span>
+                <span class="text-gray-700 dark:text-gray-300">Industrial</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="fan"
                   data-filter="category"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                   checked={defaultCategory === "fan"}
                 />
-                <span>Ventilación</span>
+                <span class="text-gray-700 dark:text-gray-300">Ventilación</span>
               </label>
             </div>
           </div>
 
           <div>
-            <h3 class="text-lg font-medium mb-4">Voltaje</h3>
+            <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Voltaje</h3>
             <div class="space-y-2">
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="110V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>110V</span>
+                <span class="text-gray-700 dark:text-gray-300">110V</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="115V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>115V</span>
+                <span class="text-gray-700 dark:text-gray-300">115V</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="220V"
                   data-filter="voltage"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>220V</span>
+                <span class="text-gray-700 dark:text-gray-300">220V</span>
               </label>
             </div>
           </div>
 
           <div>
-            <h3 class="text-lg font-medium mb-4">BTU</h3>
+            <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">BTU</h3>
             <div class="space-y-2">
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="12000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>12,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">12,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="18000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>18,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">18,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="24000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>24,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">24,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="36000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>36,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">36,000 BTU</span>
               </label>
-              <label class="flex items-center">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
                   type="checkbox"
                   value="60000"
                   data-filter="btu"
-                  class="mr-2"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
                 />
-                <span>60,000 BTU</span>
+                <span class="text-gray-700 dark:text-gray-300">60,000 BTU</span>
               </label>
             </div>
           </div>

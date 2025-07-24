@@ -24,23 +24,28 @@ const brandInfo = brandMapping[brand];
   title={`Catálogo ${brandInfo.name} - Aires Acondicionados`}
   description={`Explora toda la gama de productos ${brandInfo.name} disponibles en nuestro inventario`}
 >
-  <section class="py-16">
-    <div class="text-center max-w-xl mx-auto mb-12">
-      <div class="flex items-center justify-center mb-6">
-        <img 
-          src={brandInfo.logo} 
-          alt={`Logo ${brandInfo.name}`}
-          class="h-16 w-auto"
-        />
+  <!-- Compact header -->
+  <section class="pt-24 pb-6">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div class="flex items-center mb-6">
+        <div class="w-20 h-16 rounded-xl bg-gray-50 dark:bg-slate-800 flex items-center justify-center">
+          <img 
+            src={brandInfo.logo} 
+            alt={`Logo ${brandInfo.name}`}
+            class="max-h-12 max-w-18 w-auto h-auto object-contain"
+          />
+        </div>
+        <div class="ml-4">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            Catálogo de productos disponibles
+          </p>
+        </div>
       </div>
-      <h1 class="text-4xl font-semibold mb-4">
-        Catálogo {brandInfo.name}
-      </h1>
-      <p class="text-slate-600 dark:text-slate-400">
-        Encuentra todos los productos {brandInfo.name} disponibles en nuestro inventario
-      </p>
     </div>
+  </section>
 
+  <!-- Products section -->
+  <section class="pb-16">
     <ProductGrid selectedBrand={brand} />
   </section>
 </Layout>
