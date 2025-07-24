@@ -43,8 +43,24 @@ const filteredProducts = defaultCategory
 ---
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
+  <!-- Mobile filter toggle button -->
+  <div class="lg:hidden mb-4">
+    <button 
+      id="mobile-filter-toggle"
+      class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 2v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"/>
+      </svg>
+      Filtros
+      <svg id="mobile-filter-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+  </div>
+
   <div class="flex gap-8">
-    <aside class="w-64 flex-shrink-0">
+    <aside class="w-64 flex-shrink-0 hidden lg:block">
       <div class="sticky top-24">
         <div class="bg-white dark:bg-slate-800 rounded-lg shadow p-6">
           {!selectedBrand && <BrandFilter />}
@@ -169,6 +185,160 @@ const filteredProducts = defaultCategory
         </div>
       </div>
     </aside>
+
+    <!-- Mobile filter panel -->
+    <div 
+      id="mobile-filter-panel" 
+      class="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50 hidden"
+    >
+      <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-800 rounded-t-xl max-h-[80vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
+          <h2 class="text-lg font-semibold">Filtros</h2>
+          <button 
+            id="mobile-filter-close"
+            class="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="p-4 space-y-6">
+          {!selectedBrand && <BrandFilter />}
+
+          <div>
+            <h3 class="text-lg font-medium mb-4">Categorías</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="residential"
+                  data-filter="category"
+                  class="mr-2"
+                  checked={defaultCategory === "residential"}
+                />
+                <span>Residencial</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="industrial"
+                  data-filter="category"
+                  class="mr-2"
+                  checked={defaultCategory === "industrial"}
+                />
+                <span>Industrial</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="fan"
+                  data-filter="category"
+                  class="mr-2"
+                  checked={defaultCategory === "fan"}
+                />
+                <span>Ventilación</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium mb-4">Voltaje</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="110V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
+                <span>110V</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="115V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
+                <span>115V</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="220V"
+                  data-filter="voltage"
+                  class="mr-2"
+                />
+                <span>220V</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium mb-4">BTU</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="12000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>12,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="18000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>18,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="24000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>24,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="36000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>36,000 BTU</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  value="60000"
+                  data-filter="btu"
+                  class="mr-2"
+                />
+                <span>60,000 BTU</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Apply filters button for mobile -->
+          <div class="pt-4 border-t border-gray-200 dark:border-slate-700">
+            <button 
+              id="mobile-apply-filters"
+              class="w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            >
+              Aplicar Filtros
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="flex-1">
       <div
@@ -359,6 +529,37 @@ const filteredProducts = defaultCategory
     });
   }
 
+  // Mobile filter panel functions
+  function toggleMobileFilters() {
+    const panel = document.getElementById("mobile-filter-panel");
+    const icon = document.getElementById("mobile-filter-icon");
+    
+    if (panel && icon) {
+      const isHidden = panel.classList.contains("hidden");
+      
+      if (isHidden) {
+        panel.classList.remove("hidden");
+        icon.style.transform = "rotate(180deg)";
+        document.body.style.overflow = "hidden";
+      } else {
+        panel.classList.add("hidden");
+        icon.style.transform = "rotate(0deg)";
+        document.body.style.overflow = "";
+      }
+    }
+  }
+
+  function closeMobileFilters() {
+    const panel = document.getElementById("mobile-filter-panel");
+    const icon = document.getElementById("mobile-filter-icon");
+    
+    if (panel && icon) {
+      panel.classList.add("hidden");
+      icon.style.transform = "rotate(0deg)";
+      document.body.style.overflow = "";
+    }
+  }
+
   // Event listeners
   document.addEventListener("DOMContentLoaded", () => {
     const filterInputs = document.querySelectorAll("[data-filter]");
@@ -366,6 +567,36 @@ const filteredProducts = defaultCategory
       input.addEventListener("change", updateFilters);
       input.addEventListener("input", updateFilters);
     });
+
+    // Mobile filter panel listeners
+    const mobileToggle = document.getElementById("mobile-filter-toggle");
+    const mobileClose = document.getElementById("mobile-filter-close");
+    const mobileApply = document.getElementById("mobile-apply-filters");
+    const mobilePanel = document.getElementById("mobile-filter-panel");
+
+    if (mobileToggle) {
+      mobileToggle.addEventListener("click", toggleMobileFilters);
+    }
+
+    if (mobileClose) {
+      mobileClose.addEventListener("click", closeMobileFilters);
+    }
+
+    if (mobileApply) {
+      mobileApply.addEventListener("click", () => {
+        updateFilters();
+        closeMobileFilters();
+      });
+    }
+
+    // Close on background click
+    if (mobilePanel) {
+      mobilePanel.addEventListener("click", (e) => {
+        if (e.target === mobilePanel) {
+          closeMobileFilters();
+        }
+      });
+    }
 
     // Inicializa los filtros
     updateFilters();
