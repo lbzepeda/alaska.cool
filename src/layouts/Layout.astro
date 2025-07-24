@@ -5,6 +5,7 @@ import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+import { siteConfig } from "../config/site";
 
 interface Props {
   title: string;
@@ -15,12 +16,12 @@ interface Props {
 
 const {
   title,
-  description = "Alaska Cool Nicaragua - Expertos en climatización y aires acondicionados. Distribuidor autorizado de Tempblue, Rheem, Midea y ComfortStar. Venta, instalación y mantenimiento en todo el país.",
+  description = siteConfig.description,
   image = "/imagen-social-default.webp",
   canonicalURL = Astro.url,
 } = Astro.props;
 
-const seoTitle = `${title} | Alaska Cool - Aire Acondicionado | Nicaragua`;
+const seoTitle = `${title} | ${siteConfig.name} - Aire Acondicionado | Nicaragua`;
 
 const criticalImages = [
   "./industrial_fan_preview.webp",
@@ -103,8 +104,8 @@ const criticalImages = [
         },
         optional: {
           description: description,
-          locale: "es_NI",
-          siteName: "Alaska Cool",
+          locale: siteConfig.seo.locale,
+          siteName: siteConfig.name,
         },
         image: {
           alt: "Alaska Cool Nicaragua",
@@ -123,8 +124,7 @@ const criticalImages = [
         meta: [
           {
             name: "keywords",
-            content:
-              "aire acondicionado Nicaragua, climatización Managua, instalación aire acondicionado Nicaragua, mantenimiento aire acondicionado, Alaska Cool Nicaragua, sistemas de climatización comercial, extracción forzada industrial, aires residenciales Managua, aires industriales Nicaragua, Tempblue, Rheem, Midea, ComfortStar",
+            content: siteConfig.seo.keywords.join(", "),
           },
           {
             name: "author",
@@ -141,11 +141,11 @@ const criticalImages = [
           },
           {
             name: "google-site-verification",
-            content: "TU_CODIGO_DE_VERIFICACION",
+            content: siteConfig.verification.google,
           },
           {
             name: "facebook-domain-verification",
-            content: "TU_CODIGO_DE_VERIFICACION",
+            content: siteConfig.verification.facebook,
           },
           {
             property: "fb:app_id",
@@ -229,27 +229,26 @@ const criticalImages = [
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: "Alaska Cool",
-        description:
-          "Expertos en climatización y aires acondicionados en Nicaragua",
-        url: Astro.url,
+        name: siteConfig.name,
+        description: siteConfig.description,
+        url: siteConfig.url,
         logo: "/logo.webp",
         address: {
           "@type": "PostalAddress",
           addressCountry: "Nicaragua",
           addressRegion: "Managua",
-          addressLocality: "Managua",
+          addressLocality: siteConfig.business.address,
         },
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "TU-TELEFONO",
+          telephone: siteConfig.contact.phone,
           contactType: "customer service",
           areaServed: "NI",
           availableLanguage: "Spanish",
         },
         sameAs: [
-          "https://facebook.com/alaskacool",
-          "https://instagram.com/alaskacool",
+          siteConfig.social.facebook,
+          siteConfig.social.instagram,
         ],
       })}
     />

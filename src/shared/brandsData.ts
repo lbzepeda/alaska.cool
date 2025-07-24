@@ -1,7 +1,7 @@
 export type Category = "residential" | "industrial" | "fan";
 
 export const brandsData = {
-  tempblue: {
+  tempBlue: {
     name: "Tempblue",
     colorBrand: "bg-gradient-to-r from-emerald-600 to-sky-400",
     logo: "/brands/tempblue_logo.webp",
@@ -290,7 +290,7 @@ export const brandsData = {
     ],
   },
 
-  comfortstar: {
+  comfortStar: {
     name: "ComfortStar",
     colorBrand: "bg-gradient-to-r from-blue-600 to-sky-400",
     logo: "/brands/comfortstar_logo.webp",

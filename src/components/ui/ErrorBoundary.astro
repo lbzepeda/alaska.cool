@@ -1,0 +1,55 @@
+---
+interface Props {
+  fallback?: string;
+  class?: string;
+}
+
+const { fallback = "Ha ocurrido un error. Por favor, recarga la página.", class: className = "" } = Astro.props;
+---
+
+<div class={`error-boundary ${className}`} data-fallback={fallback}>
+  <slot />
+</div>
+
+<script>
+  // Simple error boundary implementation for Astro components
+  document.addEventListener('DOMContentLoaded', () => {
+    const errorBoundaries = document.querySelectorAll('.error-boundary');
+    
+    errorBoundaries.forEach(boundary => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const element = node as Element;
+              
+              // Check for JavaScript errors in child components
+              element.addEventListener('error', (event) => {
+                console.error('Component error:', event);
+                const fallback = boundary.getAttribute('data-fallback') || 'Error occurred';
+                boundary.innerHTML = `
+                  <div class="flex items-center justify-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                    <div class="text-center">
+                      <svg class="mx-auto h-12 w-12 text-red-400 dark:text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                      <p class="text-red-600 dark:text-red-400">${fallback}</p>
+                    </div>
+                  </div>
+                `;
+              }, true);
+            }
+          });
+        });
+      });
+      
+      observer.observe(boundary, { childList: true, subtree: true });
+    });
+  });
+</script>
+
+<style>
+  .error-boundary {
+    position: relative;
+  }
+</style>
