@@ -41,6 +41,11 @@ let filteredProducts = defaultCategory
     )
   : apiProducts;
 
+// Filtrar productos que contengan "NO USAR" en el título
+filteredProducts = filteredProducts.filter(
+  (product) => !product.display_name.toUpperCase().includes("NO USAR")
+);
+
 // Si estamos en una página de marca específica, filtrar solo productos con voltaje o BTU
 if (selectedBrand) {
   filteredProducts = filteredProducts.filter((product) => {
