@@ -46,10 +46,11 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
 
   <div
     id="language-menu"
-    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-600 ring-opacity-5 dark:ring-opacity-75 focus:outline-none z-50"
+    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-xl bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-600 ring-opacity-5 dark:ring-opacity-75 focus:outline-none z-[9999]"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="language-menu-button"
+    tabindex="-1"
   >
     <div class="py-1" role="none">
       {
@@ -105,16 +106,28 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
 
         // Crear nuevo toggle handler
         currentToggleHandler = (event: Event) => {
+          event.preventDefault();
           event.stopPropagation();
+          
           const isExpanded = button.getAttribute('aria-expanded') === 'true';
           button.setAttribute('aria-expanded', (!isExpanded).toString());
           menu.classList.toggle('hidden');
+          
+          // Enfocar el menú si se abrió para mejorar accesibilidad
+          if (!isExpanded) {
+            setTimeout(() => {
+              menu.focus();
+            }, 10);
+          }
         };
 
-        // Crear nuevo outside click handler
+        // Crear nuevo outside click handler con mejor detección en móvil
         currentOutsideClickHandler = (event: Event) => {
           const target = event.target as Node;
-          if (!button.contains(target) && !menu.contains(target)) {
+          // Verificar si el menú está visible antes de procesarlo
+          if (!menu.classList.contains('hidden') && 
+              !button.contains(target) && 
+              !menu.contains(target)) {
             closeMenu();
           }
         };

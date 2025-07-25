@@ -21,13 +21,13 @@
       window.location.href = spanishPath;
     }
 
-    // Interceptar clicks en enlaces de idioma para guardar la preferencia y preservar scroll
+    // Interceptar clicks en enlaces de idioma para preservar scroll
     document.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
       const link = target.closest('a[role="menuitem"]') as HTMLAnchorElement;
       
       if (link && link.href) {
-        event.preventDefault(); // Prevenir navegación por defecto
+        event.preventDefault();
         
         const url = new URL(link.href);
         const isEnglish = url.pathname.startsWith('/en/');
@@ -36,33 +36,39 @@
         // Guardar preferencia de idioma
         localStorage.setItem('preferred-language', language);
         
-        // Guardar posición actual del scroll
-        const scrollPosition = {
-          x: window.scrollX,
-          y: window.scrollY
-        };
-        sessionStorage.setItem('scroll-position', JSON.stringify(scrollPosition));
+        // Usar replaceState para cambiar la URL sin navegar
+        history.replaceState(null, '', link.href);
         
-        // Navegar a la nueva URL
-        window.location.href = link.href;
+        // Forzar recarga del contenido manteniendo el scroll
+        window.location.reload();
       }
     });
-    
-    // Restaurar posición del scroll después del cambio de idioma
-    const savedScrollPosition = sessionStorage.getItem('scroll-position');
-    if (savedScrollPosition) {
-      try {
-        const position = JSON.parse(savedScrollPosition);
-        // Restaurar scroll después de que la página se haya cargado completamente
-        setTimeout(() => {
-          window.scrollTo(position.x, position.y);
-        }, 100);
-        // Limpiar la posición guardada
-        sessionStorage.removeItem('scroll-position');
-      } catch (error) {
-        console.log('Error restaurando posición del scroll:', error);
+
+    // Interceptar el evento de beforeunload para preservar scroll
+    let scrollBeforeUnload = null;
+    window.addEventListener('beforeunload', () => {
+      scrollBeforeUnload = {
+        x: window.scrollX,
+        y: window.scrollY
+      };
+      sessionStorage.setItem('scroll-before-reload', JSON.stringify(scrollBeforeUnload));
+    });
+
+    // Restaurar scroll después de reload
+    window.addEventListener('load', () => {
+      const savedScroll = sessionStorage.getItem('scroll-before-reload');
+      if (savedScroll) {
+        try {
+          const position = JSON.parse(savedScroll);
+          setTimeout(() => {
+            window.scrollTo(position.x, position.y);
+          }, 100);
+          sessionStorage.removeItem('scroll-before-reload');
+        } catch (error) {
+          console.log('Error restaurando scroll:', error);
+        }
       }
-    }
+    });
   }
 
   // Ejecutar inmediatamente para redirección temprana
