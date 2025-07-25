@@ -114,20 +114,24 @@ const faqItems: FAQItem[] = [
     faqButtons.forEach(button => {
       button.addEventListener('click', () => {
         const targetId = button.getAttribute('data-faq-toggle');
+        if (!targetId) return;
+        
         const targetAnswer = document.getElementById(targetId);
-        const icon = button.querySelector('.faq-icon');
+        const icon = button.querySelector('.faq-icon') as HTMLElement;
         const isExpanded = button.getAttribute('aria-expanded') === 'true';
         
         // Close all other FAQ items
         faqButtons.forEach(otherButton => {
           if (otherButton !== button) {
             const otherId = otherButton.getAttribute('data-faq-toggle');
+            if (!otherId) return;
+            
             const otherAnswer = document.getElementById(otherId);
-            const otherIcon = otherButton.querySelector('.faq-icon');
+            const otherIcon = otherButton.querySelector('.faq-icon') as HTMLElement;
             
             otherButton.setAttribute('aria-expanded', 'false');
             if (otherAnswer) {
-              otherAnswer.style.maxHeight = '0px';
+              (otherAnswer as HTMLElement).style.maxHeight = '0px';
             }
             if (otherIcon) {
               otherIcon.style.transform = 'rotate(0deg)';
@@ -139,7 +143,7 @@ const faqItems: FAQItem[] = [
         if (isExpanded) {
           button.setAttribute('aria-expanded', 'false');
           if (targetAnswer) {
-            targetAnswer.style.maxHeight = '0px';
+            (targetAnswer as HTMLElement).style.maxHeight = '0px';
           }
           if (icon) {
             icon.style.transform = 'rotate(0deg)';
@@ -147,7 +151,7 @@ const faqItems: FAQItem[] = [
         } else {
           button.setAttribute('aria-expanded', 'true');
           if (targetAnswer) {
-            targetAnswer.style.maxHeight = targetAnswer.scrollHeight + 'px';
+            (targetAnswer as HTMLElement).style.maxHeight = targetAnswer.scrollHeight + 'px';
           }
           if (icon) {
             icon.style.transform = 'rotate(180deg)';

@@ -665,11 +665,17 @@ if (selectedBrand) {
     
     filterInputs.forEach((input) => {
       input.addEventListener("change", (e) => {
-        console.log('Filter changed:', e.target.value, e.target.checked); // Debug log
+        const target = e.target as HTMLInputElement;
+        if (target) {
+          console.log('Filter changed:', target.value, target.checked); // Debug log
+        }
         updateFilters();
       });
       input.addEventListener("input", (e) => {
-        console.log('Filter input:', e.target.value, e.target.checked); // Debug log
+        const target = e.target as HTMLInputElement;
+        if (target) {
+          console.log('Filter input:', target.value, target.checked); // Debug log
+        }
         updateFilters();
       });
     });
