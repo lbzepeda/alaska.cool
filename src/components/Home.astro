@@ -5,21 +5,28 @@ import {
   VIDEO_URL_INDUSTRIAL_AC,
 } from "../../config";
 
+// Fallback video URLs if env variables are not set
+const VIDEO_URLS = {
+  residential: VIDEO_URL_RESIDENTIAL_AC || "",
+  industrial: VIDEO_URL_INDUSTRIAL_AC || "",
+  fan: VIDEO_URL_INDUSTRIAL_FAN || "",
+};
+
 const IMAGES = {
   residential: {
-    src: "../assets/residencial_ac_preview.webp",
+    src: "/assets/residencial_ac_preview.webp",
     width: 800,
     height: 600,
     placeholder: "data:image/webp;base64,...",
   },
   industrial: {
-    src: "../assets/industrial_comercial_preview.webp",
+    src: "/assets/industrial_comercial_preview.webp",
     width: 800,
     height: 600,
     placeholder: "data:image/webp;base64,...",
   },
   fan: {
-    src: "../assets/industrial_fan_preview.webp",
+    src: "/assets/industrial_fan_preview.webp",
     width: 800,
     height: 600,
     placeholder: "data:image/webp;base64,...",
@@ -92,7 +99,7 @@ const IMAGES = {
           muted
           playsinline
           preload="none"
-          data-src={VIDEO_URL_RESIDENTIAL_AC}
+          data-src={VIDEO_URLS.residential}
           width={IMAGES.residential.width}
           height={IMAGES.residential.height}></video>
         <div
@@ -147,7 +154,7 @@ const IMAGES = {
           muted
           playsinline
           preload="none"
-          data-src={VIDEO_URL_INDUSTRIAL_AC}
+          data-src={VIDEO_URLS.industrial}
           width={IMAGES.industrial.width}
           height={IMAGES.industrial.height}
         >
@@ -203,7 +210,7 @@ const IMAGES = {
           muted
           playsinline
           preload="none"
-          data-src={VIDEO_URL_INDUSTRIAL_FAN}
+          data-src={VIDEO_URLS.fan}
           width={IMAGES.fan.width}
           height={IMAGES.fan.height}></video>
         <div
@@ -247,14 +254,46 @@ const IMAGES = {
     },
   );
 
-  document.addEventListener("DOMContentLoaded", () => {
+  let isInitialized = false;
+  const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome');
+  
+  function initializeVideoHandlers() {
+    console.log('Initializing video handlers... Safari:', isSafari);
+    
+    // For Safari, always reinitialize to ensure videos work
+    if (isInitialized && !isSafari) {
+      console.log('Videos already initialized, refreshing...');
+      // Just refresh video sources for existing videos (only if src exists)
+      const videos = document.querySelectorAll(".lazy-video");
+      videos.forEach((video) => {
+        const videoElement = video as HTMLVideoElement;
+        if (videoElement.dataset.src && videoElement.dataset.src.trim() !== "" && !videoElement.src) {
+          videoElement.src = videoElement.dataset.src;
+          videoElement.load();
+        }
+      });
+      return;
+    }
+
+    console.log('Initializing video handlers...');
     const videoContainers = document.querySelectorAll(".group");
     const videos = document.querySelectorAll(".lazy-video");
 
-    videos.forEach((video) => videoObserver.observe(video));
+    // Safari-specific video handling
+    videos.forEach((video) => {
+      const videoElement = video as HTMLVideoElement;
+      
+      // Force reload video source for Safari (only if src exists)
+      if (isSafari && videoElement.dataset.src && videoElement.dataset.src.trim() !== "") {
+        videoElement.src = videoElement.dataset.src;
+        videoElement.load();
+      }
+      
+      videoObserver.observe(video);
+    });
 
     videoContainers.forEach((container) => {
-      const video = container.querySelector("video");
+      const video = container.querySelector("video") as HTMLVideoElement;
       if (!video) return;
 
       let playTimeout: ReturnType<typeof setTimeout>;
@@ -267,14 +306,23 @@ const IMAGES = {
 
       const enterHandler = () => {
         clearTimeout(playTimeout);
+        const delay = isSafari ? 200 : 100; // Safari needs more time
+        
         playTimeout = setTimeout(() => {
-          if (video.readyState >= 3) {
-            playVideo();
-          } else {
-            video.load();
-            video.addEventListener("canplay", playVideo, { once: true });
+          // Only try to play if video has a valid source
+          if (video.dataset.src && video.dataset.src.trim() !== "") {
+            if (video.readyState >= 3) {
+              playVideo();
+            } else {
+              // Safari needs explicit src setting
+              if (isSafari && video.dataset.src && !video.src) {
+                video.src = video.dataset.src;
+              }
+              video.load();
+              video.addEventListener("canplay", playVideo, { once: true });
+            }
           }
-        }, 100);
+        }, delay);
       };
 
       const leaveHandler = () => {
@@ -284,6 +332,12 @@ const IMAGES = {
         video.currentTime = 0;
       };
 
+      // Remove existing listeners for Safari (to avoid duplicates)
+      if (isSafari) {
+        container.removeEventListener("mouseenter", enterHandler);
+        container.removeEventListener("mouseleave", leaveHandler);
+      }
+
       container.addEventListener("mouseenter", enterHandler, {
         passive: true,
       });
@@ -291,7 +345,107 @@ const IMAGES = {
         passive: true,
       });
     });
+    
+    isInitialized = true;
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeVideoHandlers);
+  document.addEventListener("astro:page-load", initializeVideoHandlers);
+  
+  // Handle hash navigation (like /#home from logo click)
+  window.addEventListener("hashchange", () => {
+    console.log('Hash changed to:', window.location.hash);
+    if (window.location.hash === "#home") {
+      const delay = isSafari ? 400 : 100; // Safari needs more time
+      setTimeout(() => {
+        if (isSafari) {
+          isInitialized = false; // Force reinit for Safari
+        }
+        initializeVideoHandlers();
+      }, delay);
+    }
   });
+  
+  // Handle direct navigation to /#home
+  if (window.location.hash === "#home") {
+    const delay = isSafari ? 300 : 100;
+    setTimeout(initializeVideoHandlers, delay);
+  }
+  
+  // Safari-specific: Additional listener for popstate (back/forward navigation)
+  if (isSafari) {
+    window.addEventListener("popstate", () => {
+      if (window.location.hash === "#home" || window.location.pathname === "/") {
+        setTimeout(() => {
+          isInitialized = false; // Force reinit for Safari
+          initializeVideoHandlers();
+        }, 400);
+      }
+    });
+  }
+  
+  // Additional handler for when the home section becomes visible
+  const homeSection = document.getElementById("home");
+  if (homeSection) {
+    const homeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const delay = isSafari ? 200 : 50; // Safari needs more time
+            setTimeout(() => {
+              if (isSafari) {
+                isInitialized = false; // Force reinit for Safari
+              }
+              initializeVideoHandlers();
+            }, delay);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    homeObserver.observe(homeSection);
+  }
+  
+  // Safari-specific: Force video initialization on focus/blur events
+  if (isSafari) {
+    window.addEventListener("focus", () => {
+      if (window.location.hash === "#home" || window.location.pathname === "/") {
+        setTimeout(() => {
+          isInitialized = false;
+          initializeVideoHandlers();
+        }, 200);
+      }
+    });
+    
+    // Safari-specific: Handle logo clicks directly
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href="/#home"]');
+      
+      if (link) {
+        console.log('Logo clicked in Safari, forcing video reinitialization');
+        setTimeout(() => {
+          isInitialized = false;
+          initializeVideoHandlers();
+        }, 400); // Extra delay for Safari hash navigation
+      }
+    });
+    
+    // Safari-specific: Monitor for hash changes more aggressively
+    let lastHash = window.location.hash;
+    setInterval(() => {
+      if (window.location.hash !== lastHash) {
+        lastHash = window.location.hash;
+        if (lastHash === "#home") {
+          console.log('Hash changed to #home in Safari');
+          setTimeout(() => {
+            isInitialized = false;
+            initializeVideoHandlers();
+          }, 300);
+        }
+      }
+    }, 100);
+  }
 </script>
 
 <style>

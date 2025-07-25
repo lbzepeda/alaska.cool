@@ -14,7 +14,8 @@ const brands = Object.entries(brandMapping) as [BrandKey, typeof brandMapping[Br
   <div class="space-y-2" id="brand-filters">
     <label class="flex items-center">
       <input
-        type="checkbox"
+        type="radio"
+        name="brand-filter"
         value=""
         data-filter="brand"
         class="mr-2"
@@ -25,7 +26,8 @@ const brands = Object.entries(brandMapping) as [BrandKey, typeof brandMapping[Br
     {brands.map(([brandKey, brandInfo]) => (
       <label class="flex items-center">
         <input
-          type="checkbox"
+          type="radio"
+          name="brand-filter"
           value={brandKey}
           data-filter="brand"
           class="mr-2"

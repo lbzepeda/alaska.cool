@@ -79,6 +79,17 @@ if (selectedBrand) {
         <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-100 dark:border-slate-700 p-6">
           <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Marcas</h3>
           <div class="space-y-2" id="brand-filters">
+            <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
+              <input
+                type="radio"
+                name="brand-filter"
+                value=""
+                data-filter="brand"
+                class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
+                checked={!selectedBrand}
+              />
+              <span class="text-gray-700 dark:text-gray-300">Todas las marcas</span>
+            </label>
             {Object.entries(brandMapping).map(([key, brand]) => (
               <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                 <input
@@ -203,6 +214,17 @@ if (selectedBrand) {
           <div>
             <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">Marcas</h3>
             <div class="space-y-2">
+              <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
+                <input
+                  type="radio"
+                  name="mobile-brand-filter"
+                  value=""
+                  data-filter="brand"
+                  class="mr-3 w-4 h-4 text-blue-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2"
+                  checked={!selectedBrand}
+                />
+                <span class="text-gray-700 dark:text-gray-300">Todas las marcas</span>
+              </label>
               {Object.entries(brandMapping).map(([key, brand]) => (
                 <label class="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 p-2 rounded-lg transition-colors">
                   <input
@@ -599,12 +621,22 @@ if (selectedBrand) {
       if (filters.selectedBrand === "") {
         // Navigate to general catalog
         console.log('Navigating to general catalog');
-        window.location.href = "/catalogo";
+        // Safari-compatible navigation
+        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+          window.location.assign("/catalogo");
+        } else {
+          window.location.href = "/catalogo";
+        }
         return;
       } else {
         // Navigate to specific brand page
         console.log('Navigating to brand:', filters.selectedBrand);
-        window.location.href = `/catalogo/marca/${filters.selectedBrand}`;
+        // Safari-compatible navigation
+        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+          window.location.assign(`/catalogo/marca/${filters.selectedBrand}`);
+        } else {
+          window.location.href = `/catalogo/marca/${filters.selectedBrand}`;
+        }
         return;
       }
     }
@@ -656,28 +688,33 @@ if (selectedBrand) {
     }
   }
 
-  // Event listeners
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log('DOM loaded, setting up event listeners'); // Debug log
+  // Safari-compatible initialization
+  function initializeFilters() {
+    console.log('Initializing filters'); // Debug log
     
     const filterInputs = document.querySelectorAll("[data-filter]");
     console.log('Found filter inputs:', filterInputs.length); // Debug log
     
     filterInputs.forEach((input) => {
-      input.addEventListener("change", (e) => {
+      // Safari-compatible event handling
+      const handleFilterChange = (e: Event) => {
         const target = e.target as HTMLInputElement;
         if (target) {
           console.log('Filter changed:', target.value, target.checked); // Debug log
         }
-        updateFilters();
-      });
-      input.addEventListener("input", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target) {
-          console.log('Filter input:', target.value, target.checked); // Debug log
-        }
-        updateFilters();
-      });
+        // Use setTimeout for Safari compatibility
+        setTimeout(() => {
+          updateFilters();
+        }, 0);
+      };
+
+      input.addEventListener("change", handleFilterChange);
+      input.addEventListener("input", handleFilterChange);
+      
+      // Safari sometimes needs click event for radio buttons
+      if ((input as HTMLInputElement).type === "radio") {
+        input.addEventListener("click", handleFilterChange);
+      }
     });
 
     // Mobile filter panel listeners
@@ -710,8 +747,20 @@ if (selectedBrand) {
       });
     }
 
-    // Inicializa los filtros
-    console.log('Initializing filters'); // Debug log
-    updateFilters();
-  });
+    // Initialize filters for Safari compatibility
+    setTimeout(() => {
+      updateFilters();
+    }, 100);
+  }
+
+  // Event listeners with Safari compatibility
+  document.addEventListener("DOMContentLoaded", initializeFilters);
+  document.addEventListener("astro:page-load", initializeFilters);
+  
+  // Additional Safari support - sometimes needs a delayed initialization
+  if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+    window.addEventListener("load", () => {
+      setTimeout(initializeFilters, 200);
+    });
+  }
 </script>
