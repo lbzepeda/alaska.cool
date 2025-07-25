@@ -58,11 +58,11 @@ const IMAGES = {
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
       <!-- AC Residencial -->
       <a
-        href="/catalogo/residential"
-        class="relative overflow-hidden rounded-xl group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
+        href="/catalogo/marca/tempblue"
+        class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
           class="absolute inset-0 z-10 bg-black/50 group-hover:bg-black/30 transition-colors duration-500"
@@ -72,7 +72,7 @@ const IMAGES = {
           <source
             type="image/webp"
             srcset={`${IMAGES.residential.src} 800w`}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           <img
             src={IMAGES.residential.src}
@@ -96,18 +96,18 @@ const IMAGES = {
           width={IMAGES.residential.width}
           height={IMAGES.residential.height}></video>
         <div
-          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-8"
+          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6"
         >
           <h3
-            class="text-3xl md:text-4xl font-medium tracking-tight text-white text-center mb-2"
+            class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
             Residencial
           </h3>
-          <p class="text-white/90 text-lg text-center">
+          <p class="text-white/90 text-base text-center mb-4">
             Soluciones de climatización para tu hogar
           </p>
           <span
-            class="mt-4 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+            class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
             Ver Catálogo →
           </span>
@@ -116,8 +116,8 @@ const IMAGES = {
 
       <!-- Industrial Comercial -->
       <a
-        href="/catalogo/industrial"
-        class="relative overflow-hidden rounded-xl group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
+        href="/catalogo/marca/tempblue"
+        class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
           class="absolute inset-0 z-10 bg-black/50 group-hover:bg-black/30 transition-colors duration-500"
@@ -127,7 +127,7 @@ const IMAGES = {
           <source
             type="image/webp"
             srcset={`${IMAGES.industrial.src} 800w`}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           <img
             src={IMAGES.industrial.src}
@@ -153,18 +153,18 @@ const IMAGES = {
         >
         </video>
         <div
-          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-8"
+          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6"
         >
           <h3
-            class="text-3xl md:text-4xl font-medium tracking-tight text-white text-center mb-2"
+            class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
-            Industriales | Comerciales
+            Industrial
           </h3>
-          <p class="text-white/90 text-lg text-center">
+          <p class="text-white/90 text-base text-center mb-4">
             Instalación y mantenimiento profesional
           </p>
           <span
-            class="mt-4 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+            class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
             Ver Catálogo →
           </span>
@@ -173,8 +173,8 @@ const IMAGES = {
 
       <!-- Ventilación Forzada -->
       <a
-        href="/catalogo/fan"
-        class="relative overflow-hidden rounded-xl group cursor-pointer h-[400px] md:col-span-2 transition-transform duration-300 hover:scale-[1.02]"
+        href="/catalogo/marca/tempblue"
+        class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
           class="absolute inset-0 z-10 bg-black/50 group-hover:bg-black/30 transition-colors duration-500"
@@ -183,17 +183,17 @@ const IMAGES = {
         <picture>
           <source
             type="image/webp"
-            srcset={`${IMAGES.fan.src} 800w, ${IMAGES.fan.src} 1200w`}
-            sizes="100vw"
+            srcset={`${IMAGES.fan.src} 800w`}
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           <img
             src={IMAGES.fan.src}
             alt="Ventilación Forzada Preview"
             class="absolute inset-0 w-full h-full object-cover"
             loading="eager"
-            width={IMAGES.industrial.width}
-            height={IMAGES.industrial.height}
-            style={`background-image: url(${IMAGES.industrial.placeholder}); background-size: cover;`}
+            width={IMAGES.fan.width}
+            height={IMAGES.fan.height}
+            style={`background-image: url(${IMAGES.fan.placeholder}); background-size: cover;`}
             fetchpriority="high"
           />
         </picture>
@@ -204,21 +204,21 @@ const IMAGES = {
           playsinline
           preload="none"
           data-src={VIDEO_URL_INDUSTRIAL_FAN}
-          width={IMAGES.industrial.width}
-          height={IMAGES.industrial.height}></video>
+          width={IMAGES.fan.width}
+          height={IMAGES.fan.height}></video>
         <div
-          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-8"
+          class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6"
         >
           <h3
-            class="text-3xl md:text-4xl font-medium tracking-tight text-white text-center mb-2"
+            class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
-            Ventilación Forzada
+            Ventilación
           </h3>
-          <p class="text-white/90 text-lg text-center">
+          <p class="text-white/90 text-base text-center mb-4">
             Ventilación de alto rendimiento
           </p>
           <span
-            class="mt-4 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+            class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
             Ver Catálogo →
           </span>
