@@ -569,7 +569,7 @@ if (selectedBrand) {
     const btuInputs = document.querySelectorAll('[data-filter="btu"]');
     const brandInputs = document.querySelectorAll('[data-filter="brand"]');
 
-    // Get selected brand (radio button)
+    // Get selected brand (radio button) - check both desktop and mobile
     const selectedBrandInput = Array.from(brandInputs).find(
       (input) => (input as HTMLInputElement).checked
     ) as HTMLInputElement;
@@ -584,6 +584,7 @@ if (selectedBrand) {
       selectedBrand: selectedBrandInput ? selectedBrandInput.value : "",
     };
 
+    console.log('Filters updated:', filters); // Debug log
     applyFilters();
   }
 
@@ -592,13 +593,17 @@ if (selectedBrand) {
     const currentPath = window.location.pathname;
     const currentBrand = currentPath.match(/\/catalogo\/marca\/([^\/]+)/)?.[1] || "";
     
+    console.log('Current brand:', currentBrand, 'Selected brand:', filters.selectedBrand); // Debug log
+    
     if (filters.selectedBrand !== currentBrand) {
       if (filters.selectedBrand === "") {
         // Navigate to general catalog
+        console.log('Navigating to general catalog');
         window.location.href = "/catalogo";
         return;
       } else {
         // Navigate to specific brand page
+        console.log('Navigating to brand:', filters.selectedBrand);
         window.location.href = `/catalogo/marca/${filters.selectedBrand}`;
         return;
       }
@@ -653,10 +658,20 @@ if (selectedBrand) {
 
   // Event listeners
   document.addEventListener("DOMContentLoaded", () => {
+    console.log('DOM loaded, setting up event listeners'); // Debug log
+    
     const filterInputs = document.querySelectorAll("[data-filter]");
+    console.log('Found filter inputs:', filterInputs.length); // Debug log
+    
     filterInputs.forEach((input) => {
-      input.addEventListener("change", updateFilters);
-      input.addEventListener("input", updateFilters);
+      input.addEventListener("change", (e) => {
+        console.log('Filter changed:', e.target.value, e.target.checked); // Debug log
+        updateFilters();
+      });
+      input.addEventListener("input", (e) => {
+        console.log('Filter input:', e.target.value, e.target.checked); // Debug log
+        updateFilters();
+      });
     });
 
     // Mobile filter panel listeners
@@ -690,6 +705,7 @@ if (selectedBrand) {
     }
 
     // Inicializa los filtros
+    console.log('Initializing filters'); // Debug log
     updateFilters();
   });
 </script>

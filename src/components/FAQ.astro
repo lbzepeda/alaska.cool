@@ -1,0 +1,174 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+  hasContactButton?: boolean;
+}
+
+const faqItems: FAQItem[] = [
+  {
+    question: "¿Qué tipos de equipos de climatización manejan?",
+    answer: "Manejamos una amplia gama de equipos de climatización incluyendo aires acondicionados residenciales, industriales y comerciales, sistemas de ventilación forzada, y equipos de diferentes marcas como TempBlue, Rheem, Midea y ComfortStar."
+  },
+  {
+    question: "¿Ofrecen servicio de instalación?",
+    answer: "Sí, contamos con un equipo técnico especializado que realiza instalaciones profesionales para todos nuestros equipos en toda Nicaragua. Ofrecemos servicio de instalación tanto para equipos residenciales como industriales y comerciales."
+  },
+  {
+    question: "¿Tienen servicio de mantenimiento?",
+    answer: "Por supuesto. Ofrecemos servicios de mantenimiento preventivo y correctivo para todos los equipos de climatización en toda Nicaragua. Nuestro equipo técnico está capacitado para brindar el mejor servicio y garantizar el óptimo funcionamiento de sus equipos."
+  },
+  {
+    question: "¿Cuál es la garantía de los equipos?",
+    answer: "Ofrecemos garantía de hasta 1 año en todos nuestros equipos. Todos nuestros productos vienen con garantía del fabricante y el respaldo completo de nuestro servicio técnico especializado."
+  },
+  {
+    question: "¿Cómo puedo conocer el precio de un producto?",
+    answer: "Puedes contactarnos directamente a través de WhatsApp haciendo clic en el botón 'Contactar' de cualquier producto en nuestro catálogo. También puedes usar el botón de contacto a continuación o visitarnos en nuestras instalaciones para recibir una cotización personalizada.",
+    hasContactButton: true
+  },
+  {
+    question: "¿Realizan cotizaciones para proyectos grandes?",
+    answer: "Sí, tenemos experiencia en proyectos industriales y comerciales de gran escala. Ofrecemos cotizaciones personalizadas, asesoría técnica especializada y soluciones integrales para proyectos de climatización de cualquier tamaño."
+  },
+  {
+    question: "¿En qué ciudades brindan servicio?",
+    answer: "Brindamos servicio en toda Nicaragua. Tenemos cobertura completa en todo el territorio nacional, desde Managua hasta las ciudades más remotas del país. No importa dónde te encuentres, nuestro equipo técnico puede llegar hasta ti."
+  },
+  {
+    question: "¿Cómo elijo el aire acondicionado adecuado para mi espacio?",
+    answer: "La selección depende de varios factores como el tamaño del área, el uso del espacio, la cantidad de personas, y las condiciones ambientales. Nuestro equipo técnico puede asesorarte para elegir el equipo más eficiente según tus necesidades específicas."
+  }
+];
+---
+
+<section id="faq" class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
+        FAQ
+      </span>
+      <h2 class="text-4xl md:text-5xl font-semibold text-slate-900 dark:text-white mb-4">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg">
+        Encuentra respuestas a las preguntas más comunes sobre nuestros productos y servicios
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        {faqItems.map((item, index) => (
+          <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <button 
+              class="faq-question w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              data-faq-toggle={`faq-${index}`}
+              aria-expanded="false"
+            >
+              <span class="text-lg font-medium text-slate-900 dark:text-white pr-8">
+                {item.question}
+              </span>
+              <svg 
+                class="faq-icon w-5 h-5 text-slate-500 dark:text-slate-400 transition-transform duration-200 flex-shrink-0" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div 
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+              id={`faq-${index}`}
+            >
+              <div class="px-6 pb-5 pt-2">
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  {item.answer}
+                </p>
+                {item.hasContactButton && (
+                  <a 
+                    href="https://wa.me/50577726999?text=Hola, me gustaría recibir información sobre sus productos y precios. ¿Podrían ayudarme?"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+                  >
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.087"/>
+                    </svg>
+                    Contactar por WhatsApp
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqButtons = document.querySelectorAll('.faq-question');
+    
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-faq-toggle');
+        const targetAnswer = document.getElementById(targetId);
+        const icon = button.querySelector('.faq-icon');
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQ items
+        faqButtons.forEach(otherButton => {
+          if (otherButton !== button) {
+            const otherId = otherButton.getAttribute('data-faq-toggle');
+            const otherAnswer = document.getElementById(otherId);
+            const otherIcon = otherButton.querySelector('.faq-icon');
+            
+            otherButton.setAttribute('aria-expanded', 'false');
+            if (otherAnswer) {
+              otherAnswer.style.maxHeight = '0px';
+            }
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        // Toggle current FAQ item
+        if (isExpanded) {
+          button.setAttribute('aria-expanded', 'false');
+          if (targetAnswer) {
+            targetAnswer.style.maxHeight = '0px';
+          }
+          if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+          }
+        } else {
+          button.setAttribute('aria-expanded', 'true');
+          if (targetAnswer) {
+            targetAnswer.style.maxHeight = targetAnswer.scrollHeight + 'px';
+          }
+          if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-item {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .faq-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  }
+
+  .dark .faq-item:hover {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+  }
+</style>
