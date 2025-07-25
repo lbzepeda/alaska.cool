@@ -7,6 +7,7 @@ import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
 import { siteConfig } from "../config/site";
 import { getLanguageFromUrl } from '../i18n/utils';
+import LanguagePersistence from '../components/LanguagePersistence.astro';
 
 interface Props {
   title: string;
@@ -257,6 +258,7 @@ const criticalImages = [
     />
   </head>
   <body class="bg-white dark:bg-gray-900">
+    <LanguagePersistence />
     <Navbar />
     <main class="relative z-10">
       <slot />

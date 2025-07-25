@@ -1,48 +1,53 @@
 ---
+import { getLanguageFromUrl, t } from '../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const currentLang = getLanguageFromUrl(Astro.url);
+
 const additionalBrands = [
   {
     name: "Tempblue",
     logo: "/brands/tempblue_logo.webp",
-    tagline: "Soluciones de Confort",
+    tagline: t(currentLang, 'brands.tempblue.tagline'),
     logoHeight: "h-16 md:h-16 h-10",
     gridClass: "col-span-2 md:col-span-3",
-    url: "/tempblue",
+    url: getRelativeLocaleUrl(currentLang, '/tempblue'),
     logoStyle: "opacity-70 brightness-200 contrast-0",
   },
   {
     name: "Rheem",
     logo: "/brands/rheem/rheem_logo.webp",
-    tagline: "Innovación en Climatización",
+    tagline: t(currentLang, 'brands.rheem.tagline'),
     logoHeight: "h-16 md:h-16 h-10",
     gridClass: "col-span-2 md:col-span-3",
-    url: "/rheem",
+    url: getRelativeLocaleUrl(currentLang, '/rheem'),
     logoStyle: "opacity-70 brightness-200 contrast-0",
   },
   {
     name: "Comfort Star",
     logo: "/brands/comfort_star_logo.webp",
-    tagline: "Alta eficiencia energética",
+    tagline: t(currentLang, 'brands.comfortstar.tagline'),
     logoHeight: "h-10",
     gridClass: "col-span-2 md:col-span-2",
-    url: "/comfort-star",
+    url: getRelativeLocaleUrl(currentLang, '/comfort-star'),
     logoStyle: "dark:invert opacity-70 brightness-200 contrast-0",
   },
   {
     name: "Midea",
     logo: "/brands/midea_logo.webp",
-    tagline: "Smart Home Innovation",
+    tagline: t(currentLang, 'brands.midea.tagline'),
     logoHeight: "h-10",
     gridClass: "col-span-2 md:col-span-2",
-    url: "/midea",
+    url: getRelativeLocaleUrl(currentLang, '/midea'),
     logoStyle: "opacity-70 brightness-200 contrast-0",
   },
   {
     name: "Soler & Palau",
     logo: "/brands/soler_palau_logo.webp",
-    tagline: "Expertos en ventilación",
+    tagline: t(currentLang, 'brands.solerpalau.tagline'),
     logoHeight: "h-14",
     gridClass: "col-span-2 md:col-span-2",
-    url: "/soler-palau",
+    url: getRelativeLocaleUrl(currentLang, '/soler-palau'),
     logoStyle: "opacity-70 brightness-200 contrast-0",
   },
 ];
@@ -54,10 +59,10 @@ const additionalBrands = [
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <div class="text-center mb-16">
       <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
-        Ahora Somos
+        {t(currentLang, 'brands.nowWe')}
       </span>
       <h2 class="text-3xl font-semibold text-slate-900 dark:text-white">
-        Distribuidores Autorizados
+        {t(currentLang, 'brands.authorized')}
       </h2>
     </div>
   </div>

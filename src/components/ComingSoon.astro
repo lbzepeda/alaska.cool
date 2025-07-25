@@ -1,4 +1,6 @@
 ---
+import { getLanguageFromUrl, t } from '../i18n/utils';
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -6,10 +8,12 @@ interface Props {
   date?: string;
 }
 
+const currentLang = getLanguageFromUrl(Astro.url);
+
 const {
-  title = "Muy Pronto",
-  subtitle = "Nueva Marca en Camino",
-  message = "Nos emociona anunciar la próxima llegada de una nueva marca a nuestra familia de productos. Mantente atento a esta emocionante incorporación.",
+  title = t(currentLang, 'comingSoon.title'),
+  subtitle = t(currentLang, 'comingSoon.subtitle'),
+  message = t(currentLang, 'comingSoon.message'),
 } = Astro.props;
 ---
 

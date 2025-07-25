@@ -1,0 +1,73 @@
+---
+// Componente para manejar la persistencia del idioma
+---
+
+<script>
+  function initLanguagePersistence() {
+    const currentPath = window.location.pathname;
+    const preferredLang = localStorage.getItem('preferred-language');
+    
+    // Si hay un idioma preferido guardado y no estamos ya en esa URL
+    if (preferredLang && preferredLang !== 'es') {
+      // Si estamos en la versión española de una página, redirigir a la versión en inglés
+      if (!currentPath.startsWith('/en/') && currentPath !== '/') {
+        window.location.href = `/en${currentPath}`;
+      } else if (currentPath === '/' && preferredLang === 'en') {
+        window.location.href = '/en/';
+      }
+    } else if (preferredLang === 'es' && currentPath.startsWith('/en/')) {
+      // Si el idioma preferido es español pero estamos en inglés, redirigir
+      const spanishPath = currentPath.replace('/en', '') || '/';
+      window.location.href = spanishPath;
+    }
+
+    // Interceptar clicks en enlaces de idioma para guardar la preferencia y preservar scroll
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const link = target.closest('a[role="menuitem"]') as HTMLAnchorElement;
+      
+      if (link && link.href) {
+        event.preventDefault(); // Prevenir navegación por defecto
+        
+        const url = new URL(link.href);
+        const isEnglish = url.pathname.startsWith('/en/');
+        const language = isEnglish ? 'en' : 'es';
+        
+        // Guardar preferencia de idioma
+        localStorage.setItem('preferred-language', language);
+        
+        // Guardar posición actual del scroll
+        const scrollPosition = {
+          x: window.scrollX,
+          y: window.scrollY
+        };
+        sessionStorage.setItem('scroll-position', JSON.stringify(scrollPosition));
+        
+        // Navegar a la nueva URL
+        window.location.href = link.href;
+      }
+    });
+    
+    // Restaurar posición del scroll después del cambio de idioma
+    const savedScrollPosition = sessionStorage.getItem('scroll-position');
+    if (savedScrollPosition) {
+      try {
+        const position = JSON.parse(savedScrollPosition);
+        // Restaurar scroll después de que la página se haya cargado completamente
+        setTimeout(() => {
+          window.scrollTo(position.x, position.y);
+        }, 100);
+        // Limpiar la posición guardada
+        sessionStorage.removeItem('scroll-position');
+      } catch (error) {
+        console.log('Error restaurando posición del scroll:', error);
+      }
+    }
+  }
+
+  // Ejecutar inmediatamente para redirección temprana
+  initLanguagePersistence();
+  
+  // También ejecutar en navegación de Astro
+  document.addEventListener('astro:after-swap', initLanguagePersistence);
+</script>

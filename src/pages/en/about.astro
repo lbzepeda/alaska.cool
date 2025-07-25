@@ -1,9 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Contact from "../../components/Contact.astro";
+import { getLanguageFromUrl, t } from '../../i18n/utils';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
-<Layout title="Sobre Nosotros - Alaska Cool">
+<Layout title={`${t(currentLang, 'about.title')} - Alaska Cool`}>
   <main class="bg-white dark:bg-black">
     <!-- Hero Section -->
     <section class="pt-24 pb-20">
@@ -12,7 +15,7 @@ import Contact from "../../components/Contact.astro";
           Alaska Cool
         </h1>
         <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-light leading-relaxed max-w-3xl mx-auto">
-          Transformando espacios a través de soluciones de climatización innovadoras en Nicaragua desde hace más de una década.
+          {t(currentLang, 'about.hero')}
         </p>
       </div>
     </section>
@@ -23,21 +26,19 @@ import Contact from "../../components/Contact.astro";
         <div class="grid lg:grid-cols-2 gap-16">
           <div>
             <h2 class="text-3xl md:text-4xl font-light text-slate-900 dark:text-white mb-6">
-              Misión
+              {t(currentLang, 'about.mission.title')}
             </h2>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-loose">
-              Crear ambientes perfectos mediante soluciones de climatización inteligentes, 
-              priorizando la eficiencia energética y la satisfacción total de nuestros clientes.
+              {t(currentLang, 'about.mission.description')}
             </p>
           </div>
           
           <div>
             <h2 class="text-3xl md:text-4xl font-light text-slate-900 dark:text-white mb-6">
-              Visión
+              {t(currentLang, 'about.vision.title')}
             </h2>
             <p class="text-lg text-slate-600 dark:text-slate-400 leading-loose">
-              Liderar la transformación del mercado centroamericano de climatización, 
-              siendo reconocidos por nuestra innovación y compromiso con la sostenibilidad.
+              {t(currentLang, 'about.vision.description')}
             </p>
           </div>
         </div>
@@ -48,7 +49,7 @@ import Contact from "../../components/Contact.astro";
     <section class="py-20 border-t border-slate-200 dark:border-slate-800">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 class="text-3xl md:text-4xl font-light text-slate-900 dark:text-white mb-16 text-center">
-          Nuestros Valores
+          {t(currentLang, 'about.values.title')}
         </h2>
         
         <div class="grid md:grid-cols-3 gap-12">
@@ -59,10 +60,10 @@ import Contact from "../../components/Contact.astro";
               </svg>
             </div>
             <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-3">
-              Excelencia
+              {t(currentLang, 'about.values.excellence.title')}
             </h3>
             <p class="text-slate-600 dark:text-slate-400">
-              Estándares superiores en cada proyecto y servicio
+              {t(currentLang, 'about.values.excellence.description')}
             </p>
           </div>
 
@@ -73,10 +74,10 @@ import Contact from "../../components/Contact.astro";
               </svg>
             </div>
             <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-3">
-              Innovación
+              {t(currentLang, 'about.values.innovation.title')}
             </h3>
             <p class="text-slate-600 dark:text-slate-400">
-              Tecnología de vanguardia para soluciones eficientes
+              {t(currentLang, 'about.values.innovation.description')}
             </p>
           </div>
 
@@ -87,10 +88,10 @@ import Contact from "../../components/Contact.astro";
               </svg>
             </div>
             <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-3">
-              Confianza
+              {t(currentLang, 'about.values.trust.title')}
             </h3>
             <p class="text-slate-600 dark:text-slate-400">
-              Relaciones sólidas basadas en transparencia
+              {t(currentLang, 'about.values.trust.description')}
             </p>
           </div>
         </div>
@@ -101,25 +102,20 @@ import Contact from "../../components/Contact.astro";
     <section class="py-20 border-t border-slate-200 dark:border-slate-800">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
         <h2 class="text-3xl md:text-4xl font-light text-slate-900 dark:text-white mb-12 text-center">
-          Nuestra Historia
+          {t(currentLang, 'about.story.title')}
         </h2>
         
         <div class="prose prose-lg dark:prose-invert max-w-none">
           <p class="text-lg text-slate-600 dark:text-slate-400 leading-loose mb-8">
-            Alaska Cool comenzó como una visión simple: crear espacios más cómodos 
-            y eficientes en Nicaragua. Lo que inició como un compromiso local se ha 
-            convertido en una referencia nacional de innovación y calidad.
+            {t(currentLang, 'about.story.paragraph1')}
           </p>
           
           <p class="text-lg text-slate-600 dark:text-slate-400 leading-loose mb-8">
-            Representamos las marcas más prestigiosas del mercado: TempBlue, Rheem, 
-            Comfort Star, Midea y Soler & Palau, ofreciendo soluciones integrales 
-            para cada necesidad de climatización.
+            {t(currentLang, 'about.story.paragraph2')}
           </p>
           
           <p class="text-lg text-slate-600 dark:text-slate-400 leading-loose">
-            Hoy, con cobertura nacional y un equipo técnico especializado, continuamos 
-            innovando para crear el futuro de la climatización en la región.
+            {t(currentLang, 'about.story.paragraph3')}
           </p>
         </div>
       </div>
@@ -129,28 +125,28 @@ import Contact from "../../components/Contact.astro";
     <section class="py-20 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 class="text-3xl md:text-4xl font-light text-slate-900 dark:text-white mb-16 text-center">
-          ¿Por qué Alaska Cool?
+          {t(currentLang, 'about.whyUs.title')}
         </h2>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="text-center">
             <div class="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2">10+</div>
-            <p class="text-slate-600 dark:text-slate-400">Años de experiencia</p>
+            <p class="text-slate-600 dark:text-slate-400">{t(currentLang, 'about.whyUs.experience')}</p>
           </div>
           
           <div class="text-center">
             <div class="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2">5</div>
-            <p class="text-slate-600 dark:text-slate-400">Marcas líderes</p>
+            <p class="text-slate-600 dark:text-slate-400">{t(currentLang, 'about.whyUs.brands')}</p>
           </div>
           
           <div class="text-center">
             <div class="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2">100%</div>
-            <p class="text-slate-600 dark:text-slate-400">Cobertura nacional</p>
+            <p class="text-slate-600 dark:text-slate-400">{t(currentLang, 'about.whyUs.coverage')}</p>
           </div>
           
           <div class="text-center">
-            <div class="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2">1 año</div>
-            <p class="text-slate-600 dark:text-slate-400">Garantía completa</p>
+            <div class="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2">1 year</div>
+            <p class="text-slate-600 dark:text-slate-400">{t(currentLang, 'about.whyUs.warranty')}</p>
           </div>
         </div>
       </div>

@@ -4,6 +4,10 @@ import {
   VIDEO_URL_INDUSTRIAL_FAN,
   VIDEO_URL_INDUSTRIAL_AC,
 } from "../../config";
+import { getLanguageFromUrl, t } from '../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 
 // Fallback video URLs if env variables are not set
 const VIDEO_URLS = {
@@ -53,22 +57,22 @@ const IMAGES = {
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <div class="text-center max-w-xl mx-auto mb-12" data-text="reveal">
       <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
-        Descubra Alaska Cool
+        {t(currentLang, 'home.discover')}
       </span>
       <h2
         class="text-4xl md:text-3xl font-semibold text-slate-900 dark:text-white mb-4"
       >
-        Conozca Nuestros Productos | Servicios en Climatización
+        {t(currentLang, 'home.productsTitle')}
       </h2>
       <p class="text-slate-600 dark:text-slate-400 text-lg">
-        Innovación y confort para cada espacio
+        {t(currentLang, 'home.innovation')}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
       <!-- AC Residencial -->
       <a
-        href="/catalogo/marca/tempblue"
+        href={getRelativeLocaleUrl(currentLang, '/catalogo/marca/tempblue')}
         class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
@@ -108,22 +112,22 @@ const IMAGES = {
           <h3
             class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
-            Residencial
+            {t(currentLang, 'home.residential.title')}
           </h3>
           <p class="text-white/90 text-base text-center mb-4">
-            Soluciones de climatización para tu hogar
+            {t(currentLang, 'home.residential.description')}
           </p>
           <span
             class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
-            Ver Catálogo →
+            {t(currentLang, 'home.residential.cta')}
           </span>
         </div>
       </a>
 
       <!-- Industrial Comercial -->
       <a
-        href="/catalogo/marca/tempblue"
+        href={getRelativeLocaleUrl(currentLang, '/catalogo/marca/tempblue')}
         class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
@@ -165,22 +169,22 @@ const IMAGES = {
           <h3
             class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
-            Industrial
+            {t(currentLang, 'home.industrial.title')}
           </h3>
           <p class="text-white/90 text-base text-center mb-4">
-            Instalación y mantenimiento profesional
+            {t(currentLang, 'home.industrial.description')}
           </p>
           <span
             class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
-            Ver Catálogo →
+            {t(currentLang, 'home.industrial.cta')}
           </span>
         </div>
       </a>
 
       <!-- Ventilación Forzada -->
       <a
-        href="/catalogo/marca/tempblue"
+        href={getRelativeLocaleUrl(currentLang, '/catalogo/marca/tempblue')}
         class="relative overflow-hidden group cursor-pointer h-[400px] transition-transform duration-300 hover:scale-[1.02]"
       >
         <div
@@ -219,15 +223,15 @@ const IMAGES = {
           <h3
             class="text-2xl md:text-3xl font-medium tracking-tight text-white text-center mb-2"
           >
-            Ventilación
+            {t(currentLang, 'home.ventilation.title')}
           </h3>
           <p class="text-white/90 text-base text-center mb-4">
-            Ventilación de alto rendimiento
+            {t(currentLang, 'home.ventilation.description')}
           </p>
           <span
             class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
-            Ver Catálogo →
+            {t(currentLang, 'home.ventilation.cta')}
           </span>
         </div>
       </a>

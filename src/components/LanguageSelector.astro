@@ -23,7 +23,7 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
   <button
     id="language-menu-button"
     type="button"
-    class="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    class="inline-flex items-center justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:ring-offset-gray-800"
     aria-expanded="false"
     aria-haspopup="true"
   >
@@ -46,7 +46,7 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
 
   <div
     id="language-menu"
-    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-600 ring-opacity-5 dark:ring-opacity-75 focus:outline-none z-50"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="language-menu-button"
@@ -56,10 +56,10 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
         alternateLinks.map(({ lang, url, label }) => (
           <a
             href={url}
-            class={`block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900 ${
+            class={`block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 ${
               lang === currentLang
-                ? 'bg-gray-100 text-gray-900 font-medium'
-                : 'text-gray-700'
+                ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-medium'
+                : 'text-gray-700 dark:text-gray-300'
             }`}
             role="menuitem"
           >
@@ -72,26 +72,76 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('language-menu-button');
-    const menu = document.getElementById('language-menu');
+  // Usar una función auto-ejecutable para crear un scope limpio
+  (function() {
+    // Variables para almacenar los handlers actuales
+    let currentToggleHandler: ((event: Event) => void) | null = null;
+    let currentOutsideClickHandler: ((event: Event) => void) | null = null;
+    let currentEscapeHandler: ((event: KeyboardEvent) => void) | null = null;
 
-    if (button && menu) {
-      const toggleMenu = () => {
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', (!isExpanded).toString());
-        menu.classList.toggle('hidden');
-      };
+    function initLanguageSelector() {
+      const button = document.getElementById('language-menu-button');
+      const menu = document.getElementById('language-menu');
 
-      button.addEventListener('click', toggleMenu);
+      if (button && menu) {
+        // Limpiar listeners existentes
+        if (currentToggleHandler) {
+          button.removeEventListener('click', currentToggleHandler);
+          currentToggleHandler = null;
+        }
+        if (currentOutsideClickHandler) {
+          document.removeEventListener('click', currentOutsideClickHandler);
+          currentOutsideClickHandler = null;
+        }
+        if (currentEscapeHandler) {
+          document.removeEventListener('keydown', currentEscapeHandler);
+          currentEscapeHandler = null;
+        }
 
-      // Close menu when clicking outside
-      document.addEventListener('click', (event) => {
-        if (!button.contains(event.target as Node) && !menu.contains(event.target as Node)) {
+        const closeMenu = () => {
           button.setAttribute('aria-expanded', 'false');
           menu.classList.add('hidden');
-        }
-      });
+        };
+
+        // Crear nuevo toggle handler
+        currentToggleHandler = (event: Event) => {
+          event.stopPropagation();
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', (!isExpanded).toString());
+          menu.classList.toggle('hidden');
+        };
+
+        // Crear nuevo outside click handler
+        currentOutsideClickHandler = (event: Event) => {
+          const target = event.target as Node;
+          if (!button.contains(target) && !menu.contains(target)) {
+            closeMenu();
+          }
+        };
+
+        // Crear nuevo escape handler
+        currentEscapeHandler = (event: KeyboardEvent) => {
+          if (event.key === 'Escape') {
+            closeMenu();
+          }
+        };
+
+        // Agregar nuevos listeners
+        button.addEventListener('click', currentToggleHandler);
+        document.addEventListener('click', currentOutsideClickHandler);
+        document.addEventListener('keydown', currentEscapeHandler);
+      }
     }
-  });
+
+    // Inicializar inmediatamente si el DOM ya está cargado
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSelector);
+    } else {
+      initLanguageSelector();
+    }
+    
+    // Reinicializar en las transiciones de página de Astro
+    document.addEventListener('astro:after-swap', initLanguageSelector);
+    document.addEventListener('astro:page-load', initLanguageSelector);
+  })();
 </script>

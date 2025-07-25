@@ -1,4 +1,7 @@
 ---
+import { getLanguageFromUrl, t } from '../i18n/utils';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 const svgClass = "w-4 h-4";
 ---
 
@@ -18,7 +21,7 @@ const svgClass = "w-4 h-4";
 
       <!-- Teléfonos -->
       <div class="flex flex-col items-center sm:items-start gap-3 text-sm">
-        <h4 class="font-medium text-slate-900 dark:text-white">Teléfonos</h4>
+        <h4 class="font-medium text-slate-900 dark:text-white">{t(currentLang, 'footer.phones')}</h4>
         <a
           href="tel:22243811"
           class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
@@ -61,7 +64,7 @@ const svgClass = "w-4 h-4";
 
       <!-- Email -->
       <div class="flex flex-col items-center sm:items-start gap-3 text-sm">
-        <h4 class="font-medium text-slate-900 dark:text-white">Correo</h4>
+        <h4 class="font-medium text-slate-900 dark:text-white">{t(currentLang, 'footer.email')}</h4>
         <a
           href="mailto:ventas@alaska-cool.com"
           class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
@@ -85,7 +88,7 @@ const svgClass = "w-4 h-4";
 
       <!-- Redes Sociales -->
       <div class="flex flex-col items-center sm:items-start gap-3 text-sm">
-        <h4 class="font-medium text-slate-900 dark:text-white">Síguenos</h4>
+        <h4 class="font-medium text-slate-900 dark:text-white">{t(currentLang, 'footer.social')}</h4>
         <div class="flex gap-4">
           <a
             href="https://www.facebook.com/alaskacoolnic"
@@ -164,10 +167,10 @@ const svgClass = "w-4 h-4";
       class="border-t border-gray-200/30 dark:border-gray-800/30 pt-4 text-xs text-slate-600 dark:text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2"
     >
       <p class="text-center sm:text-left">
-        © 2024 Alaska Cool. Todos los derechos reservados.
+        © 2024 Alaska Cool. {t(currentLang, 'footer.rights')}.
       </p>
       <p class="text-center sm:text-left">
-        Desarrollado por
+        {t(currentLang, 'footer.developedBy')}
         <a
           href="https://github.com/lbzepeda"
           target="_blank"
