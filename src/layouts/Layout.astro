@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
 import { siteConfig } from "../config/site";
+import { getLanguageFromUrl } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -14,9 +15,11 @@ interface Props {
   canonicalURL?: string;
 }
 
+const currentLang = getLanguageFromUrl(Astro.url);
+
 const {
   title,
-  description = siteConfig.description,
+  description = typeof siteConfig.description === 'string' ? siteConfig.description : siteConfig.description[currentLang],
   image = "/imagen-social-default.webp",
   canonicalURL = Astro.url,
 } = Astro.props;
@@ -30,7 +33,7 @@ const criticalImages = [
 ---
 
 <!doctype html>
-<html lang="es-NI" class="scroll-smooth">
+<html lang={currentLang === 'en' ? 'en-US' : 'es-NI'} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -104,7 +107,7 @@ const criticalImages = [
         },
         optional: {
           description: description,
-          locale: siteConfig.seo.locale,
+          locale: siteConfig.seo.locale[currentLang],
           siteName: siteConfig.name,
         },
         image: {
@@ -124,7 +127,7 @@ const criticalImages = [
         meta: [
           {
             name: "keywords",
-            content: siteConfig.seo.keywords.join(", "),
+            content: siteConfig.seo.keywords[currentLang].join(", "),
           },
           {
             name: "author",

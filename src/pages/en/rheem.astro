@@ -1,0 +1,16 @@
+---
+// src/pages/rheem.astro
+import BrandPage from "../../components/BrandDetail/BrandPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { brandsData } from "../../shared/brandsData";
+
+const rheemData = brandsData.rheem;
+---
+
+<Layout
+  title="Rheem - Climatización Profesional"
+  description="Rheem Nicaragua: Líder en soluciones de climatización industrial y comercial. Sistemas Full Inverter de alto rendimiento para grandes espacios, respaldo de fábrica y red de técnicos certificados en todo Nicaragua. Ideal para proyectos comerciales."
+  image="/brands/rheem-social.webp"
+>
+  <BrandPage brand={rheemData} brandKey="rheem" />
+</Layout>

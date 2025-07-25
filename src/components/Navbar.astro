@@ -1,18 +1,23 @@
 ---
 import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLanguageFromUrl, t } from '../i18n/utils';
+import LanguageSelector from './LanguageSelector.astro';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 
 const NAVIGATION_ITEMS = [
   {
     href: "#home",
-    label: "Inicio",
+    label: t(currentLang, 'nav.home'),
   },
   {
     href: "#bento",
-    label: "Climatización",
+    label: "Climatización", // Keep as is for now
   },
   {
     href: "#products",
-    label: "Productos",
+    label: "Productos", // Keep as is for now
   },
   {
     href: "#faq",
@@ -20,11 +25,11 @@ const NAVIGATION_ITEMS = [
   },
   {
     href: "#contact",
-    label: "Contáctanos",
+    label: t(currentLang, 'nav.contact'),
   },
   {
-    href: "/about",
-    label: "Nosotros",
+    href: getRelativeLocaleUrl(currentLang, '/about'),
+    label: t(currentLang, 'nav.about'),
   },
 ] as const;
 
@@ -77,8 +82,9 @@ const phoneNumber = "+505 7772-6999";
         }
       </div>
 
-      <!-- Contact Button and Theme Toggle Desktop -->
-      <div class="hidden md:flex items-center gap-6">
+      <!-- Language Selector, Contact Button and Theme Toggle Desktop -->
+      <div class="hidden md:flex items-center gap-4">
+        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} />
         <button
           id="theme-toggle"
           class="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
@@ -135,7 +141,8 @@ const phoneNumber = "+505 7772-6999";
       </div>
 
       <!-- Mobile Elements -->
-      <div class="flex md:hidden items-center gap-6">
+      <div class="flex md:hidden items-center gap-4">
+        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} />
         <button
           id="theme-toggle-mobile"
           class="text-slate-600 dark:text-slate-300"
