@@ -1,108 +1,7 @@
 ---
-import { getLanguageFromUrl, t } from '../i18n/utils';
+import { getLanguageFromUrl } from '../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
-
-// Función para detectar automáticamente medios optimizados en public/projects
-function getProjectMedia() {
-  // En producción, esto debería ser dinámico, pero para esta demo usamos archivos estáticos
-  // Solo acepta: imágenes .webp y videos .webm
-  const mediaFiles = [
-    // Ejemplo de archivos optimizados que deberías subir:
-    // "/projects/vista-aerea-comercial.webp",
-    // "/projects/proceso-instalacion.webm", 
-    // "/projects/residencial-clima.webp",
-    // "/projects/industrial-completo.webp",
-    // "/projects/precision-install.webp",
-    // "/projects/detalle-tecnico.webp"
-  ];
-
-  // Mapeo de medios con información detallada
-  const mediaData = {
-    "vista-aerea-comercial.webp": {
-      id: 1,
-      type: "image",
-      alt: "Proyecto de climatización - Vista aérea",
-      title: currentLang === 'es' ? "Instalación Comercial Vista Aérea" : "Commercial Installation Aerial View",
-      description: currentLang === 'es' ? 
-        "Sistema de climatización industrial instalado en complejo comercial con tecnología de última generación." :
-        "Industrial HVAC system installed in commercial complex with cutting-edge technology.",
-      category: currentLang === 'es' ? "Comercial" : "Commercial",
-      height: "tall"
-    },
-    "proceso-instalacion.webm": {
-      id: 2,
-      type: "video",
-      poster: "/projects/residencial-clima.webp",
-      alt: "Video del proceso de instalación",
-      title: currentLang === 'es' ? "Proceso de Instalación en Video" : "Installation Process Video",
-      description: currentLang === 'es' ? 
-        "Video detallado del proceso de instalación de sistema de climatización mostrando técnicas profesionales." :
-        "Detailed video of the HVAC system installation process showing professional techniques.",
-      category: currentLang === 'es' ? "Proceso" : "Process",
-      height: "tall"
-    },
-    "residencial-clima.webp": {
-      id: 3,
-      type: "image",
-      alt: "Instalación de sistema de climatización",
-      title: currentLang === 'es' ? "Sistema de Climatización Residencial" : "Residential HVAC System",
-      description: currentLang === 'es' ? 
-        "Instalación completa de sistema de aire acondicionado en residencia privada." :
-        "Complete air conditioning system installation in private residence.",
-      category: currentLang === 'es' ? "Residencial" : "Residential",
-      height: "medium"
-    },
-    "industrial-completo.webp": {
-      id: 4,
-      type: "image",
-      alt: "Proyecto de climatización completado",
-      title: currentLang === 'es' ? "Proyecto Industrial Completado" : "Completed Industrial Project",
-      description: currentLang === 'es' ? 
-        "Sistema de ventilación y climatización para facility industrial de gran escala." :
-        "Ventilation and HVAC system for large-scale industrial facility.",
-      category: currentLang === 'es' ? "Industrial" : "Industrial",
-      height: "short"
-    },
-    "precision-install.webp": {
-      id: 5,
-      type: "image",
-      alt: "Sistema de climatización instalado",
-      title: currentLang === 'es' ? "Instalación de Precisión" : "Precision Installation",
-      description: currentLang === 'es' ? 
-        "Instalación especializada con controles automatizados y monitoreo remoto." :
-        "Specialized installation with automated controls and remote monitoring.",
-      category: currentLang === 'es' ? "Especializado" : "Specialized",
-      height: "tall"
-    },
-    "detalle-tecnico.webp": {
-      id: 6,
-      type: "image",
-      alt: "Proyecto de climatización - Detalle",
-      title: currentLang === 'es' ? "Detalle de Instalación" : "Installation Detail",
-      description: currentLang === 'es' ? 
-        "Vista detallada de componentes y conexiones del sistema de climatización." :
-        "Detailed view of HVAC system components and connections.",
-      category: currentLang === 'es' ? "Técnico" : "Technical",
-      height: "medium"
-    }
-  };
-
-  // Filtra solo archivos que existen y tienen el formato correcto
-  return mediaFiles
-    .filter(file => {
-      const fileName = file.split('/').pop();
-      const extension = fileName.split('.').pop().toLowerCase();
-      return (extension === 'webp' || extension === 'webm') && mediaData[fileName];
-    })
-    .map(file => {
-      const fileName = file.split('/').pop();
-      return {
-        src: file,
-        ...mediaData[fileName]
-      };
-    });
-}
 
 // ✅ USANDO ARCHIVOS OPTIMIZADOS WebP/WebM YA DISPONIBLES
 const projectMedia = [
@@ -231,7 +130,6 @@ const projectMedia = [
   }
 ];
 
-// NOTA: Después de convertir archivos, reemplaza projectMedia con getProjectMedia()
 ---
 
 <section
@@ -480,9 +378,9 @@ const projectMedia = [
     const closeBtn = document.getElementById('lightbox-close');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
-    const image = document.getElementById('lightbox-image');
-    const video = document.getElementById('lightbox-video');
-    const videoSource = document.getElementById('lightbox-video-source');
+    const image = document.getElementById('lightbox-image') as HTMLImageElement;
+    const video = document.getElementById('lightbox-video') as HTMLVideoElement;
+    const videoSource = document.getElementById('lightbox-video-source') as HTMLSourceElement;
     const title = document.getElementById('lightbox-title');
     const description = document.getElementById('lightbox-description');
     const category = document.getElementById('lightbox-category');
@@ -492,8 +390,8 @@ const projectMedia = [
     let currentIndex = 0;
     const mediaItems = Array.from(lightboxItems);
     
-    function openLightbox(index) {
-      const item = mediaItems[index];
+    function openLightbox(index: number): void {
+      const item = mediaItems[index] as HTMLElement;
       const mediaSrc = item.dataset.src;
       const mediaType = item.dataset.type;
       const mediaTitle = item.dataset.title;
@@ -501,46 +399,52 @@ const projectMedia = [
       const mediaCategory = item.dataset.category;
       
       // Hide both media elements first
-      image.classList.add('hidden');
-      video.classList.add('hidden');
+      if (image) image.classList.add('hidden');
+      if (video) video.classList.add('hidden');
       
       if (mediaType === 'video') {
         // Show video player
-        video.classList.remove('hidden');
-        videoSource.src = mediaSrc;
-        video.load(); // Reload the video element
-        video.currentTime = 0; // Reset to beginning
+        if (video) {
+          video.classList.remove('hidden');
+          if (videoSource && mediaSrc) {
+            videoSource.src = mediaSrc;
+          }
+          video.load(); // Reload the video element
+          video.currentTime = 0; // Reset to beginning
+        }
       } else {
         // Show image
-        image.classList.remove('hidden');
-        image.src = mediaSrc;
-        image.alt = mediaTitle;
+        if (image && mediaSrc && mediaTitle) {
+          image.classList.remove('hidden');
+          image.src = mediaSrc;
+          image.alt = mediaTitle;
+        }
       }
       
-      title.textContent = mediaTitle;
-      description.textContent = mediaDescription;
-      category.textContent = mediaCategory;
-      type.textContent = mediaCategory;
-      counter.textContent = `${index + 1} / ${mediaItems.length}`;
+      if (title && mediaTitle) title.textContent = mediaTitle;
+      if (description && mediaDescription) description.textContent = mediaDescription;
+      if (category && mediaCategory) category.textContent = mediaCategory;
+      if (type && mediaCategory) type.textContent = mediaCategory;
+      if (counter) counter.textContent = `${index + 1} / ${mediaItems.length}`;
       
-      modal.classList.remove('hidden');
+      if (modal) modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       currentIndex = index;
     }
     
-    function closeLightbox() {
+    function closeLightbox(): void {
       // Pause video if playing
-      if (!video.classList.contains('hidden')) {
+      if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
       
-      modal.classList.add('hidden');
+      if (modal) modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
     }
     
-    function nextMedia() {
+    function nextMedia(): void {
       // Pause current video if playing
-      if (!video.classList.contains('hidden')) {
+      if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
       
@@ -548,9 +452,9 @@ const projectMedia = [
       openLightbox(currentIndex);
     }
     
-    function prevMedia() {
+    function prevMedia(): void {
       // Pause current video if playing
-      if (!video.classList.contains('hidden')) {
+      if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
       
@@ -563,18 +467,20 @@ const projectMedia = [
       item.addEventListener('click', () => openLightbox(index));
     });
     
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', nextMedia);
-    prevBtn.addEventListener('click', prevMedia);
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (nextBtn) nextBtn.addEventListener('click', nextMedia);
+    if (prevBtn) prevBtn.addEventListener('click', prevMedia);
     
     // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeLightbox();
-    });
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLightbox();
+      });
+    }
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('hidden')) {
+      if (modal && !modal.classList.contains('hidden')) {
         switch(e.key) {
           case 'Escape':
             closeLightbox();
@@ -587,9 +493,9 @@ const projectMedia = [
             break;
           case ' ': // Spacebar for play/pause video
             e.preventDefault();
-            if (!video.classList.contains('hidden')) {
+            if (video && !video.classList.contains('hidden')) {
               if (video.paused) {
-                video.play();
+                video.play().catch(console.error);
               } else {
                 video.pause();
               }
@@ -600,16 +506,18 @@ const projectMedia = [
     });
     
     // Video event listeners
-    video.addEventListener('loadedmetadata', function() {
-      // Video metadata loaded, ready to play
-      console.log('Video loaded successfully');
-    });
-    
-    video.addEventListener('error', function(e) {
-      console.error('Error loading video:', e);
-      // Fallback: hide video and show error message
-      video.classList.add('hidden');
-      // You could add an error message element here
-    });
+    if (video) {
+      video.addEventListener('loadedmetadata', function() {
+        // Video metadata loaded, ready to play
+        console.log('Video loaded successfully');
+      });
+      
+      video.addEventListener('error', function(e) {
+        console.error('Error loading video:', e);
+        // Fallback: hide video and show error message
+        if (video) video.classList.add('hidden');
+        // You could add an error message element here
+      });
+    }
   });
 </script>
