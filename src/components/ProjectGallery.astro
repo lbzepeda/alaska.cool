@@ -183,7 +183,7 @@ const projectMedia = [
           data-lightbox="projects"
           data-src={media.src}
           data-type={media.type}
-          data-poster={media.poster || ''}
+          data-poster={(media as any).poster || ''}
           data-title={media.title}
           data-description={media.description}
           data-category={media.category}
@@ -195,7 +195,7 @@ const projectMedia = [
               <div class="relative w-full h-full">
                 <!-- Video poster as background image -->
                 <img 
-                  src={media.poster} 
+                  src={(media as any).poster} 
                   alt={media.alt}
                   class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 />
@@ -480,8 +480,8 @@ const projectMedia = [
 
 <script>
   // Disable Console Ninja for this script to prevent injection
-  if (typeof window !== 'undefined' && window.ninjaDisableLogging) {
-    window.ninjaDisableLogging();
+  if (typeof window !== 'undefined' && (window as any).ninjaDisableLogging) {
+    (window as any).ninjaDisableLogging();
   }
   
   document.addEventListener('DOMContentLoaded', function() {
@@ -503,28 +503,28 @@ const projectMedia = [
     const type = document.getElementById('lightbox-type');
     const counter = document.getElementById('lightbox-counter');
 
-    let activeFilter = 'todos';
-    let filteredItems = [];
-    let currentIndex = 0;
+    let activeFilter: string = 'todos';
+    let filteredItems: HTMLElement[] = [];
+    let currentIndex: number = 0;
 
     function updateFilteredItems() {
       if (activeFilter === 'todos') {
-        filteredItems = Array.from(mediaItems);
+        filteredItems = Array.from(mediaItems) as HTMLElement[];
       } else {
         filteredItems = Array.from(mediaItems).filter(function(item) {
-          return item.dataset.company === activeFilter;
-        });
+          return (item as HTMLElement).dataset.company === activeFilter;
+        }) as HTMLElement[];
       }
     }
 
-    function filterMedia(filterType) {
+    function filterMedia(filterType: string) {
       activeFilter = filterType;
       
       filterTabs.forEach(function(tab) {
-        if (tab.dataset.filter === filterType) {
-          tab.dataset.active = 'true';
+        if ((tab as HTMLElement).dataset.filter === filterType) {
+          (tab as HTMLElement).dataset.active = 'true';
         } else {
-          tab.dataset.active = 'false';
+          (tab as HTMLElement).dataset.active = 'false';
         }
       });
 
@@ -532,7 +532,7 @@ const projectMedia = [
         item.classList.add('filtering');
         
         setTimeout(function() {
-          if (filterType === 'todos' || item.dataset.company === filterType) {
+          if (filterType === 'todos' || (item as HTMLElement).dataset.company === filterType) {
             item.classList.remove('hidden', 'filtering');
           } else {
             item.classList.add('hidden');
@@ -550,14 +550,14 @@ const projectMedia = [
 
     filterTabs.forEach(function(tab) {
       tab.addEventListener('click', function() {
-        const filterType = tab.dataset.filter;
+        const filterType = (tab as HTMLElement).dataset.filter;
         if (filterType) {
           filterMedia(filterType);
         }
       });
     });
     
-    function openLightbox(index) {
+    function openLightbox(index: number) {
       const item = filteredItems[index];
       const mediaSrc = item.dataset.src;
       const mediaType = item.dataset.type;
@@ -574,22 +574,22 @@ const projectMedia = [
       if (mediaType === 'video') {
         if (video && videoSource) {
           video.classList.remove('hidden');
-          video.pause();
-          video.currentTime = 0;
+          (video as HTMLVideoElement).pause();
+          (video as HTMLVideoElement).currentTime = 0;
           
           if (mediaSrc) {
-            videoSource.src = mediaSrc;
+            (videoSource as HTMLSourceElement).src = mediaSrc;
           }
           if (mediaPoster) {
-            video.poster = mediaPoster;
+            (video as HTMLVideoElement).poster = mediaPoster;
           }
-          video.load();
+          (video as HTMLVideoElement).load();
         }
       } else {
         if (image && mediaSrc && mediaTitle) {
           image.classList.remove('hidden');
-          image.src = mediaSrc;
-          image.alt = mediaTitle;
+          (image as HTMLImageElement).src = mediaSrc;
+          (image as HTMLImageElement).alt = mediaTitle;
         }
       }
       
@@ -611,7 +611,7 @@ const projectMedia = [
     
     function closeLightbox() {
       if (video && !video.classList.contains('hidden')) {
-        video.pause();
+        (video as HTMLVideoElement).pause();
       }
       
       if (modal) modal.classList.add('hidden');
@@ -620,7 +620,7 @@ const projectMedia = [
     
     function nextMedia() {
       if (video && !video.classList.contains('hidden')) {
-        video.pause();
+        (video as HTMLVideoElement).pause();
       }
       
       currentIndex = (currentIndex + 1) % filteredItems.length;
@@ -629,14 +629,14 @@ const projectMedia = [
     
     function prevMedia() {
       if (video && !video.classList.contains('hidden')) {
-        video.pause();
+        (video as HTMLVideoElement).pause();
       }
       
       currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
       openLightbox(currentIndex);
     }
     
-    mediaItems.forEach(function(item, index) {
+    mediaItems.forEach(function(item) {
       item.addEventListener('click', function() {
         const filteredIndex = filteredItems.findIndex(function(filteredItem) {
           return filteredItem === item;
@@ -672,10 +672,10 @@ const projectMedia = [
           case ' ':
             e.preventDefault();
             if (video && !video.classList.contains('hidden')) {
-              if (video.paused) {
-                video.play().catch(function() {});
+              if ((video as HTMLVideoElement).paused) {
+                (video as HTMLVideoElement).play().catch(function() {});
               } else {
-                video.pause();
+                (video as HTMLVideoElement).pause();
               }
             }
             break;
@@ -684,7 +684,7 @@ const projectMedia = [
     });
     
     if (video) {
-      video.addEventListener('error', function(e) {
+      video.addEventListener('error', function() {
         if (video) video.classList.add('hidden');
       });
     }
