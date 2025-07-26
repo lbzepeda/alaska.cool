@@ -8,12 +8,12 @@ const projectCategories = [
   {
     id: 'todos',
     name: currentLang === 'es' ? 'Todos' : 'All',
-    count: 10
+    count: 12
   },
   {
     id: 'ampm',
     name: 'AMPM',
-    count: 2
+    count: 4
   },
   {
     id: 'unan',
@@ -37,133 +37,135 @@ const projectMedia = [
     company: "ampm",
     alt: "Instalación aires acondicionados tipo cassette AMPM",
     title: currentLang === 'es' ? "AMPM - Aires Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
-    description: currentLang === 'es' ? 
-      "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." :
-      "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
+    description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "tall"
   },
   {
+    id: 2,
+    src: "/projects/AMPM2.webp",
+    type: "image",
+    company: "ampm",
+    alt: "Instalación aires acondicionados AMPM - Fase 2",
+    title: currentLang === 'es' ? "AMPM - Instalación Fase 2" : "AMPM - Installation Phase 2",
+    description: currentLang === 'es' ? "Segunda fase de instalación de aires cassette de 60,000 BTU en sucursales AMPM, mostrando el progreso del proyecto." : "Second phase of 60,000 BTU cassette AC installation in AMPM branches, showing project progress.",
+    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    height: "medium"
+  },
+  {
+    id: 3,
+    src: "/projects/AMPM3.webp",
+    type: "image",
+    company: "ampm",
+    alt: "Finalización proyecto AMPM - Aires cassette",
+    title: currentLang === 'es' ? "AMPM - Proyecto Completado" : "AMPM - Project Completed",
+    description: currentLang === 'es' ? "Finalización exitosa del proyecto de aires cassette en todas las sucursales AMPM a nivel nacional." : "Successful completion of cassette AC project in all AMPM branches nationwide.",
+    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    height: "short"
+  },
+  {
     id: 10,
-    src: "/projects/v09044g40000d16s53vog65isb89cq80.webm",
+    src: "/projects/Comercial1.webm",
     type: "video",
     company: "ampm",
     poster: "/projects/AMPM1.webp",
-    alt: "Video promocional proyecto AMPM",
-    title: currentLang === 'es' ? "AMPM - Video Promocional" : "AMPM - Promotional Video",
-    description: currentLang === 'es' ? 
-      "Video promocional mostrando la instalación de aires cassette de 60,000 BTU en las sucursales AMPM a nivel nacional." :
-      "Promotional video showing the installation of 60,000 BTU cassette AC units in AMPM branches nationwide.",
+    alt: "Video comercial proyecto AMPM",
+    title: currentLang === 'es' ? "AMPM - Video Comercial" : "AMPM - Commercial Video",
+    description: currentLang === 'es' ? "Video comercial mostrando la instalación de aires cassette de 60,000 BTU en las sucursales AMPM a nivel nacional." : "Commercial video showing the installation of 60,000 BTU cassette AC units in AMPM branches nationwide.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "tall"
   },
 
   // 🎓 PROYECTO UNAN
   {
-    id: 2,
-    src: "/projects/v09044g40000d0jrptnog65g9q0lahf0.webm",
+    id: 4,
+    src: "/projects/Comercial2.webm",
     type: "video",
     company: "unan",
     poster: "/projects/UNAN1.webp",
     alt: "Video del proceso de instalación - UNAN", 
     title: currentLang === 'es' ? "UNAN - Proceso de Instalación" : "UNAN - Installation Process",
-    description: currentLang === 'es' ? 
-      "Video detallado del proceso de instalación de sistema de climatización en Universidad Nacional Autónoma de Nicaragua." :
-      "Detailed video of HVAC system installation process at National Autonomous University of Nicaragua.",
+    description: currentLang === 'es' ? "Video detallado del proceso de instalación de sistema de climatización en Universidad Nacional Autónoma de Nicaragua." : "Detailed video of HVAC system installation process at National Autonomous University of Nicaragua.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "tall"
   },
   {
-    id: 3,
+    id: 5,
     src: "/projects/UNAN1.webp",
     type: "image",
     company: "unan",
     alt: "Universidad UNAN - Sistema de climatización",
     title: currentLang === 'es' ? "UNAN - Proyecto Universitario" : "UNAN - University Project",
-    description: currentLang === 'es' ? 
-      "Instalación completa de sistema de climatización en instalaciones universitarias con control automatizado." :
-      "Complete HVAC system installation in university facilities with automated control.",
+    description: currentLang === 'es' ? "Instalación completa de sistema de climatización en instalaciones universitarias con control automatizado." : "Complete HVAC system installation in university facilities with automated control.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "medium"
   },
   {
-    id: 4,
+    id: 6,
     src: "/projects/UNAN2.webp",
     type: "image",
     company: "unan",
     alt: "UNAN - Equipos de climatización instalados",
     title: currentLang === 'es' ? "UNAN - Equipamiento Fase 2" : "UNAN - Equipment Phase 2",
-    description: currentLang === 'es' ? 
-      "Segunda fase del proyecto universitario con instalación de equipos de alta eficiencia energética." :
-      "Second phase of university project with high energy efficiency equipment installation.",
+    description: currentLang === 'es' ? "Segunda fase del proyecto universitario con instalación de equipos de alta eficiencia energética." : "Second phase of university project with high energy efficiency equipment installation.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "short"
   },
   {
-    id: 5,
+    id: 7,
     src: "/projects/UNAN3.webp",
     type: "image",
     company: "unan",
     alt: "UNAN - Detalles técnicos de instalación",
     title: currentLang === 'es' ? "UNAN - Detalles Técnicos" : "UNAN - Technical Details",
-    description: currentLang === 'es' ? 
-      "Vista detallada de componentes y conexiones del sistema de climatización universitario." :
-      "Detailed view of university HVAC system components and connections.",
+    description: currentLang === 'es' ? "Vista detallada de componentes y conexiones del sistema de climatización universitario." : "Detailed view of university HVAC system components and connections.",
     category: currentLang === 'es' ? "Técnico" : "Technical",
     height: "tall"
   },
   {
-    id: 6,
+    id: 8,
     src: "/projects/UNAN4.webp",
     type: "image",
     company: "unan",
     alt: "UNAN - Instalación completada",
     title: currentLang === 'es' ? "UNAN - Finalización del Proyecto" : "UNAN - Project Completion",
-    description: currentLang === 'es' ? 
-      "Proyecto universitario completado con sistemas de monitoreo y control remoto implementados." :
-      "University project completed with monitoring systems and remote control implemented.",
+    description: currentLang === 'es' ? "Proyecto universitario completado con sistemas de monitoreo y control remoto implementados." : "University project completed with monitoring systems and remote control implemented.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "medium"
   },
   {
-    id: 7,
+    id: 9,
     src: "/projects/UNAN5.webp",
     type: "image",
     company: "unan",
     alt: "UNAN - Vista general del proyecto",
     title: currentLang === 'es' ? "UNAN - Vista General" : "UNAN - General View",
-    description: currentLang === 'es' ? 
-      "Vista panorámica del proyecto universitario mostrando la integración completa del sistema." :
-      "Panoramic view of university project showing complete system integration.",
+    description: currentLang === 'es' ? "Vista panorámica del proyecto universitario mostrando la integración completa del sistema." : "Panoramic view of university project showing complete system integration.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "tall"
   },
 
   // 📹 CONTENIDO AUDIOVISUAL
   {
-    id: 8,
+    id: 11,
     src: "/projects/TrasCamara.webp",
     type: "image",
     company: "contenido",
     alt: "Behind the scenes - Proceso de trabajo",
     title: currentLang === 'es' ? "Tras Cámaras - Proceso" : "Behind the Scenes - Process",
-    description: currentLang === 'es' ? 
-      "Vista tras cámaras del proceso de instalación mostrando el profesionalismo del equipo técnico." :
-      "Behind the scenes view of installation process showing technical team professionalism.",
+    description: currentLang === 'es' ? "Vista tras cámaras del proceso de instalación mostrando el profesionalismo del equipo técnico." : "Behind the scenes view of installation process showing technical team professionalism.",
     category: currentLang === 'es' ? "Proceso" : "Process",
     height: "medium"
   },
   {
-    id: 9,
-    src: "/projects/v09044g40000d0lmv07og65pio5p0go0.webm",
+    id: 12,
+    src: "/projects/Comercial3.webm",
     type: "video",
     company: "contenido",
     poster: "/projects/TrasCamara.webp",
     alt: "Video técnico - Proceso de instalación",
     title: currentLang === 'es' ? "Video Técnico - Instalación" : "Technical Video - Installation",
-    description: currentLang === 'es' ? 
-      "Video técnico detallado mostrando metodología y técnicas profesionales de instalación." :
-      "Detailed technical video showing professional installation methodology and techniques.",
+    description: currentLang === 'es' ? "Video técnico detallado mostrando metodología y técnicas profesionales de instalación." : "Detailed technical video showing professional installation methodology and techniques.",
     category: currentLang === 'es' ? "Técnico" : "Technical",
     height: "tall"
   }
@@ -183,10 +185,7 @@ const projectMedia = [
         {currentLang === 'es' ? 'Multimedia' : 'Multimedia'}
       </h2>
       <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
-        {currentLang === 'es' 
-          ? 'Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.'
-          : 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.'
-        }
+        {currentLang === 'es' ? 'Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.' : 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.'}
       </p>
 
       <!-- Filter Tabs -->
@@ -230,15 +229,12 @@ const projectMedia = [
           <div class="relative w-full h-full overflow-hidden">
             {media.type === 'video' ? (
               <div class="relative w-full h-full">
-                <video
+                <!-- Video poster as background image -->
+                <img 
+                  src={media.poster} 
+                  alt={media.alt}
                   class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                  poster={media.poster}
-                  muted
-                  preload="metadata"
-                >
-                  <source src={media.src} type="video/webm" />
-                  {currentLang === 'es' ? 'Tu navegador no soporta video WebM.' : 'Your browser does not support WebM video.'}
-                </video>
+                />
                 <!-- Play button overlay -->
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
@@ -297,7 +293,7 @@ const projectMedia = [
               
               <!-- View more button -->
               <div class="mt-3 flex items-center text-blue-300 text-sm font-medium">
-                <span>{currentLang === 'es' ? (media.type === 'video' ? 'Ver video' : 'Ver detalles') : (media.type === 'video' ? 'Watch video' : 'View details')}</span>
+                <span>{currentLang === 'es' ? media.type === 'video' ? 'Ver video' : 'Ver detalles' : media.type === 'video' ? 'Watch video' : 'View details'}</span>
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -310,37 +306,37 @@ const projectMedia = [
   </div>
 
   <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm">
+  <div id="lightbox-modal" class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-sm">
     <div class="absolute inset-0 flex items-center justify-center p-4">
       <!-- Close button -->
       <button 
         id="lightbox-close" 
-        class="absolute top-4 right-4 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
+        class="absolute top-6 right-6 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Close lightbox"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
 
       <!-- Navigation arrows -->
       <button 
         id="lightbox-prev" 
-        class="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
+        class="absolute left-6 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Previous image"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
       
       <button 
         id="lightbox-next" 
-        class="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
+        class="absolute right-6 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Next image"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
 
@@ -360,6 +356,8 @@ const projectMedia = [
               class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl hidden"
               controls
               preload="metadata"
+              playsinline
+              poster=""
             >
               <source id="lightbox-video-source" src="" type="video/webm" />
               {currentLang === 'es' ? 'Tu navegador no soporta video WebM.' : 'Your browser does not support WebM video.'}
@@ -516,115 +514,112 @@ const projectMedia = [
 </style>
 
 <script>
+  // Disable Console Ninja for this script to prevent injection
+  if (typeof window !== 'undefined' && window.ninjaDisableLogging) {
+    window.ninjaDisableLogging();
+  }
+  
   document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
+    'use strict';
+    
+    // Gallery functionality
     const filterTabs = document.querySelectorAll('.filter-tab');
     const mediaItems = document.querySelectorAll('.media-item');
-    let activeFilter = 'todos';
-    let filteredItems: Element[] = [];
-
-    // Lightbox elements
     const modal = document.getElementById('lightbox-modal');
     const closeBtn = document.getElementById('lightbox-close');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
-    const image = document.getElementById('lightbox-image') as HTMLImageElement;
-    const video = document.getElementById('lightbox-video') as HTMLVideoElement;
-    const videoSource = document.getElementById('lightbox-video-source') as HTMLSourceElement;
+    const image = document.getElementById('lightbox-image');
+    const video = document.getElementById('lightbox-video');
+    const videoSource = document.getElementById('lightbox-video-source');
     const title = document.getElementById('lightbox-title');
     const description = document.getElementById('lightbox-description');
     const category = document.getElementById('lightbox-category');
     const type = document.getElementById('lightbox-type');
     const counter = document.getElementById('lightbox-counter');
-    
+
+    let activeFilter = 'todos';
+    let filteredItems = [];
     let currentIndex = 0;
 
-    // Initialize filtered items
-    function updateFilteredItems(): void {
+    function updateFilteredItems() {
       if (activeFilter === 'todos') {
         filteredItems = Array.from(mediaItems);
       } else {
-        filteredItems = Array.from(mediaItems).filter(item => {
-          const itemElement = item as HTMLElement;
-          return itemElement.dataset.company === activeFilter;
+        filteredItems = Array.from(mediaItems).filter(function(item) {
+          return item.dataset.company === activeFilter;
         });
       }
     }
 
-    // Filter functionality
-    function filterMedia(filterType: string): void {
+    function filterMedia(filterType) {
       activeFilter = filterType;
       
-      // Update tab states
-      filterTabs.forEach(tab => {
-        const tabElement = tab as HTMLElement;
-        if (tabElement.dataset.filter === filterType) {
-          tabElement.dataset.active = 'true';
+      filterTabs.forEach(function(tab) {
+        if (tab.dataset.filter === filterType) {
+          tab.dataset.active = 'true';
         } else {
-          tabElement.dataset.active = 'false';
+          tab.dataset.active = 'false';
         }
       });
 
-      // Filter media items with animation
-      mediaItems.forEach(item => {
-        const itemElement = item as HTMLElement;
-        itemElement.classList.add('filtering');
+      mediaItems.forEach(function(item) {
+        item.classList.add('filtering');
         
-        setTimeout(() => {
-          if (filterType === 'todos' || itemElement.dataset.company === filterType) {
-            itemElement.classList.remove('hidden', 'filtering');
+        setTimeout(function() {
+          if (filterType === 'todos' || item.dataset.company === filterType) {
+            item.classList.remove('hidden', 'filtering');
           } else {
-            itemElement.classList.add('hidden');
-            itemElement.classList.remove('filtering');
+            item.classList.add('hidden');
+            item.classList.remove('filtering');
           }
         }, 150);
       });
 
-      // Update filtered items for lightbox navigation
-      setTimeout(() => {
+      setTimeout(function() {
         updateFilteredItems();
       }, 200);
     }
 
-    // Initialize
     updateFilteredItems();
 
-    // Add click listeners to filter tabs
-    filterTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const tabElement = tab as HTMLElement;
-        const filterType = tabElement.dataset.filter;
+    filterTabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        const filterType = tab.dataset.filter;
         if (filterType) {
           filterMedia(filterType);
         }
       });
     });
     
-    function openLightbox(index: number): void {
-      const item = filteredItems[index] as HTMLElement;
+    function openLightbox(index) {
+      const item = filteredItems[index];
       const mediaSrc = item.dataset.src;
       const mediaType = item.dataset.type;
       const mediaTitle = item.dataset.title;
       const mediaDescription = item.dataset.description;
       const mediaCategory = item.dataset.category;
       const mediaCompany = item.dataset.company;
+      const mediaPoster = item.dataset.poster;
       
-      // Hide both media elements first
       if (image) image.classList.add('hidden');
       if (video) video.classList.add('hidden');
       
       if (mediaType === 'video') {
-        // Show video player
-        if (video) {
+        if (video && videoSource) {
           video.classList.remove('hidden');
-          if (videoSource && mediaSrc) {
+          video.pause();
+          video.currentTime = 0;
+          
+          if (mediaSrc) {
             videoSource.src = mediaSrc;
           }
-          video.load(); // Reload the video element
-          video.currentTime = 0; // Reset to beginning
+          if (mediaPoster) {
+            video.poster = mediaPoster;
+          }
+          video.load();
         }
       } else {
-        // Show image
         if (image && mediaSrc && mediaTitle) {
           image.classList.remove('hidden');
           image.src = mediaSrc;
@@ -637,11 +632,10 @@ const projectMedia = [
       if (category && mediaCategory) category.textContent = mediaCategory;
       if (type && mediaCategory) type.textContent = mediaCategory;
       
-      // Update counter with company info
-      const companyName = mediaCompany?.toUpperCase() || '';
+      const companyName = mediaCompany ? mediaCompany.toUpperCase() : '';
       const currentFilter = activeFilter === 'todos' ? 'Todos' : companyName;
       if (counter) {
-        counter.textContent = `${index + 1} / ${filteredItems.length} - ${currentFilter}`;
+        counter.textContent = (index + 1) + ' / ' + filteredItems.length + ' - ' + currentFilter;
       }
       
       if (modal) modal.classList.remove('hidden');
@@ -649,8 +643,7 @@ const projectMedia = [
       currentIndex = index;
     }
     
-    function closeLightbox(): void {
-      // Pause video if playing
+    function closeLightbox() {
       if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
@@ -659,8 +652,7 @@ const projectMedia = [
       document.body.style.overflow = 'auto';
     }
     
-    function nextMedia(): void {
-      // Pause current video if playing
+    function nextMedia() {
       if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
@@ -669,8 +661,7 @@ const projectMedia = [
       openLightbox(currentIndex);
     }
     
-    function prevMedia(): void {
-      // Pause current video if playing
+    function prevMedia() {
       if (video && !video.classList.contains('hidden')) {
         video.pause();
       }
@@ -679,11 +670,11 @@ const projectMedia = [
       openLightbox(currentIndex);
     }
     
-    // Event listeners for media items
-    mediaItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        // Find the index in filtered items
-        const filteredIndex = filteredItems.findIndex(filteredItem => filteredItem === item);
+    mediaItems.forEach(function(item, index) {
+      item.addEventListener('click', function() {
+        const filteredIndex = filteredItems.findIndex(function(filteredItem) {
+          return filteredItem === item;
+        });
         if (filteredIndex !== -1) {
           openLightbox(filteredIndex);
         }
@@ -694,15 +685,13 @@ const projectMedia = [
     if (nextBtn) nextBtn.addEventListener('click', nextMedia);
     if (prevBtn) prevBtn.addEventListener('click', prevMedia);
     
-    // Close on backdrop click
     if (modal) {
-      modal.addEventListener('click', (e) => {
+      modal.addEventListener('click', function(e) {
         if (e.target === modal) closeLightbox();
       });
     }
     
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (modal && !modal.classList.contains('hidden')) {
         switch(e.key) {
           case 'Escape':
@@ -714,11 +703,11 @@ const projectMedia = [
           case 'ArrowRight':
             nextMedia();
             break;
-          case ' ': // Spacebar for play/pause video
+          case ' ':
             e.preventDefault();
             if (video && !video.classList.contains('hidden')) {
               if (video.paused) {
-                video.play().catch(console.error);
+                video.play().catch(function() {});
               } else {
                 video.pause();
               }
@@ -728,18 +717,9 @@ const projectMedia = [
       }
     });
     
-    // Video event listeners
     if (video) {
-      video.addEventListener('loadedmetadata', function() {
-        // Video metadata loaded, ready to play
-        console.log('Video loaded successfully');
-      });
-      
       video.addEventListener('error', function(e) {
-        console.error('Error loading video:', e);
-        // Fallback: hide video and show error message
         if (video) video.classList.add('hidden');
-        // You could add an error message element here
       });
     }
   });
