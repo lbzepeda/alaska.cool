@@ -259,10 +259,10 @@ const projectMedia = [
       <!-- Close button -->
       <button 
         id="lightbox-close" 
-        class="absolute top-6 right-6 z-60 text-white/80 hover:text-white transition-colors"
+        class="absolute top-4 right-4 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
         aria-label="Close lightbox"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
@@ -270,20 +270,20 @@ const projectMedia = [
       <!-- Navigation arrows -->
       <button 
         id="lightbox-prev" 
-        class="absolute left-6 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors z-60"
+        class="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
         aria-label="Previous image"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
       
       <button 
         id="lightbox-next" 
-        class="absolute right-6 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors z-60"
+        class="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/40"
         aria-label="Next image"
       >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
@@ -342,9 +342,16 @@ const projectMedia = [
 
           <!-- Media counter -->
           <div class="border-t border-white/20 pt-6">
-            <div class="flex items-center justify-between text-sm text-white/70">
-              <span id="lightbox-counter">1 / 10</span>
-              <span>{currentLang === 'es' ? 'Usar ← → para navegar, Espacio para video' : 'Use ← → to navigate, Space for video'}</span>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-sm text-white/70">
+                <span id="lightbox-counter">1 / 10</span>
+                <span>{currentLang === 'es' ? 'Galería multimedia' : 'Media gallery'}</span>
+              </div>
+              <div class="text-xs text-white/50 space-y-1">
+                <div>{currentLang === 'es' ? '• Usa ← → para navegar entre medios' : '• Use ← → to navigate between media'}</div>
+                <div>{currentLang === 'es' ? '• Presiona Espacio para pausar/reproducir videos' : '• Press Space to pause/play videos'}</div>
+                <div>{currentLang === 'es' ? '• Presiona ESC o click fuera para cerrar' : '• Press ESC or click outside to close'}</div>
+              </div>
             </div>
           </div>
         </div>
