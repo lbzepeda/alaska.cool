@@ -8,22 +8,22 @@ const projectCategories = [
   {
     id: 'todos',
     name: currentLang === 'es' ? 'Todos' : 'All',
-    count: 12
+    count: 9
   },
   {
     id: 'ampm',
     name: 'AMPM',
-    count: 4
+    count: 3
   },
   {
     id: 'unan',
     name: 'UNAN',
-    count: 6
+    count: 5
   },
   {
     id: 'contenido',
     name: currentLang === 'es' ? 'Contenido' : 'Content',
-    count: 2
+    count: 1
   }
 ];
 
@@ -36,8 +36,8 @@ const projectMedia = [
     type: "image",
     company: "ampm",
     alt: "Instalación aires acondicionados tipo cassette AMPM",
-    title: currentLang === 'es' ? "AMPM - Aires Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
-    description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
+    title: currentLang === 'es' ? "AMPM - 60,000 BTU Cassette AC Units" : "AMPM - 60,000 BTU Cassette AC Units",
+    description: currentLang === 'es' ? "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "tall"
   },
@@ -47,8 +47,8 @@ const projectMedia = [
     type: "image",
     company: "ampm",
     alt: "Instalación aires acondicionados AMPM - Fase 2",
-    title: currentLang === 'es' ? "AMPM - Instalación Fase 2" : "AMPM - Installation Phase 2",
-    description: currentLang === 'es' ? "Segunda fase de instalación de aires cassette de 60,000 BTU en sucursales AMPM, mostrando el progreso del proyecto." : "Second phase of 60,000 BTU cassette AC installation in AMPM branches, showing project progress.",
+    title: currentLang === 'es' ? "AMPM - 60,000 BTU Cassette AC Units" : "AMPM - 60,000 BTU Cassette AC Units",
+    description: currentLang === 'es' ? "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "medium"
   },
@@ -58,37 +58,13 @@ const projectMedia = [
     type: "image",
     company: "ampm",
     alt: "Finalización proyecto AMPM - Aires cassette",
-    title: currentLang === 'es' ? "AMPM - Proyecto Completado" : "AMPM - Project Completed",
-    description: currentLang === 'es' ? "Finalización exitosa del proyecto de aires cassette en todas las sucursales AMPM a nivel nacional." : "Successful completion of cassette AC project in all AMPM branches nationwide.",
+    title: currentLang === 'es' ? "AMPM - 60,000 BTU Cassette AC Units" : "AMPM - 60,000 BTU Cassette AC Units",
+    description: currentLang === 'es' ? "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "short"
   },
-  {
-    id: 10,
-    src: "/projects/Comercial1.webm",
-    type: "video",
-    company: "ampm",
-    poster: "/projects/AMPM1.webp",
-    alt: "Video comercial proyecto AMPM",
-    title: currentLang === 'es' ? "AMPM - Video Comercial" : "AMPM - Commercial Video",
-    description: currentLang === 'es' ? "Video comercial mostrando la instalación de aires cassette de 60,000 BTU en las sucursales AMPM a nivel nacional." : "Commercial video showing the installation of 60,000 BTU cassette AC units in AMPM branches nationwide.",
-    category: currentLang === 'es' ? "Comercial" : "Commercial",
-    height: "tall"
-  },
 
   // 🎓 PROYECTO UNAN
-  {
-    id: 4,
-    src: "/projects/Comercial2.webm",
-    type: "video",
-    company: "unan",
-    poster: "/projects/UNAN1.webp",
-    alt: "Video del proceso de instalación - UNAN", 
-    title: currentLang === 'es' ? "UNAN - Proceso de Instalación" : "UNAN - Installation Process",
-    description: currentLang === 'es' ? "Video detallado del proceso de instalación de sistema de climatización en Universidad Nacional Autónoma de Nicaragua." : "Detailed video of HVAC system installation process at National Autonomous University of Nicaragua.",
-    category: currentLang === 'es' ? "Educativo" : "Educational",
-    height: "tall"
-  },
   {
     id: 5,
     src: "/projects/UNAN1.webp",
@@ -156,40 +132,28 @@ const projectMedia = [
     description: currentLang === 'es' ? "Vista tras cámaras del proceso de instalación mostrando el profesionalismo del equipo técnico." : "Behind the scenes view of installation process showing technical team professionalism.",
     category: currentLang === 'es' ? "Proceso" : "Process",
     height: "medium"
-  },
-  {
-    id: 12,
-    src: "/projects/Comercial3.webm",
-    type: "video",
-    company: "contenido",
-    poster: "/projects/TrasCamara.webp",
-    alt: "Video técnico - Proceso de instalación",
-    title: currentLang === 'es' ? "Video Técnico - Instalación" : "Technical Video - Installation",
-    description: currentLang === 'es' ? "Video técnico detallado mostrando metodología y técnicas profesionales de instalación." : "Detailed technical video showing professional installation methodology and techniques.",
-    category: currentLang === 'es' ? "Técnico" : "Technical",
-    height: "tall"
   }
 ];
 
 ---
 
 <section
-  class="relative bg-neutral-50 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-black text-neutral-900 dark:text-white transition-colors duration-300 py-16"
+  class="relative bg-neutral-50 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-black text-neutral-900 dark:text-white transition-colors duration-300 py-4"
 >
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
-    <div class="text-center mb-12">
+    <div class="text-center mb-4">
       <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
         {currentLang === 'es' ? 'Contenido Visual' : 'Visual Content'}
       </span>
-      <h2 class="text-3xl font-semibold text-slate-900 dark:text-white mb-4">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">
         {currentLang === 'es' ? 'Multimedia' : 'Multimedia'}
       </h2>
-      <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
+      <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-4 text-sm">
         {currentLang === 'es' ? 'Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.' : 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.'}
       </p>
 
       <!-- Filter Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <div class="flex flex-wrap justify-center gap-2 mb-4">
         {projectCategories.map((category) => (
           <button
             class="filter-tab px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 border"
@@ -306,12 +270,12 @@ const projectMedia = [
   </div>
 
   <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-sm">
+  <div id="lightbox-modal" class="fixed inset-0 hidden bg-black/95 backdrop-blur-sm">
     <div class="absolute inset-0 flex items-center justify-center p-4">
       <!-- Close button -->
       <button 
         id="lightbox-close" 
-        class="absolute top-6 right-6 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
+        class="absolute top-20 right-6 w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Close lightbox"
       >
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
@@ -322,7 +286,7 @@ const projectMedia = [
       <!-- Navigation arrows -->
       <button 
         id="lightbox-prev" 
-        class="absolute left-6 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
+        class="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Previous image"
       >
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
@@ -332,7 +296,7 @@ const projectMedia = [
       
       <button 
         id="lightbox-next" 
-        class="absolute right-6 top-1/2 -translate-y-1/2 z-[60] w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
+        class="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl"
         aria-label="Next image"
       >
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
@@ -511,6 +475,7 @@ const projectMedia = [
     opacity: 0;
     transform: scale(0.95);
   }
+
 </style>
 
 <script>
@@ -601,6 +566,7 @@ const projectMedia = [
       const mediaCategory = item.dataset.category;
       const mediaCompany = item.dataset.company;
       const mediaPoster = item.dataset.poster;
+      
       
       if (image) image.classList.add('hidden');
       if (video) video.classList.add('hidden');
