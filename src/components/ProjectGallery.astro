@@ -3,27 +3,70 @@ import { getLanguageFromUrl } from '../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
 
-// ✅ USANDO ARCHIVOS OPTIMIZADOS WebP/WebM YA DISPONIBLES
+// 🏢 CATEGORÍAS DE PROYECTOS ORGANIZADAS POR EMPRESA
+const projectCategories = [
+  {
+    id: 'todos',
+    name: currentLang === 'es' ? 'Todos' : 'All',
+    count: 10
+  },
+  {
+    id: 'ampm',
+    name: 'AMPM',
+    count: 2
+  },
+  {
+    id: 'unan',
+    name: 'UNAN',
+    count: 6
+  },
+  {
+    id: 'contenido',
+    name: currentLang === 'es' ? 'Contenido' : 'Content',
+    count: 2
+  }
+];
+
+// ✅ MEDIOS ORGANIZADOS POR EMPRESA/PROYECTO
 const projectMedia = [
+  // 🏪 PROYECTO AMPM
   {
     id: 1,
     src: "/projects/AMPM1.webp",
     type: "image",
-    alt: "Proyecto comercial AMPM - Climatización",
-    title: currentLang === 'es' ? "Instalación Comercial AMPM" : "AMPM Commercial Installation",
+    company: "ampm",
+    alt: "Instalación aires acondicionados tipo cassette AMPM",
+    title: currentLang === 'es' ? "AMPM - Aires Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
     description: currentLang === 'es' ? 
-      "Sistema de climatización comercial instalado en cadena AMPM con tecnología de última generación y eficiencia energética." :
-      "Commercial HVAC system installed in AMPM chain with cutting-edge technology and energy efficiency.",
+      "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." :
+      "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
     category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "tall"
   },
   {
+    id: 10,
+    src: "/projects/v09044g40000d16s53vog65isb89cq80.webm",
+    type: "video",
+    company: "ampm",
+    poster: "/projects/AMPM1.webp",
+    alt: "Video promocional proyecto AMPM",
+    title: currentLang === 'es' ? "AMPM - Video Promocional" : "AMPM - Promotional Video",
+    description: currentLang === 'es' ? 
+      "Video promocional mostrando la instalación de aires cassette de 60,000 BTU en las sucursales AMPM a nivel nacional." :
+      "Promotional video showing the installation of 60,000 BTU cassette AC units in AMPM branches nationwide.",
+    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    height: "tall"
+  },
+
+  // 🎓 PROYECTO UNAN
+  {
     id: 2,
     src: "/projects/v09044g40000d0jrptnog65g9q0lahf0.webm",
     type: "video",
+    company: "unan",
     poster: "/projects/UNAN1.webp",
     alt: "Video del proceso de instalación - UNAN", 
-    title: currentLang === 'es' ? "Proceso de Instalación UNAN" : "UNAN Installation Process",
+    title: currentLang === 'es' ? "UNAN - Proceso de Instalación" : "UNAN - Installation Process",
     description: currentLang === 'es' ? 
       "Video detallado del proceso de instalación de sistema de climatización en Universidad Nacional Autónoma de Nicaragua." :
       "Detailed video of HVAC system installation process at National Autonomous University of Nicaragua.",
@@ -34,8 +77,9 @@ const projectMedia = [
     id: 3,
     src: "/projects/UNAN1.webp",
     type: "image",
+    company: "unan",
     alt: "Universidad UNAN - Sistema de climatización",
-    title: currentLang === 'es' ? "Proyecto Universitario UNAN" : "UNAN University Project",
+    title: currentLang === 'es' ? "UNAN - Proyecto Universitario" : "UNAN - University Project",
     description: currentLang === 'es' ? 
       "Instalación completa de sistema de climatización en instalaciones universitarias con control automatizado." :
       "Complete HVAC system installation in university facilities with automated control.",
@@ -46,8 +90,9 @@ const projectMedia = [
     id: 4,
     src: "/projects/UNAN2.webp",
     type: "image",
+    company: "unan",
     alt: "UNAN - Equipos de climatización instalados",
-    title: currentLang === 'es' ? "Equipamiento UNAN Fase 2" : "UNAN Equipment Phase 2",
+    title: currentLang === 'es' ? "UNAN - Equipamiento Fase 2" : "UNAN - Equipment Phase 2",
     description: currentLang === 'es' ? 
       "Segunda fase del proyecto universitario con instalación de equipos de alta eficiencia energética." :
       "Second phase of university project with high energy efficiency equipment installation.",
@@ -58,8 +103,9 @@ const projectMedia = [
     id: 5,
     src: "/projects/UNAN3.webp",
     type: "image",
+    company: "unan",
     alt: "UNAN - Detalles técnicos de instalación",
-    title: currentLang === 'es' ? "Detalles Técnicos UNAN" : "UNAN Technical Details",
+    title: currentLang === 'es' ? "UNAN - Detalles Técnicos" : "UNAN - Technical Details",
     description: currentLang === 'es' ? 
       "Vista detallada de componentes y conexiones del sistema de climatización universitario." :
       "Detailed view of university HVAC system components and connections.",
@@ -70,8 +116,9 @@ const projectMedia = [
     id: 6,
     src: "/projects/UNAN4.webp",
     type: "image",
+    company: "unan",
     alt: "UNAN - Instalación completada",
-    title: currentLang === 'es' ? "Finalización Proyecto UNAN" : "UNAN Project Completion",
+    title: currentLang === 'es' ? "UNAN - Finalización del Proyecto" : "UNAN - Project Completion",
     description: currentLang === 'es' ? 
       "Proyecto universitario completado con sistemas de monitoreo y control remoto implementados." :
       "University project completed with monitoring systems and remote control implemented.",
@@ -82,18 +129,22 @@ const projectMedia = [
     id: 7,
     src: "/projects/UNAN5.webp",
     type: "image",
+    company: "unan",
     alt: "UNAN - Vista general del proyecto",
-    title: currentLang === 'es' ? "Vista General UNAN" : "UNAN General View",
+    title: currentLang === 'es' ? "UNAN - Vista General" : "UNAN - General View",
     description: currentLang === 'es' ? 
       "Vista panorámica del proyecto universitario mostrando la integración completa del sistema." :
       "Panoramic view of university project showing complete system integration.",
     category: currentLang === 'es' ? "Educativo" : "Educational",
     height: "tall"
   },
+
+  // 📹 CONTENIDO AUDIOVISUAL
   {
     id: 8,
     src: "/projects/TrasCamara.webp",
     type: "image",
+    company: "contenido",
     alt: "Behind the scenes - Proceso de trabajo",
     title: currentLang === 'es' ? "Tras Cámaras - Proceso" : "Behind the Scenes - Process",
     description: currentLang === 'es' ? 
@@ -106,6 +157,7 @@ const projectMedia = [
     id: 9,
     src: "/projects/v09044g40000d0lmv07og65pio5p0go0.webm",
     type: "video",
+    company: "contenido",
     poster: "/projects/TrasCamara.webp",
     alt: "Video técnico - Proceso de instalación",
     title: currentLang === 'es' ? "Video Técnico - Instalación" : "Technical Video - Installation",
@@ -113,19 +165,6 @@ const projectMedia = [
       "Video técnico detallado mostrando metodología y técnicas profesionales de instalación." :
       "Detailed technical video showing professional installation methodology and techniques.",
     category: currentLang === 'es' ? "Técnico" : "Technical",
-    height: "tall"
-  },
-  {
-    id: 10,
-    src: "/projects/v09044g40000d16s53vog65isb89cq80.webm",
-    type: "video",
-    poster: "/projects/AMPM1.webp",
-    alt: "Video comercial - Resultado final",
-    title: currentLang === 'es' ? "Video Comercial - Resultado" : "Commercial Video - Result",
-    description: currentLang === 'es' ? 
-      "Video promocional mostrando los resultados finales y beneficios del sistema instalado." :
-      "Promotional video showing final results and benefits of installed system.",
-    category: currentLang === 'es' ? "Comercial" : "Commercial",
     height: "tall"
   }
 ];
@@ -143,12 +182,28 @@ const projectMedia = [
       <h2 class="text-3xl font-semibold text-slate-900 dark:text-white mb-4">
         {currentLang === 'es' ? 'Multimedia' : 'Multimedia'}
       </h2>
-      <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+      <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-8">
         {currentLang === 'es' 
           ? 'Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.'
           : 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.'
         }
       </p>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        {projectCategories.map((category) => (
+          <button
+            class="filter-tab px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 border"
+            data-filter={category.id}
+            data-active={category.id === 'todos' ? 'true' : 'false'}
+          >
+            <span class="tab-name">{category.name}</span>
+            <span class="tab-count ml-2 px-2 py-1 text-xs rounded-full">
+              {category.count}
+            </span>
+          </button>
+        ))}
+      </div>
     </div>
 
     <!-- Masonry Grid -->
@@ -156,7 +211,7 @@ const projectMedia = [
       {projectMedia.map((media) => (
         <div 
           class={`
-            group relative overflow-hidden rounded-2xl bg-white dark:bg-white/[0.02] 
+            media-item group relative overflow-hidden rounded-2xl bg-white dark:bg-white/[0.02] 
             border border-neutral-200 dark:border-white/[0.1] 
             hover:shadow-2xl transition-all duration-500 cursor-pointer
             break-inside-avoid mb-6
@@ -169,6 +224,7 @@ const projectMedia = [
           data-title={media.title}
           data-description={media.description}
           data-category={media.category}
+          data-company={media.company}
           data-id={media.id}
         >
           <div class="relative w-full h-full overflow-hidden">
@@ -376,11 +432,98 @@ const projectMedia = [
     break-inside: avoid;
     page-break-inside: avoid;
   }
+
+  /* Filter Tabs Styles */
+  .filter-tab {
+    background: transparent;
+    color: theme('colors.neutral.600');
+    border-color: theme('colors.neutral.300');
+  }
+
+  .filter-tab:hover {
+    background: theme('colors.blue.50');
+    border-color: theme('colors.blue.300');
+    color: theme('colors.blue.700');
+  }
+
+  .filter-tab[data-active="true"] {
+    background: theme('colors.blue.600');
+    border-color: theme('colors.blue.600');
+    color: white;
+  }
+
+  .filter-tab .tab-count {
+    background: theme('colors.neutral.200');
+    color: theme('colors.neutral.600');
+  }
+
+  .filter-tab:hover .tab-count {
+    background: theme('colors.blue.100');
+    color: theme('colors.blue.800');
+  }
+
+  .filter-tab[data-active="true"] .tab-count {
+    background: theme('colors.blue.500');
+    color: white;
+  }
+
+  /* Dark mode styles */
+  :is(.dark) .filter-tab {
+    color: theme('colors.neutral.400');
+    border-color: theme('colors.neutral.600');
+  }
+
+  :is(.dark) .filter-tab:hover {
+    background: theme('colors.blue.900/20');
+    border-color: theme('colors.blue.400');
+    color: theme('colors.blue.300');
+  }
+
+  :is(.dark) .filter-tab[data-active="true"] {
+    background: theme('colors.blue.600');
+    border-color: theme('colors.blue.600');
+    color: white;
+  }
+
+  :is(.dark) .filter-tab .tab-count {
+    background: theme('colors.neutral.700');
+    color: theme('colors.neutral.300');
+  }
+
+  :is(.dark) .filter-tab:hover .tab-count {
+    background: theme('colors.blue.800');
+    color: theme('colors.blue.200');
+  }
+
+  :is(.dark) .filter-tab[data-active="true"] .tab-count {
+    background: theme('colors.blue.500');
+    color: white;
+  }
+
+  /* Media item visibility */
+  .media-item.hidden {
+    display: none;
+  }
+
+  .media-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .media-item.filtering {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const lightboxItems = document.querySelectorAll('[data-lightbox="projects"]');
+    // Filter functionality
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const mediaItems = document.querySelectorAll('.media-item');
+    let activeFilter = 'todos';
+    let filteredItems: Element[] = [];
+
+    // Lightbox elements
     const modal = document.getElementById('lightbox-modal');
     const closeBtn = document.getElementById('lightbox-close');
     const prevBtn = document.getElementById('lightbox-prev');
@@ -395,15 +538,76 @@ const projectMedia = [
     const counter = document.getElementById('lightbox-counter');
     
     let currentIndex = 0;
-    const mediaItems = Array.from(lightboxItems);
+
+    // Initialize filtered items
+    function updateFilteredItems(): void {
+      if (activeFilter === 'todos') {
+        filteredItems = Array.from(mediaItems);
+      } else {
+        filteredItems = Array.from(mediaItems).filter(item => {
+          const itemElement = item as HTMLElement;
+          return itemElement.dataset.company === activeFilter;
+        });
+      }
+    }
+
+    // Filter functionality
+    function filterMedia(filterType: string): void {
+      activeFilter = filterType;
+      
+      // Update tab states
+      filterTabs.forEach(tab => {
+        const tabElement = tab as HTMLElement;
+        if (tabElement.dataset.filter === filterType) {
+          tabElement.dataset.active = 'true';
+        } else {
+          tabElement.dataset.active = 'false';
+        }
+      });
+
+      // Filter media items with animation
+      mediaItems.forEach(item => {
+        const itemElement = item as HTMLElement;
+        itemElement.classList.add('filtering');
+        
+        setTimeout(() => {
+          if (filterType === 'todos' || itemElement.dataset.company === filterType) {
+            itemElement.classList.remove('hidden', 'filtering');
+          } else {
+            itemElement.classList.add('hidden');
+            itemElement.classList.remove('filtering');
+          }
+        }, 150);
+      });
+
+      // Update filtered items for lightbox navigation
+      setTimeout(() => {
+        updateFilteredItems();
+      }, 200);
+    }
+
+    // Initialize
+    updateFilteredItems();
+
+    // Add click listeners to filter tabs
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabElement = tab as HTMLElement;
+        const filterType = tabElement.dataset.filter;
+        if (filterType) {
+          filterMedia(filterType);
+        }
+      });
+    });
     
     function openLightbox(index: number): void {
-      const item = mediaItems[index] as HTMLElement;
+      const item = filteredItems[index] as HTMLElement;
       const mediaSrc = item.dataset.src;
       const mediaType = item.dataset.type;
       const mediaTitle = item.dataset.title;
       const mediaDescription = item.dataset.description;
       const mediaCategory = item.dataset.category;
+      const mediaCompany = item.dataset.company;
       
       // Hide both media elements first
       if (image) image.classList.add('hidden');
@@ -432,7 +636,13 @@ const projectMedia = [
       if (description && mediaDescription) description.textContent = mediaDescription;
       if (category && mediaCategory) category.textContent = mediaCategory;
       if (type && mediaCategory) type.textContent = mediaCategory;
-      if (counter) counter.textContent = `${index + 1} / ${mediaItems.length}`;
+      
+      // Update counter with company info
+      const companyName = mediaCompany?.toUpperCase() || '';
+      const currentFilter = activeFilter === 'todos' ? 'Todos' : companyName;
+      if (counter) {
+        counter.textContent = `${index + 1} / ${filteredItems.length} - ${currentFilter}`;
+      }
       
       if (modal) modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
@@ -455,7 +665,7 @@ const projectMedia = [
         video.pause();
       }
       
-      currentIndex = (currentIndex + 1) % mediaItems.length;
+      currentIndex = (currentIndex + 1) % filteredItems.length;
       openLightbox(currentIndex);
     }
     
@@ -465,13 +675,19 @@ const projectMedia = [
         video.pause();
       }
       
-      currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+      currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
       openLightbox(currentIndex);
     }
     
-    // Event listeners
-    lightboxItems.forEach((item, index) => {
-      item.addEventListener('click', () => openLightbox(index));
+    // Event listeners for media items
+    mediaItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        // Find the index in filtered items
+        const filteredIndex = filteredItems.findIndex(filteredItem => filteredItem === item);
+        if (filteredIndex !== -1) {
+          openLightbox(filteredIndex);
+        }
+      });
     });
     
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
