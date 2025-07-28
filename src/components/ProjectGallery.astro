@@ -191,10 +191,10 @@ const projectMedia = [
 ---
 
 <section
-  class="relative bg-neutral-50 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-black text-neutral-900 dark:text-white transition-colors duration-300 py-4"
+  class="relative bg-neutral-50 dark:bg-gradient-to-br dark:from-neutral-900 dark:to-black text-neutral-900 dark:text-white transition-colors duration-300 py-12 pt-28 h-screen overflow-hidden"
 >
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-6">
-    <div class="text-center mb-4">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-full flex flex-col">
+    <div class="text-center mb-6 flex-shrink-0">
       <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
         {currentLang === 'es' ? 'Contenido Visual' : 'Visual Content'}
       </span>
@@ -222,8 +222,10 @@ const projectMedia = [
       </div>
     </div>
 
-    <!-- Masonry Grid -->
-    <div class="masonry-grid columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+    <!-- Scrollable Gallery Container -->
+    <div class="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
+      <!-- Masonry Grid -->
+      <div class="masonry-grid columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-6">
       {projectMedia.map((media) => (
         <div 
           class={`
@@ -319,6 +321,7 @@ const projectMedia = [
           </div>
         </div>
       ))}
+      </div>
     </div>
   </div>
 
@@ -545,6 +548,48 @@ const projectMedia = [
   .media-item.filtering {
     opacity: 0;
     transform: scale(0.95);
+  }
+
+  /* Custom scrollbar styles */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.blue.400') theme('colors.neutral.200');
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: theme('colors.neutral.200');
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.blue.400');
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.blue.500');
+  }
+
+  /* Dark mode scrollbar */
+  :is(.dark) .custom-scrollbar {
+    scrollbar-color: theme('colors.blue.400') theme('colors.neutral.700');
+  }
+
+  :is(.dark) .custom-scrollbar::-webkit-scrollbar-track {
+    background: theme('colors.neutral.700');
+  }
+
+  :is(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.blue.400');
+  }
+
+  :is(.dark) .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.blue.300');
   }
 
 </style>
