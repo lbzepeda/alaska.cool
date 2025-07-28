@@ -223,7 +223,7 @@ const projectMedia = [
     </div>
 
     <!-- Scrollable Gallery Container -->
-    <div class="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div class="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar relative">
       <!-- Masonry Grid -->
       <div class="masonry-grid columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-6">
       {projectMedia.map((media) => (
@@ -322,6 +322,9 @@ const projectMedia = [
         </div>
       ))}
       </div>
+      
+      <!-- Bottom gradient fade to indicate more content -->
+      <div class="scroll-fade-indicator absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-neutral-50 dark:from-neutral-900 to-transparent pointer-events-none z-10"></div>
     </div>
   </div>
 
@@ -592,6 +595,11 @@ const projectMedia = [
     background: theme('colors.blue.300');
   }
 
+  /* Scroll fade indicator */
+  .scroll-fade-indicator {
+    transition: opacity 0.3s ease;
+  }
+
 </style>
 
 <script>
@@ -618,10 +626,33 @@ const projectMedia = [
     const category = document.getElementById('lightbox-category');
     const type = document.getElementById('lightbox-type');
     const counter = document.getElementById('lightbox-counter');
+    const scrollContainer = document.querySelector('.custom-scrollbar');
+    const fadeIndicator = document.querySelector('.scroll-fade-indicator');
 
     let activeFilter: string = 'todos';
     let filteredItems: HTMLElement[] = [];
     let currentIndex: number = 0;
+
+    // Scroll fade indicator functionality
+    function updateScrollFade() {
+      if (scrollContainer && fadeIndicator) {
+        const { scrollTop, scrollHeight, clientHeight } = scrollContainer as HTMLElement;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px threshold
+        
+        if (isAtBottom) {
+          (fadeIndicator as HTMLElement).style.opacity = '0';
+        } else {
+          (fadeIndicator as HTMLElement).style.opacity = '1';
+        }
+      }
+    }
+
+    // Add scroll event listener
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', updateScrollFade);
+      // Initial check
+      setTimeout(updateScrollFade, 100);
+    }
 
     function updateFilteredItems() {
       if (activeFilter === 'todos') {
@@ -659,6 +690,7 @@ const projectMedia = [
 
       setTimeout(function() {
         updateFilteredItems();
+        updateScrollFade(); // Update fade indicator after filtering
       }, 200);
     }
 
