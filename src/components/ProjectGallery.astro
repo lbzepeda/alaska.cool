@@ -13,7 +13,12 @@ const projectCategories = [
   {
     id: 'aires-acondicionados',
     name: currentLang === 'es' ? 'Aires Acondicionados' : 'Air Conditioning',
-    count: 10
+    count: 8
+  },
+  {
+    id: 'cuarto-frio',
+    name: currentLang === 'es' ? 'Cuarto Frío' : 'Cold Room',
+    count: 2
   },
   {
     id: 'ventilacion',
@@ -126,22 +131,22 @@ const projectMedia = [
     id: 14,
     src: "/projects/CuartoFrio1.webp",
     type: "image",
-    projectType: "aires-acondicionados",
+    projectType: "cuarto-frio",
     alt: "Cuarto Frío - Sistema de refrigeración comercial",
     title: currentLang === 'es' ? "Cuarto Frío - Refrigeración Comercial" : "Cold Room - Commercial Refrigeration",
     description: currentLang === 'es' ? "Instalación de sistema de cuarto frío para refrigeración comercial con control de temperatura preciso y eficiencia energética optimizada." : "Cold room system installation for commercial refrigeration with precise temperature control and optimized energy efficiency.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    category: currentLang === 'es' ? "Cuarto Frío" : "Cold Room",
     height: "medium"
   },
   {
     id: 15,
     src: "/projects/CuartoFrio2.webp",
     type: "image",
-    projectType: "aires-acondicionados",
+    projectType: "cuarto-frio",
     alt: "Cuarto Frío - Instalación completada",
     title: currentLang === 'es' ? "Cuarto Frío - Sistema Completado" : "Cold Room - Completed System",
     description: currentLang === 'es' ? "Sistema de cuarto frío completamente instalado y operativo, diseñado para conservación de productos perecederos con tecnología de punta." : "Fully installed and operational cold room system, designed for perishable product preservation with cutting-edge technology.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    category: currentLang === 'es' ? "Cuarto Frío" : "Cold Room",
     height: "short"
   },
 
@@ -676,6 +681,7 @@ const projectMedia = [
       
       const projectTypeName = activeFilter === 'todos' ? 'Todos' : 
         activeFilter === 'aires-acondicionados' ? 'Aires Acondicionados' :
+        activeFilter === 'cuarto-frio' ? 'Cuarto Frío' :
         activeFilter === 'ventilacion' ? 'Ventilación' :
         activeFilter === 'comerciales' ? 'TikTok' : '';
       const currentFilter = projectTypeName;
