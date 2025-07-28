@@ -5,14 +5,17 @@ import Contact from "../components/Contact.astro";
 import FAQ from "../components/FAQ.astro";
 import Home from "../components/Home.astro";
 import Layout from "../layouts/Layout.astro";
-import ProjectGallery from "../components/ProjectGallery.astro";
+import ProjectGallery from "../components/ProjectGallery.tsx";
+import { getLanguageFromUrl } from '../i18n/utils';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
 <Layout title="Alaska Cool - Climatización Inteligente">
   <Home />
   <Brand />
   <ComingSoon />
-  <ProjectGallery />
+  <ProjectGallery currentLang={currentLang} client:load />
   <FAQ />
   <Contact />
 </Layout>

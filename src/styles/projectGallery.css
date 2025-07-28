@@ -1,0 +1,97 @@
+/* ProjectGallery specific styles */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.masonry-grid {
+  column-gap: 1.5rem;
+}
+
+.masonry-grid > * {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Filter Tabs Styles */
+.filter-tab {
+  background: transparent;
+  color: rgb(115 115 115);
+  border-color: rgb(212 212 212);
+}
+
+.filter-tab:hover {
+  background: rgb(239 246 255);
+  border-color: rgb(147 197 253);
+  color: rgb(29 78 216);
+}
+
+.filter-tab[data-active="true"] {
+  background: rgb(37 99 235);
+  border-color: rgb(37 99 235);
+  color: white;
+}
+
+.filter-tab .tab-count {
+  background: rgb(229 231 235);
+  color: rgb(115 115 115);
+}
+
+.filter-tab:hover .tab-count {
+  background: rgb(219 234 254);
+  color: rgb(30 64 175);
+}
+
+.filter-tab[data-active="true"] .tab-count {
+  background: rgb(59 130 246);
+  color: white;
+}
+
+/* Dark mode styles */
+.dark .filter-tab {
+  color: rgb(163 163 163);
+  border-color: rgb(82 82 82);
+}
+
+.dark .filter-tab:hover {
+  background: rgba(30, 58, 138, 0.2);
+  border-color: rgb(96 165 250);
+  color: rgb(147 197 253);
+}
+
+.dark .filter-tab[data-active="true"] {
+  background: rgb(37 99 235);
+  border-color: rgb(37 99 235);
+  color: white;
+}
+
+.dark .filter-tab .tab-count {
+  background: rgb(64 64 64);
+  color: rgb(212 212 212);
+}
+
+.dark .filter-tab:hover .tab-count {
+  background: rgb(30 58 138);
+  color: rgb(191 219 254);
+}
+
+.dark .filter-tab[data-active="true"] .tab-count {
+  background: rgb(59 130 246);
+  color: white;
+}
+
+/* Media item visibility */
+.media-item.hidden {
+  display: none;
+}
+
+.media-item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.media-item.filtering {
+  opacity: 0;
+  transform: scale(0.95);
+}
