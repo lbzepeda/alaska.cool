@@ -84,7 +84,7 @@ const phoneNumber = "+505 7772-6999";
 
       <!-- Language Selector, Contact Button and Theme Toggle Desktop -->
       <div class="hidden md:flex items-center gap-4">
-        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} />
+        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} variant="desktop" />
         <button
           id="theme-toggle"
           class="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
@@ -142,7 +142,7 @@ const phoneNumber = "+505 7772-6999";
 
       <!-- Mobile Elements -->
       <div class="flex md:hidden items-center gap-4">
-        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} />
+        <LanguageSelector currentLang={currentLang} currentPath={Astro.url.pathname} variant="mobile" />
         <button
           id="theme-toggle-mobile"
           class="text-slate-600 dark:text-slate-300"
@@ -265,10 +265,22 @@ const phoneNumber = "+505 7772-6999";
         return;
       }
 
+      // Prevent hiding navbar when mobile menu is open
       if (
         currentScroll > lastScroll &&
         mobileMenu &&
         !mobileMenu.classList.contains("hidden")
+      ) {
+        return;
+      }
+
+      // Prevent hiding navbar when language selector is open
+      const languageMenuDesktop = document.getElementById("language-menu-desktop");
+      const languageMenuMobile = document.getElementById("language-menu-mobile");
+      if (
+        currentScroll > lastScroll &&
+        ((languageMenuDesktop && !languageMenuDesktop.classList.contains("hidden")) ||
+         (languageMenuMobile && !languageMenuMobile.classList.contains("hidden")))
       ) {
         return;
       }

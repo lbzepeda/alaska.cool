@@ -192,6 +192,12 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ currentLang = 'es' }) =
     setCurrentIndex(index);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
+    
+    // Hide navbar when lightbox opens
+    const navbar = document.querySelector('header');
+    if (navbar) {
+      navbar.classList.add('-translate-y-full');
+    }
   }, []);
 
   // Close lightbox
@@ -201,6 +207,12 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ currentLang = 'es' }) =
     }
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
+    
+    // Show navbar when lightbox closes
+    const navbar = document.querySelector('header');
+    if (navbar) {
+      navbar.classList.remove('-translate-y-full');
+    }
   }, []);
 
   // Navigate to next media
@@ -415,7 +427,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ currentLang = 'es' }) =
       {isModalOpen && currentMedia && (
         <div 
           ref={modalRef}
-          className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50"
+          className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[60]"
           onClick={(e) => {
             if (e.target === modalRef.current) {
               closeLightbox();
@@ -426,10 +438,10 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ currentLang = 'es' }) =
             {/* Close button */}
             <button 
               onClick={closeLightbox}
-              className="absolute top-20 right-6 w-14 h-14 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border-2 border-white/40 hover:border-white/60 shadow-2xl z-10"
+              className="absolute top-6 right-6 w-10 h-10 bg-black/30 hover:bg-black/50 text-white/70 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm z-10"
               aria-label="Close lightbox"
             >
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>

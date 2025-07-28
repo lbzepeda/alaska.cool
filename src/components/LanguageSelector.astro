@@ -5,9 +5,10 @@ import { siteConfig } from '../config/site';
 interface Props {
   currentLang: 'es' | 'en';
   currentPath: string;
+  variant?: 'desktop' | 'mobile';
 }
 
-const { currentLang, currentPath } = Astro.props;
+const { currentLang, currentPath, variant = 'desktop' } = Astro.props;
 
 // Remove language prefix from path for alternate language
 const cleanPath = currentPath.replace(/^\/(es|en)/, '') || '/';
@@ -17,11 +18,15 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
   url: getRelativeLocaleUrl(lang, cleanPath),
   label: siteConfig.languages[lang as keyof typeof siteConfig.languages]
 }));
+
+// Create unique IDs based on variant
+const buttonId = `language-menu-button-${variant}`;
+const menuId = `language-menu-${variant}`;
 ---
 
 <div class="relative inline-block text-left">
   <button
-    id="language-menu-button"
+    id={buttonId}
     type="button"
     class="inline-flex items-center justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400 dark:ring-offset-gray-800"
     aria-expanded="false"
@@ -45,11 +50,11 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
   </button>
 
   <div
-    id="language-menu"
-    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-xl bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-600 ring-opacity-5 dark:ring-opacity-75 focus:outline-none z-30"
+    id={menuId}
+    class="hidden origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-xl bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-600 ring-opacity-5 dark:ring-opacity-75 focus:outline-none z-[60]"
     role="menu"
     aria-orientation="vertical"
-    aria-labelledby="language-menu-button"
+    aria-labelledby={buttonId}
     tabindex="-1"
   >
     <div class="py-1" role="none">
@@ -72,17 +77,18 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
   </div>
 </div>
 
-<script>
+<script define:vars={{ buttonId, menuId }} is:inline>
   // Usar una función auto-ejecutable para crear un scope limpio
   (function() {
     // Variables para almacenar los handlers actuales
-    let currentToggleHandler: ((event: Event) => void) | null = null;
-    let currentOutsideClickHandler: ((event: Event) => void) | null = null;
-    let currentEscapeHandler: ((event: KeyboardEvent) => void) | null = null;
+    let currentToggleHandler = null;
+    let currentOutsideClickHandler = null;
+    let currentEscapeHandler = null;
+    let currentScrollHandler = null;
 
     function initLanguageSelector() {
-      const button = document.getElementById('language-menu-button');
-      const menu = document.getElementById('language-menu');
+      const button = document.getElementById(buttonId);
+      const menu = document.getElementById(menuId);
 
       if (button && menu) {
         // Limpiar listeners existentes
@@ -98,14 +104,18 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
           document.removeEventListener('keydown', currentEscapeHandler);
           currentEscapeHandler = null;
         }
+        if (currentScrollHandler) {
+          window.removeEventListener('scroll', currentScrollHandler);
+          currentScrollHandler = null;
+        }
 
         const closeMenu = () => {
           button.setAttribute('aria-expanded', 'false');
           menu.classList.add('hidden');
         };
 
-        // Crear nuevo toggle handler
-        currentToggleHandler = (event: Event) => {
+        // Crear nuevo toggle handler - SIMPLE como theme toggle
+        currentToggleHandler = (event) => {
           event.preventDefault();
           event.stopPropagation();
           
@@ -113,8 +123,8 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
           button.setAttribute('aria-expanded', (!isExpanded).toString());
           menu.classList.toggle('hidden');
           
-          // Enfocar el menú si se abrió para mejorar accesibilidad
-          if (!isExpanded) {
+          // Solo focus en desktop, no en móvil
+          if (!isExpanded && !('ontouchstart' in window)) {
             setTimeout(() => {
               menu.focus();
             }, 10);
@@ -122,8 +132,8 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
         };
 
         // Crear nuevo outside click handler con mejor detección en móvil
-        currentOutsideClickHandler = (event: Event) => {
-          const target = event.target as Node;
+        currentOutsideClickHandler = (event) => {
+          const target = event.target;
           // Verificar si el menú está visible antes de procesarlo
           if (!menu.classList.contains('hidden') && 
               !button.contains(target) && 
@@ -133,16 +143,24 @@ const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
         };
 
         // Crear nuevo escape handler
-        currentEscapeHandler = (event: KeyboardEvent) => {
+        currentEscapeHandler = (event) => {
           if (event.key === 'Escape') {
             closeMenu();
           }
         };
 
-        // Agregar nuevos listeners
+        // Auto-close on scroll to prevent conflicts with navbar hide/show
+        currentScrollHandler = () => {
+          if (!menu.classList.contains('hidden')) {
+            closeMenu();
+          }
+        };
+
+        // Agregar listeners - SIMPLE como theme toggle (solo click)
         button.addEventListener('click', currentToggleHandler);
         document.addEventListener('click', currentOutsideClickHandler);
         document.addEventListener('keydown', currentEscapeHandler);
+        window.addEventListener('scroll', currentScrollHandler, { passive: true });
       }
     }
 
