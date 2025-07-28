@@ -30,7 +30,7 @@ export interface ProductFilter {
   btu?: string;
 }
 
-export type BrandKey = 'tempblue' | 'rheem' | 'midea' | 'comfortstar';
+export type BrandKey = 'tempblue' | 'rheem' | /* 'midea' | */ 'comfortstar';
 
 export interface BrandInfo {
   name: string;
@@ -52,12 +52,12 @@ export const brandMapping: Record<BrandKey, BrandInfo> = {
     colorBrand: 'bg-gradient-to-r from-red-600 to-red-400',
     logo: '/brands/rheem/rheem_logo.webp'
   },
-  midea: {
+  /* midea: {
     name: 'Midea',
     apiParam: 'midea',
     colorBrand: 'bg-gradient-to-r from-sky-500 to-blue-500',
     logo: '/brands/midea_logo.webp'
-  },
+  }, */
   comfortstar: {
     name: 'ComfortStar',
     apiParam: 'comfortstar',

@@ -41,11 +41,11 @@ export const translations = {
         description: 'Líder mundial en sistemas de climatización',
         tagline: 'Innovación en Climatización',
       },
-      midea: {
+      /* midea: {
         name: 'Midea',
         description: 'Tecnología innovadora en refrigeración',
         tagline: 'Smart Home Innovation',
-      },
+      }, */
       tempblue: {
         name: 'TempBlue',
         description: 'Soluciones eficientes de climatización',
@@ -118,7 +118,7 @@ export const translations = {
       story: {
         title: 'Nuestra Historia',
         paragraph1: 'Alaska Cool comenzó como una visión simple: crear espacios más cómodos y eficientes en Nicaragua. Lo que inició como un compromiso local se ha convertido en una referencia nacional de innovación y calidad.',
-        paragraph2: 'Representamos las marcas más prestigiosas del mercado: TempBlue, Rheem, Comfort Star, Midea y Soler & Palau, ofreciendo soluciones integrales para cada necesidad de climatización.',
+        paragraph2: 'Representamos las marcas más prestigiosas del mercado: TempBlue, Rheem, Comfort Star, /* Midea y */ Soler & Palau, ofreciendo soluciones integrales para cada necesidad de climatización.',
         paragraph3: 'Hoy, con cobertura nacional y un equipo técnico especializado, continuamos innovando para crear el futuro de la climatización en la región.'
       },
       whyUs: {
@@ -146,7 +146,7 @@ export const translations = {
       items: [
         {
           question: '¿Qué tipos de equipos de climatización manejan?',
-          answer: 'Manejamos una amplia gama de equipos de climatización incluyendo aires acondicionados residenciales, industriales y comerciales, sistemas de ventilación forzada, y equipos de diferentes marcas como TempBlue, Rheem, Midea y ComfortStar.'
+          answer: 'Manejamos una amplia gama de equipos de climatización incluyendo aires acondicionados residenciales, industriales y comerciales, sistemas de ventilación forzada, y equipos de diferentes marcas como TempBlue, Rheem, /* Midea y */ ComfortStar.'
         },
         {
           question: '¿Ofrecen servicio de instalación?',
@@ -234,11 +234,11 @@ export const translations = {
         description: 'Global leader in HVAC systems',
         tagline: 'HVAC Innovation',
       },
-      midea: {
+      /* midea: {
         name: 'Midea',
         description: 'Innovative refrigeration technology',
         tagline: 'Smart Home Innovation',
-      },
+      }, */
       tempblue: {
         name: 'TempBlue',
         description: 'Efficient HVAC solutions',
@@ -311,7 +311,7 @@ export const translations = {
       story: {
         title: 'Our Story',
         paragraph1: 'Alaska Cool began as a simple vision: create more comfortable and efficient spaces in Nicaragua. What started as a local commitment has become a national reference for innovation and quality.',
-        paragraph2: 'We represent the most prestigious brands in the market: TempBlue, Rheem, Comfort Star, Midea and Soler & Palau, offering comprehensive solutions for every HVAC need.',
+        paragraph2: 'We represent the most prestigious brands in the market: TempBlue, Rheem, Comfort Star, /* Midea and */ Soler & Palau, offering comprehensive solutions for every HVAC need.',
         paragraph3: 'Today, with national coverage and a specialized technical team, we continue innovating to create the future of HVAC in the region.'
       },
       whyUs: {
@@ -339,7 +339,7 @@ export const translations = {
       items: [
         {
           question: 'What types of HVAC equipment do you handle?',
-          answer: 'We handle a wide range of HVAC equipment including residential, industrial and commercial air conditioners, forced ventilation systems, and equipment from different brands like TempBlue, Rheem, Midea and ComfortStar.'
+          answer: 'We handle a wide range of HVAC equipment including residential, industrial and commercial air conditioners, forced ventilation systems, and equipment from different brands like TempBlue, Rheem, /* Midea and */ ComfortStar.'
         },
         {
           question: 'Do you offer installation service?',

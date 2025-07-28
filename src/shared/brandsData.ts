@@ -197,7 +197,7 @@ export const brandsData = {
       },
     ],
   },
-  midea: {
+  /* midea: {
     name: "Midea",
     colorBrand: "bg-gradient-to-r from-sky-500 to-blue-500",
     logo: "/brands/midea_logo.webp",
@@ -288,7 +288,7 @@ export const brandsData = {
           "El sistema Inverter G de Midea representa la última generación en control de climatización, optimizando el funcionamiento del compresor para maximizar la eficiencia energética y mantener una temperatura más estable, resultando en mayor confort y menor consumo eléctrico.",
       },
     ],
-  },
+  }, */
 
   comfortStar: {
     name: "ComfortStar",

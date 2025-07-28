@@ -28,7 +28,7 @@ export const brandStyles = {
     hoverEffects:
       "hover:shadow-lg hover:shadow-emerald-100/50 dark:hover:shadow-emerald-900/30",
   },
-  midea: {
+  /* midea: {
     heroSection:
       "bg-gradient-to-br from-violet-50 via-white to-violet-50 dark:from-violet-950 dark:via-black dark:to-violet-950",
     cardStyle:
@@ -36,7 +36,7 @@ export const brandStyles = {
     accentColor: "text-violet-600 dark:text-violet-400",
     hoverEffects:
       "hover:shadow-lg hover:shadow-violet-100/50 dark:hover:shadow-violet-900/30",
-  },
+  }, */
   solerPalau: {
     heroSection:
       "bg-gradient-to-br from-cyan-50 via-white to-cyan-50 dark:from-cyan-950 dark:via-black dark:to-cyan-950",

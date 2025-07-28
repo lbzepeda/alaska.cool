@@ -41,7 +41,7 @@ export const siteConfig = {
         'Nicaragua',
         'Managua',
         'Rheem',
-        'Midea',
+        /* 'Midea', */
         'TempBlue',
         'ComfortStar',
       ],
@@ -52,7 +52,7 @@ export const siteConfig = {
         'Nicaragua',
         'Managua',
         'Rheem',
-        'Midea',
+        /* 'Midea', */
         'TempBlue',
         'ComfortStar',
       ],

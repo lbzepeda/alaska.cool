@@ -1,3 +1,4 @@
+<!-- MIDEA BRAND PAGE TEMPORARILY DISABLED
 ---
 // src/pages/midea.astro
 import BrandPage from "../../components/BrandDetail/BrandPage.astro";
@@ -14,3 +15,4 @@ const mideaData = brandsData.midea;
 >
   <BrandPage brand={mideaData} brandKey="midea" />
 </Layout>
+-->
