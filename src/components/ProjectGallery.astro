@@ -3,134 +3,182 @@ import { getLanguageFromUrl } from '../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
 
-// 🏢 CATEGORÍAS DE PROYECTOS ORGANIZADAS POR EMPRESA
+// 🏢 CATEGORÍAS DE PROYECTOS ORGANIZADAS POR TIPO
 const projectCategories = [
   {
     id: 'todos',
     name: currentLang === 'es' ? 'Todos' : 'All',
-    count: 9
+    count: 13
   },
   {
-    id: 'ampm',
-    name: 'AMPM',
+    id: 'aires-acondicionados',
+    name: currentLang === 'es' ? 'Aires Acondicionados' : 'Air Conditioning',
+    count: 10
+  },
+  {
+    id: 'ventilacion',
+    name: currentLang === 'es' ? 'Ventilación' : 'Ventilation',
+    count: 0
+  },
+  {
+    id: 'comerciales',
+    name: currentLang === 'es' ? 'TikTok' : 'TikTok',
     count: 3
-  },
-  {
-    id: 'unan',
-    name: 'UNAN',
-    count: 5
-  },
-  {
-    id: 'contenido',
-    name: currentLang === 'es' ? 'Contenido' : 'Content',
-    count: 1
   }
 ];
 
-// ✅ MEDIOS ORGANIZADOS POR EMPRESA/PROYECTO
+// ✅ MEDIOS ORGANIZADOS POR TIPO DE PROYECTO
 const projectMedia = [
-  // 🏪 PROYECTO AMPM
+  // ❄️ AIRES ACONDICIONADOS - PROYECTO AMPM 
   {
     id: 1,
     src: "/projects/AMPM1.webp",
     type: "image",
-    company: "ampm",
+    projectType: "aires-acondicionados",
     alt: "Instalación aires acondicionados tipo cassette AMPM",
     title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
     description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "tall"
   },
   {
     id: 2,
     src: "/projects/AMPM2.webp",
     type: "image",
-    company: "ampm",
+    projectType: "aires-acondicionados",
     alt: "Instalación aires acondicionados AMPM - Fase 2",
     title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
     description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "medium"
   },
   {
     id: 3,
     src: "/projects/AMPM3.webp",
     type: "image",
-    company: "ampm",
+    projectType: "aires-acondicionados",
     alt: "Finalización proyecto AMPM - Aires cassette",
     title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
     description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Comercial" : "Commercial",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "short"
   },
 
-  // 🎓 PROYECTO UNAN
+  // ❄️ AIRES ACONDICIONADOS - PROYECTO UNAN
   {
     id: 5,
     src: "/projects/UNAN1.webp",
     type: "image",
-    company: "unan",
+    projectType: "aires-acondicionados",
     alt: "Universidad UNAN - Sistema de climatización",
-    title: currentLang === 'es' ? "UNAN - Proyecto Universitario" : "UNAN - University Project",
-    description: currentLang === 'es' ? "Instalación completa de sistema de climatización en instalaciones universitarias con control automatizado." : "Complete HVAC system installation in university facilities with automated control.",
-    category: currentLang === 'es' ? "Educativo" : "Educational",
+    title: currentLang === 'es' ? "UNAN - Sistema de Climatización Universitario" : "UNAN - University HVAC System",
+    description: currentLang === 'es' ? "Instalación completa de sistema de aires acondicionados en instalaciones universitarias con control automatizado y alta eficiencia energética." : "Complete air conditioning system installation in university facilities with automated control and high energy efficiency.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "medium"
   },
   {
     id: 6,
     src: "/projects/UNAN2.webp",
     type: "image",
-    company: "unan",
+    projectType: "aires-acondicionados",
     alt: "UNAN - Equipos de climatización instalados",
-    title: currentLang === 'es' ? "UNAN - Equipamiento Fase 2" : "UNAN - Equipment Phase 2",
-    description: currentLang === 'es' ? "Segunda fase del proyecto universitario con instalación de equipos de alta eficiencia energética." : "Second phase of university project with high energy efficiency equipment installation.",
-    category: currentLang === 'es' ? "Educativo" : "Educational",
+    title: currentLang === 'es' ? "UNAN - Equipamiento de Climatización" : "UNAN - HVAC Equipment",
+    description: currentLang === 'es' ? "Equipos de aires acondicionados de alta eficiencia instalados en aulas y espacios administrativos universitarios." : "High efficiency air conditioning equipment installed in university classrooms and administrative spaces.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "short"
   },
   {
     id: 7,
     src: "/projects/UNAN3.webp",
     type: "image",
-    company: "unan",
+    projectType: "aires-acondicionados",
     alt: "UNAN - Detalles técnicos de instalación",
-    title: currentLang === 'es' ? "UNAN - Detalles Técnicos" : "UNAN - Technical Details",
-    description: currentLang === 'es' ? "Vista detallada de componentes y conexiones del sistema de climatización universitario." : "Detailed view of university HVAC system components and connections.",
-    category: currentLang === 'es' ? "Técnico" : "Technical",
+    title: currentLang === 'es' ? "UNAN - Instalación Técnica" : "UNAN - Technical Installation",
+    description: currentLang === 'es' ? "Vista detallada de la instalación técnica del sistema de aires acondicionados con ductos y conexiones especializadas." : "Detailed view of technical air conditioning system installation with specialized ducts and connections.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "tall"
   },
   {
     id: 8,
     src: "/projects/UNAN4.webp",
     type: "image",
-    company: "unan",
+    projectType: "aires-acondicionados",
     alt: "UNAN - Instalación completada",
-    title: currentLang === 'es' ? "UNAN - Finalización del Proyecto" : "UNAN - Project Completion",
-    description: currentLang === 'es' ? "Proyecto universitario completado con sistemas de monitoreo y control remoto implementados." : "University project completed with monitoring systems and remote control implemented.",
-    category: currentLang === 'es' ? "Educativo" : "Educational",
+    title: currentLang === 'es' ? "UNAN - Proyecto Completado" : "UNAN - Completed Project",
+    description: currentLang === 'es' ? "Sistema de aires acondicionados universitario completado con monitoreo y control remoto para eficiencia energética." : "University air conditioning system completed with monitoring and remote control for energy efficiency.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "medium"
   },
   {
     id: 9,
     src: "/projects/UNAN5.webp",
     type: "image",
-    company: "unan",
+    projectType: "aires-acondicionados",
     alt: "UNAN - Vista general del proyecto",
-    title: currentLang === 'es' ? "UNAN - Vista General" : "UNAN - General View",
-    description: currentLang === 'es' ? "Vista panorámica del proyecto universitario mostrando la integración completa del sistema." : "Panoramic view of university project showing complete system integration.",
-    category: currentLang === 'es' ? "Educativo" : "Educational",
+    title: currentLang === 'es' ? "UNAN - Vista Panorámica" : "UNAN - Panoramic View",
+    description: currentLang === 'es' ? "Vista panorámica del proyecto de climatización universitario mostrando la integración completa del sistema de aires acondicionados." : "Panoramic view of university HVAC project showing complete air conditioning system integration.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
     height: "tall"
   },
 
-  // 📹 CONTENIDO AUDIOVISUAL
+  // 🧊 CUARTO FRÍO - SISTEMAS DE REFRIGERACIÓN COMERCIAL
+  {
+    id: 14,
+    src: "/projects/CuartoFrio1.webp",
+    type: "image",
+    projectType: "aires-acondicionados",
+    alt: "Cuarto Frío - Sistema de refrigeración comercial",
+    title: currentLang === 'es' ? "Cuarto Frío - Refrigeración Comercial" : "Cold Room - Commercial Refrigeration",
+    description: currentLang === 'es' ? "Instalación de sistema de cuarto frío para refrigeración comercial con control de temperatura preciso y eficiencia energética optimizada." : "Cold room system installation for commercial refrigeration with precise temperature control and optimized energy efficiency.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    height: "medium"
+  },
+  {
+    id: 15,
+    src: "/projects/CuartoFrio2.webp",
+    type: "image",
+    projectType: "aires-acondicionados",
+    alt: "Cuarto Frío - Instalación completada",
+    title: currentLang === 'es' ? "Cuarto Frío - Sistema Completado" : "Cold Room - Completed System",
+    description: currentLang === 'es' ? "Sistema de cuarto frío completamente instalado y operativo, diseñado para conservación de productos perecederos con tecnología de punta." : "Fully installed and operational cold room system, designed for perishable product preservation with cutting-edge technology.",
+    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    height: "short"
+  },
+
+  // 📹 TIKTOK - CONTENIDO DE MARKETING
   {
     id: 11,
     src: "/projects/TrasCamara.webp",
     type: "image",
-    company: "contenido",
-    alt: "Behind the scenes - Proceso de trabajo",
-    title: currentLang === 'es' ? "Tras Cámaras - Proceso" : "Behind the Scenes - Process",
-    description: currentLang === 'es' ? "Vista tras cámaras del proceso de instalación mostrando el profesionalismo del equipo técnico." : "Behind the scenes view of installation process showing technical team professionalism.",
-    category: currentLang === 'es' ? "Proceso" : "Process",
+    projectType: "comerciales",
+    alt: "Behind the scenes - Contenido comercial",
+    title: currentLang === 'es' ? "Contenido Comercial - Tras Cámaras" : "Commercial Content - Behind the Scenes",
+    description: currentLang === 'es' ? "Contenido comercial y de marketing creado para redes sociales mostrando el proceso profesional del equipo técnico." : "Commercial and marketing content created for social media showing the professional process of the technical team.",
+    category: currentLang === 'es' ? "TikTok" : "TikTok",
+    height: "medium"
+  },
+  {
+    id: 12,
+    src: "/projects/Comercial1.webm",
+    type: "video",
+    projectType: "comerciales",
+    poster: "/projects/Comercial1-poster.webp",
+    alt: "Comercial Tempblue - Managua Capital del Infierno",
+    title: currentLang === 'es' ? "Comercial Tempblue - Managua Capital del Infierno" : "Tempblue Commercial - Managua Capital of Hell",
+    description: currentLang === 'es' ? "Comercial donde una mujer habla sobre el calor extremo de Managua, refiriéndose a la capital como 'el infierno', y explica cómo los aires acondicionados inverter de Tempblue reducen los recibos de luz siendo buenos para la economía familiar." : "Commercial where a woman talks about Managua's extreme heat, referring to the capital as 'hell', and explains how Tempblue inverter air conditioners reduce electricity bills being good for family economy.",
+    category: currentLang === 'es' ? "TikTok" : "TikTok",
+    height: "tall"
+  },
+  {
+    id: 13,
+    src: "/projects/Comercial2.webm",
+    type: "video",
+    projectType: "comerciales",
+    poster: "/projects/Comercial2-poster.webp",
+    alt: "Comercial Tempblue - Home Office",
+    title: currentLang === 'es' ? "Comercial Tempblue - Rescate en Home Office" : "Tempblue Commercial - Home Office Rescue",
+    description: currentLang === 'es' ? "Comercial que muestra a una persona en home office durante una reunión virtual, sufriendo por el calor extremo. En ese momento aparece un técnico especializado que le ofrece la solución perfecta: aires acondicionados Tempblue." : "Commercial showing a person in home office during a virtual meeting, suffering from extreme heat. At that moment a specialized technician appears offering the perfect solution: Tempblue air conditioners.",
+    category: currentLang === 'es' ? "TikTok" : "TikTok",
     height: "medium"
   }
 ];
@@ -187,7 +235,7 @@ const projectMedia = [
           data-title={media.title}
           data-description={media.description}
           data-category={media.category}
-          data-company={media.company}
+          data-project-type={media.projectType}
           data-id={media.id}
         >
           <div class="relative w-full h-full overflow-hidden">
@@ -512,7 +560,7 @@ const projectMedia = [
         filteredItems = Array.from(mediaItems) as HTMLElement[];
       } else {
         filteredItems = Array.from(mediaItems).filter(function(item) {
-          return (item as HTMLElement).dataset.company === activeFilter;
+          return (item as HTMLElement).dataset.projectType === activeFilter;
         }) as HTMLElement[];
       }
     }
@@ -532,7 +580,7 @@ const projectMedia = [
         item.classList.add('filtering');
         
         setTimeout(function() {
-          if (filterType === 'todos' || (item as HTMLElement).dataset.company === filterType) {
+          if (filterType === 'todos' || (item as HTMLElement).dataset.projectType === filterType) {
             item.classList.remove('hidden', 'filtering');
           } else {
             item.classList.add('hidden');
@@ -564,7 +612,7 @@ const projectMedia = [
       const mediaTitle = item.dataset.title;
       const mediaDescription = item.dataset.description;
       const mediaCategory = item.dataset.category;
-      const mediaCompany = item.dataset.company;
+      const mediaProjectType = item.dataset.projectType;
       const mediaPoster = item.dataset.poster;
       
       
@@ -598,8 +646,11 @@ const projectMedia = [
       if (category && mediaCategory) category.textContent = mediaCategory;
       if (type && mediaCategory) type.textContent = mediaCategory;
       
-      const companyName = mediaCompany ? mediaCompany.toUpperCase() : '';
-      const currentFilter = activeFilter === 'todos' ? 'Todos' : companyName;
+      const projectTypeName = activeFilter === 'todos' ? 'Todos' : 
+        activeFilter === 'aires-acondicionados' ? 'Aires Acondicionados' :
+        activeFilter === 'ventilacion' ? 'Ventilación' :
+        activeFilter === 'comerciales' ? 'TikTok' : '';
+      const currentFilter = projectTypeName;
       if (counter) {
         counter.textContent = (index + 1) + ' / ' + filteredItems.length + ' - ' + currentFilter;
       }
