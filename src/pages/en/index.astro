@@ -5,7 +5,7 @@ import Contact from "../../components/Contact.astro";
 import FAQ from "../../components/FAQ.astro";
 import Home from "../../components/Home.astro";
 import Layout from "../../layouts/Layout.astro";
-import ProjectGallery from "../../components/ProjectGallery.tsx";
+import ProjectGallery from "../../components/ProjectGallery.astro";
 import { getLanguageFromUrl } from '../../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
@@ -15,7 +15,7 @@ const currentLang = getLanguageFromUrl(Astro.url);
   <Home />
   <Brand />
   <ComingSoon />
-  <ProjectGallery currentLang={currentLang} client:load />
+  <ProjectGallery />
   <FAQ />
   <Contact />
 </Layout>
