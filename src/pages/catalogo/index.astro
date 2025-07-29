@@ -1,11 +1,14 @@
 ---
 import ProductGrid from "../../components/Catalog/ProductGrid.astro";
 import Layout from "../../layouts/Layout.astro";
+import { getLanguageFromUrl, t } from '../../i18n/utils';
+
+const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
 <Layout
-  title="Catálogo Completo - Equipos de Climatización"
-  description="Explora nuestro catálogo completo de equipos de climatización de todas las marcas"
+  title={t(currentLang, 'pages.catalog.title')}
+  description={t(currentLang, 'pages.catalog.description')}
 >
   <section class="py-16">
     <div class="text-center max-w-xl mx-auto mb-12">

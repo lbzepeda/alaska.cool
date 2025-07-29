@@ -6,12 +6,12 @@ import FAQ from "../components/FAQ.astro";
 import Home from "../components/Home.astro";
 import Layout from "../layouts/Layout.astro";
 import ProjectGallery from "../components/ProjectGallery.astro";
-import { getLanguageFromUrl } from '../i18n/utils';
+import { getLanguageFromUrl, t } from '../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
-<Layout title="Alaska Cool - Climatización Inteligente">
+<Layout title={t(currentLang, 'pages.home.title')}>
   <Home />
   <Brand />
   <ComingSoon />

@@ -16,7 +16,7 @@ export function t(lang: Language, key: string): string {
 }
 
 export function isValidLanguage(lang: string): lang is Language {
-  return lang === 'es' || lang === 'en';
+  return lang === 'es' || lang === 'en' || lang === 'zh';
 }
 
 export function getLanguageFromUrl(url: URL): Language {
@@ -28,4 +28,18 @@ export function getLanguageFromUrl(url: URL): Language {
   }
   
   return 'es'; // default
+}
+
+// Utility for multilingual content
+export type MultiLangContent = {
+  es: string;
+  en: string;
+  zh: string;
+};
+
+export function getLocalizedContent(content: string | MultiLangContent, lang: Language): string {
+  if (typeof content === 'string') {
+    return content;
+  }
+  return content[lang] || content.es;
 }

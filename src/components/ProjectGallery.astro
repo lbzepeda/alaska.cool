@@ -3,31 +3,36 @@ import { getLanguageFromUrl } from '../i18n/utils';
 
 const currentLang = getLanguageFromUrl(Astro.url);
 
+// Helper function for translations
+const tr = (es: string, en: string, zh: string) => {
+  return currentLang === 'es' ? es : currentLang === 'en' ? en : zh;
+};
+
 // 🏢 CATEGORÍAS DE PROYECTOS ORGANIZADAS POR TIPO
 const projectCategories = [
   {
     id: 'todos',
-    name: currentLang === 'es' ? 'Todos' : 'All',
+    name: tr('Todos', 'All', '全部'),
     count: 13
   },
   {
     id: 'aires-acondicionados',
-    name: currentLang === 'es' ? 'Aires Acondicionados' : 'Air Conditioning',
+    name: tr('Aires Acondicionados', 'Air Conditioning', '空调'),
     count: 8
   },
   {
     id: 'cuarto-frio',
-    name: currentLang === 'es' ? 'Cuarto Frío' : 'Cold Room',
+    name: tr('Cuarto Frío', 'Cold Room', '冷库'),
     count: 2
   },
   {
     id: 'ventilacion',
-    name: currentLang === 'es' ? 'Ventilación' : 'Ventilation',
+    name: tr('Ventilación', 'Ventilation', '通风'),
     count: 0
   },
   {
     id: 'comerciales',
-    name: currentLang === 'es' ? 'TikTok' : 'TikTok',
+    name: 'TikTok',
     count: 3
   }
 ];
@@ -41,9 +46,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "Instalación aires acondicionados tipo cassette AMPM",
-    title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
-    description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("AMPM - Aires Acondicionados Cassette 60,000 BTU", "AMPM - 60,000 BTU Cassette AC Units", "AMPM - 60,000 BTU 卡匣式空调"),
+    description: tr("Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones.", "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.", "在AMPM分店安装60,000 BTU卡匣式空调：Las Colinas、Rivas、San Juan del Sur、Masaya、Nandaime等位置。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "tall"
   },
   {
@@ -52,9 +57,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "Instalación aires acondicionados AMPM - Fase 2",
-    title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
-    description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("AMPM - Aires Acondicionados Cassette 60,000 BTU", "AMPM - 60,000 BTU Cassette AC Units", "AMPM - 60,000 BTU 卡匣式空调"),
+    description: tr("Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones.", "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.", "在AMPM分店安装60,000 BTU卡匣式空调：Las Colinas、Rivas、San Juan del Sur、Masaya、Nandaime等位置。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "medium"
   },
   {
@@ -63,9 +68,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "Finalización proyecto AMPM - Aires cassette",
-    title: currentLang === 'es' ? "AMPM - Aires Acondicionados Cassette 60,000 BTU" : "AMPM - 60,000 BTU Cassette AC Units",
-    description: currentLang === 'es' ? "Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones." : "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("AMPM - Aires Acondicionados Cassette 60,000 BTU", "AMPM - 60,000 BTU Cassette AC Units", "AMPM - 60,000 BTU 卡匣式空调"),
+    description: tr("Instalación de aires acondicionados tipo cassette de 60,000 BTU en sucursales AMPM: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime y otras ubicaciones.", "Installation of 60,000 BTU cassette-type air conditioners in AMPM branches: Las Colinas, Rivas, San Juan del Sur, Masaya, Nandaime and other locations.", "在AMPM分店安装60,000 BTU卡匣式空调：Las Colinas、Rivas、San Juan del Sur、Masaya、Nandaime等位置。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "short"
   },
 
@@ -76,9 +81,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "Universidad UNAN - Sistema de climatización",
-    title: currentLang === 'es' ? "UNAN - Sistema de Climatización Universitario" : "UNAN - University HVAC System",
-    description: currentLang === 'es' ? "Instalación completa de sistema de aires acondicionados en instalaciones universitarias con control automatizado y alta eficiencia energética." : "Complete air conditioning system installation in university facilities with automated control and high energy efficiency.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("UNAN - Sistema de Climatización Universitario", "UNAN - University HVAC System", "UNAN - 大学空调系统"),
+    description: tr("安装完整的大学设施空调系统，具有自动控制和高能效。", "Complete air conditioning system installation in university facilities with automated control and high energy efficiency.", "在大学设施安装完整的空调系统，具有自动控制和高能效。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "medium"
   },
   {
@@ -87,9 +92,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "UNAN - Equipos de climatización instalados",
-    title: currentLang === 'es' ? "UNAN - Equipamiento de Climatización" : "UNAN - HVAC Equipment",
-    description: currentLang === 'es' ? "Equipos de aires acondicionados de alta eficiencia instalados en aulas y espacios administrativos universitarios." : "High efficiency air conditioning equipment installed in university classrooms and administrative spaces.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("UNAN - Equipamiento de Climatización", "UNAN - HVAC Equipment", "UNAN - 空调设备"),
+    description: tr("在大学教室和行政区域安装的高效空调设备。", "High efficiency air conditioning equipment installed in university classrooms and administrative spaces.", "在大学教室和行政区域安装的高效空调设备。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "short"
   },
   {
@@ -98,9 +103,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "UNAN - Detalles técnicos de instalación",
-    title: currentLang === 'es' ? "UNAN - Instalación Técnica" : "UNAN - Technical Installation",
-    description: currentLang === 'es' ? "Vista detallada de la instalación técnica del sistema de aires acondicionados con ductos y conexiones especializadas." : "Detailed view of technical air conditioning system installation with specialized ducts and connections.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("UNAN - Instalación Técnica", "UNAN - Technical Installation", "UNAN - 技术安装"),
+    description: tr("空调系统技术安装的详细视图，包括专业管道和连接。", "Detailed view of technical air conditioning system installation with specialized ducts and connections.", "空调系统技术安装的详细视图，包括专业管道和连接。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "tall"
   },
   {
@@ -109,9 +114,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "UNAN - Instalación completada",
-    title: currentLang === 'es' ? "UNAN - Proyecto Completado" : "UNAN - Completed Project",
-    description: currentLang === 'es' ? "Sistema de aires acondicionados universitario completado con monitoreo y control remoto para eficiencia energética." : "University air conditioning system completed with monitoring and remote control for energy efficiency.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("UNAN - Proyecto Completado", "UNAN - Completed Project", "UNAN - 完成项目"),
+    description: tr("大学空调系统完成，具有监控和远程控制功能，提高能效。", "University air conditioning system completed with monitoring and remote control for energy efficiency.", "大学空调系统完成，具有监控和远程控制功能，提高能效。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "medium"
   },
   {
@@ -120,9 +125,9 @@ const projectMedia = [
     type: "image",
     projectType: "aires-acondicionados",
     alt: "UNAN - Vista general del proyecto",
-    title: currentLang === 'es' ? "UNAN - Vista Panorámica" : "UNAN - Panoramic View",
-    description: currentLang === 'es' ? "Vista panorámica del proyecto de climatización universitario mostrando la integración completa del sistema de aires acondicionados." : "Panoramic view of university HVAC project showing complete air conditioning system integration.",
-    category: currentLang === 'es' ? "Aires Acondicionados" : "Air Conditioning",
+    title: tr("UNAN - Vista Panorámica", "UNAN - Panoramic View", "UNAN - 全景视图"),
+    description: tr("大学空调项目的全景视图，展示空调系统的完整集成。", "Panoramic view of university HVAC project showing complete air conditioning system integration.", "大学空调项目的全景视图，展示空调系统的完整集成。"),
+    category: tr("Aires Acondicionados", "Air Conditioning", "空调"),
     height: "tall"
   },
 
@@ -133,9 +138,9 @@ const projectMedia = [
     type: "image",
     projectType: "cuarto-frio",
     alt: "Cuarto Frío - Sistema de refrigeración comercial",
-    title: currentLang === 'es' ? "Cuarto Frío - Refrigeración Comercial" : "Cold Room - Commercial Refrigeration",
-    description: currentLang === 'es' ? "Instalación de sistema de cuarto frío para refrigeración comercial con control de temperatura preciso y eficiencia energética optimizada." : "Cold room system installation for commercial refrigeration with precise temperature control and optimized energy efficiency.",
-    category: currentLang === 'es' ? "Cuarto Frío" : "Cold Room",
+    title: tr("Cuarto Frío - Refrigeración Comercial", "Cold Room - Commercial Refrigeration", "冷库 - 商业制冷"),
+    description: tr("安装商业制冷冷库系统，具有精确的温度控制和优化的能效。", "Cold room system installation for commercial refrigeration with precise temperature control and optimized energy efficiency.", "安装商业制冷冷库系统，具有精确的温度控制和优化的能效。"),
+    category: tr("Cuarto Frío", "Cold Room", "冷库"),
     height: "medium"
   },
   {
@@ -144,9 +149,9 @@ const projectMedia = [
     type: "image",
     projectType: "cuarto-frio",
     alt: "Cuarto Frío - Instalación completada",
-    title: currentLang === 'es' ? "Cuarto Frío - Sistema Completado" : "Cold Room - Completed System",
-    description: currentLang === 'es' ? "Sistema de cuarto frío completamente instalado y operativo, diseñado para conservación de productos perecederos con tecnología de punta." : "Fully installed and operational cold room system, designed for perishable product preservation with cutting-edge technology.",
-    category: currentLang === 'es' ? "Cuarto Frío" : "Cold Room",
+    title: tr("Cuarto Frío - Sistema Completado", "Cold Room - Completed System", "冷库 - 完成系统"),
+    description: tr("完全安装和运行的冷库系统，设计用于使用尖端技术保存易腐产品。", "Fully installed and operational cold room system, designed for perishable product preservation with cutting-edge technology.", "完全安装和运行的冷库系统，设计用于使用尖端技术保存易腐产品。"),
+    category: tr("Cuarto Frío", "Cold Room", "冷库"),
     height: "short"
   },
 
@@ -157,9 +162,9 @@ const projectMedia = [
     type: "image",
     projectType: "comerciales",
     alt: "Behind the scenes - Contenido comercial",
-    title: currentLang === 'es' ? "Contenido Comercial - Tras Cámaras" : "Commercial Content - Behind the Scenes",
-    description: currentLang === 'es' ? "Contenido comercial y de marketing creado para redes sociales mostrando el proceso profesional del equipo técnico." : "Commercial and marketing content created for social media showing the professional process of the technical team.",
-    category: currentLang === 'es' ? "TikTok" : "TikTok",
+    title: tr("Contenido Comercial - Tras Cámaras", "Commercial Content - Behind the Scenes", "商业内容 - 幕后花絮"),
+    description: tr("为社交媒体创建的商业和营销内容，展示技术团队的专业流程。", "Commercial and marketing content created for social media showing the professional process of the technical team.", "为社交媒体创建的商业和营销内容，展示技术团队的专业流程。"),
+    category: "TikTok",
     height: "medium"
   },
   {
@@ -169,9 +174,9 @@ const projectMedia = [
     projectType: "comerciales",
     poster: "/projects/Comercial1-poster.webp",
     alt: "Comercial Tempblue - Managua Capital del Infierno",
-    title: currentLang === 'es' ? "Comercial Tempblue - Managua Capital del Infierno" : "Tempblue Commercial - Managua Capital of Hell",
-    description: currentLang === 'es' ? "Comercial donde una mujer habla sobre el calor extremo de Managua, refiriéndose a la capital como 'el infierno', y explica cómo los aires acondicionados inverter de Tempblue reducen los recibos de luz siendo buenos para la economía familiar." : "Commercial where a woman talks about Managua's extreme heat, referring to the capital as 'hell', and explains how Tempblue inverter air conditioners reduce electricity bills being good for family economy.",
-    category: currentLang === 'es' ? "TikTok" : "TikTok",
+    title: tr("Comercial Tempblue - Managua Capital del Infierno", "Tempblue Commercial - Managua Capital of Hell", "Tempblue广告 - 马那瓜地狱之都"),
+    description: tr("一位女士谈论马那瓜的極端热量，称首都为'地狱'，并解释了Tempblue变频空调如何减少电费，对家庭经济有好处。", "Commercial where a woman talks about Managua's extreme heat, referring to the capital as 'hell', and explains how Tempblue inverter air conditioners reduce electricity bills being good for family economy.", "一位女士谈论马那瓜的极端热量，称首都为'地狱'，并解释了Tempblue变频空调如何减少电费，对家庭经济有好处。"),
+    category: "TikTok",
     height: "tall"
   },
   {
@@ -181,9 +186,9 @@ const projectMedia = [
     projectType: "comerciales",
     poster: "/projects/Comercial2-poster.webp",
     alt: "Comercial Tempblue - Home Office",
-    title: currentLang === 'es' ? "Comercial Tempblue - Rescate en Home Office" : "Tempblue Commercial - Home Office Rescue",
-    description: currentLang === 'es' ? "Comercial que muestra a una persona en home office durante una reunión virtual, sufriendo por el calor extremo. En ese momento aparece un técnico especializado que le ofrece la solución perfecta: aires acondicionados Tempblue." : "Commercial showing a person in home office during a virtual meeting, suffering from extreme heat. At that moment a specialized technician appears offering the perfect solution: Tempblue air conditioners.",
-    category: currentLang === 'es' ? "TikTok" : "TikTok",
+    title: tr("Comercial Tempblue - Rescate en Home Office", "Tempblue Commercial - Home Office Rescue", "Tempblue广告 - 家庭办公室救援"),
+    description: tr("广告展示了一个人在家庭办公室参加虚拟会议时受到极端热量的痛苦。此时出现了一名专业技术人员，提供了完美的解决方案：Tempblue空调。", "Commercial showing a person in home office during a virtual meeting, suffering from extreme heat. At that moment a specialized technician appears offering the perfect solution: Tempblue air conditioners.", "广告展示了一个人在家庭办公室参加虚拟会议时受到极端热量的痛苦。此时出现了一名专业技术人员，提供了完美的解决方案：Tempblue空调。"),
+    category: "TikTok",
     height: "medium"
   }
 ];
@@ -196,13 +201,13 @@ const projectMedia = [
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6 h-full flex flex-col">
     <div class="text-center mb-6 flex-shrink-0">
       <span class="text-blue-600 dark:text-blue-400 font-medium mb-2 block">
-        {currentLang === 'es' ? 'Contenido Visual' : 'Visual Content'}
+        {tr('Contenido Visual', 'Visual Content', '视觉内容')}
       </span>
       <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-        {currentLang === 'es' ? 'Multimedia' : 'Multimedia'}
+        {tr('Multimedia', 'Multimedia', '多媒体')}
       </h2>
       <p class="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-4 text-sm">
-        {currentLang === 'es' ? 'Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.' : 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.'}
+        {tr('Descubre nuestro contenido visual: proyectos de climatización, videos de procesos, y contenido de redes sociales. Haz click para explorar.', 'Discover our visual content: HVAC projects, process videos, and social media content. Click to explore.', '发现我们的视觉内容：空调项目、过程视频和社交媒体内容。点击探索。')}
       </p>
 
       <!-- Filter Tabs -->
@@ -282,7 +287,7 @@ const projectMedia = [
                   <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
-                  <span>{currentLang === 'es' ? 'Video' : 'Video'}</span>
+                  <span>{tr('Video', 'Video', '视频')}</span>
                 </div>
               ) : (
                 <div class="flex items-center gap-1">
@@ -291,7 +296,7 @@ const projectMedia = [
                     <circle cx="8.5" cy="8.5" r="1.5"/>
                     <polyline points="21,15 16,10 5,21"/>
                   </svg>
-                  <span>{currentLang === 'es' ? 'Foto' : 'Photo'}</span>
+                  <span>{tr('Foto', 'Photo', '照片')}</span>
                 </div>
               )}
             </div>
@@ -312,7 +317,7 @@ const projectMedia = [
               
               <!-- View more button -->
               <div class="mt-3 flex items-center text-blue-300 text-sm font-medium">
-                <span>{currentLang === 'es' ? media.type === 'video' ? 'Ver video' : 'Ver detalles' : media.type === 'video' ? 'Watch video' : 'View details'}</span>
+                <span>{media.type === 'video' ? tr('Ver video', 'Watch video', '观看视频') : tr('Ver detalles', 'View details', '查看详情')}</span>
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -383,7 +388,7 @@ const projectMedia = [
               poster=""
             >
               <source id="lightbox-video-source" src="" type="video/webm" />
-              {currentLang === 'es' ? 'Tu navegador no soporta video WebM.' : 'Your browser does not support WebM video.'}
+              {tr('Tu navegador no soporta video WebM.', 'Your browser does not support WebM video.', '您的浏览器不支持WebM视频。')}
             </video>
           </div>
         </div>
@@ -399,20 +404,20 @@ const projectMedia = [
           <!-- Project details -->
           <div class="border-t border-white/20 pt-6">
             <h3 class="text-lg font-semibold mb-3">
-              {currentLang === 'es' ? 'Detalles del Proyecto' : 'Project Details'}
+              {tr('Detalles del Proyecto', 'Project Details', '项目详情')}
             </h3>
             <div class="space-y-3 text-sm">
               <div class="flex justify-between">
-                <span class="text-white/70">{currentLang === 'es' ? 'Estado:' : 'Status:'}</span>
-                <span class="text-green-400 font-medium">{currentLang === 'es' ? 'Completado' : 'Completed'}</span>
+                <span class="text-white/70">{tr('Estado:', 'Status:', '状态：')}</span>
+                <span class="text-green-400 font-medium">{tr('Completado', 'Completed', '已完成')}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-white/70">{currentLang === 'es' ? 'Tipo:' : 'Type:'}</span>
+                <span class="text-white/70">{tr('Tipo:', 'Type:', '类型：')}</span>
                 <span id="lightbox-type" class="font-medium"></span>
               </div>
               <div class="flex justify-between">
-                <span class="text-white/70">{currentLang === 'es' ? 'Servicio:' : 'Service:'}</span>
-                <span class="font-medium">{currentLang === 'es' ? 'Climatización' : 'HVAC'}</span>
+                <span class="text-white/70">{tr('Servicio:', 'Service:', '服务：')}</span>
+                <span class="font-medium">{tr('Climatización', 'HVAC', '空调')}</span>
               </div>
             </div>
           </div>
@@ -428,7 +433,7 @@ const projectMedia = [
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
               </svg>
-              <span>{currentLang === 'es' ? 'Ver en TikTok' : 'View on TikTok'}</span>
+              <span>{tr('Ver en TikTok', 'View on TikTok', '在TikTok上观看')}</span>
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
               </svg>
@@ -440,12 +445,12 @@ const projectMedia = [
             <div class="space-y-2">
               <div class="flex items-center justify-between text-sm text-white/70">
                 <span id="lightbox-counter">1 / 10</span>
-                <span>{currentLang === 'es' ? 'Galería multimedia' : 'Media gallery'}</span>
+                <span>{tr('Galería multimedia', 'Media gallery', '多媒体画廊')}</span>
               </div>
               <div class="text-xs text-white/50 space-y-1">
-                <div>{currentLang === 'es' ? '• Usa ← → para navegar entre medios' : '• Use ← → to navigate between media'}</div>
-                <div>{currentLang === 'es' ? '• Presiona Espacio para pausar/reproducir videos' : '• Press Space to pause/play videos'}</div>
-                <div>{currentLang === 'es' ? '• Presiona ESC o click fuera para cerrar' : '• Press ESC or click outside to close'}</div>
+                <div>{tr('• Usa ← → para navegar entre medios', '• Use ← → to navigate between media', '• 使用 ← → 在媒体间导航')}</div>
+                <div>{tr('• Presiona Espacio para pausar/reproducir videos', '• Press Space to pause/play videos', '• 按空格键暂停/播放视频')}</div>
+                <div>{tr('• Presiona ESC o click fuera para cerrar', '• Press ESC or click outside to close', '• 按ESC或点击外部关闭')}</div>
               </div>
             </div>
           </div>

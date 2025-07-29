@@ -2,12 +2,14 @@
 import BrandPage from "../components/BrandDetail/BrandPage.astro";
 import Layout from "../layouts/Layout.astro";
 import { brandsData } from "../shared/brandsData";
+import { getLanguageFromUrl, t } from '../i18n/utils';
 
+const currentLang = getLanguageFromUrl(Astro.url);
 const comfortstarData = brandsData.comfortStar;
 ---
 
 <Layout
-  title="ComfortStar - Soluciones de Climatización"
+  title={t(currentLang, 'pages.comfortstar.title')}
   description="ComfortStar Nicaragua: Aires acondicionados de alta calidad para hogares y oficinas. Tecnología Inverter con máxima eficiencia energética, precios competitivos y garantía local. Disponible en todo Nicaragua con instalación profesional."
   image="/brands/comfortstar-social.webp"
 >

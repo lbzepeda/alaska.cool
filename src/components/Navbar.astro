@@ -8,20 +8,16 @@ const currentLang = getLanguageFromUrl(Astro.url);
 
 const NAVIGATION_ITEMS = [
   {
-    href: "#home",
+    href: getRelativeLocaleUrl(currentLang, '/#home'),
     label: t(currentLang, 'nav.home'),
   },
   {
-    href: "#bento",
-    label: "Climatización", // Keep as is for now
-  },
-  {
     href: "#products",
-    label: "Productos", // Keep as is for now
+    label: t(currentLang, 'nav.products'),
   },
   {
     href: "#faq",
-    label: "FAQ",
+    label: t(currentLang, 'nav.faq'),
   },
   {
     href: "#contact",
@@ -42,7 +38,7 @@ const phoneNumber = "+505 7772-6999";
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/#home" class="flex-shrink-0">
+      <a href={getRelativeLocaleUrl(currentLang, '/#home')} class="flex-shrink-0">
         <Image
           src="/assets/commercial-logo-complete.webp"
           width={100}

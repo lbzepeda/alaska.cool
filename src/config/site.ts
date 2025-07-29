@@ -3,12 +3,14 @@ export const siteConfig = {
   description: {
     es: 'Especialistas en sistemas de climatización y refrigeración en Nicaragua. Distribuidores oficiales de las mejores marcas de aires acondicionados.',
     en: 'Specialists in air conditioning and refrigeration systems in Nicaragua. Official distributors of the best air conditioning brands.',
+    zh: '尼加拉瓜空调和制冷系统专家。最佳空调品牌的官方分销商。',
   },
   url: 'https://alaska.cool',
   defaultLang: 'es' as const,
   languages: {
     es: 'Español',
     en: 'English',
+    zh: '中文',
   },
   contact: {
     phone: '+505 7772-6999',
@@ -56,10 +58,22 @@ export const siteConfig = {
         'TempBlue',
         'ComfortStar',
       ],
+      zh: [
+        '空调',
+        '暖通空调',
+        '制冷',
+        '尼加拉瓜',
+        '马那瓜',
+        'Rheem',
+        /* 'Midea', */
+        'TempBlue',
+        'ComfortStar',
+      ],
     },
     locale: {
       es: 'es_NI',
       en: 'en_US',
+      zh: 'zh_CN',
     },
     region: 'NI',
   },

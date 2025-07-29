@@ -4,6 +4,8 @@ export const translations = {
       home: 'Inicio',
       catalog: 'Catálogo',
       brands: 'Marcas',
+      products: 'Productos',
+      faq: 'FAQ',
       about: 'Nosotros',
       contact: 'Contacto',
     },
@@ -184,6 +186,28 @@ export const translations = {
       subtitle: 'Nueva Marca en Camino',
       message: 'Nos emociona anunciar la próxima llegada de una nueva marca a nuestra familia de productos. Mantente atento a esta emocionante incorporación.',
     },
+    pages: {
+      home: {
+        title: 'Alaska Cool - Climatización Inteligente',
+        description: 'Especialistas en sistemas de climatización y refrigeración en Nicaragua'
+      },
+      rheem: {
+        title: 'Rheem - Climatización Profesional',
+        description: 'Sistemas de climatización Rheem de alta calidad'
+      },
+      tempblue: {
+        title: 'Tempblue - Soluciones de Confort',
+        description: 'Equipos de climatización TempBlue eficientes'
+      },
+      comfortstar: {
+        title: 'ComfortStar - Soluciones de Climatización',
+        description: 'Sistemas ComfortStar de alta eficiencia'
+      },
+      catalog: {
+        title: 'Catálogo Completo - Equipos de Climatización',
+        description: 'Explora nuestro catálogo completo de equipos de climatización'
+      }
+    },
     common: {
       learnMore: 'Conocer más',
       viewProducts: 'Ver productos',
@@ -197,6 +221,8 @@ export const translations = {
       home: 'Home',
       catalog: 'Catalog',
       brands: 'Brands',
+      products: 'Products',
+      faq: 'FAQ',
       about: 'About',
       contact: 'Contact',
     },
@@ -377,12 +403,246 @@ export const translations = {
       subtitle: 'New Brand on the Way',
       message: 'We are excited to announce the upcoming arrival of a new brand to our product family. Stay tuned for this exciting addition.',
     },
+    pages: {
+      home: {
+        title: 'Alaska Cool - Smart HVAC Solutions',
+        description: 'Specialists in air conditioning and refrigeration systems in Nicaragua'
+      },
+      rheem: {
+        title: 'Rheem - Professional HVAC',
+        description: 'High-quality Rheem HVAC systems'
+      },
+      tempblue: {
+        title: 'Tempblue - Comfort Solutions',
+        description: 'Efficient TempBlue air conditioning equipment'
+      },
+      comfortstar: {
+        title: 'ComfortStar - HVAC Solutions',
+        description: 'High-efficiency ComfortStar systems'
+      },
+      catalog: {
+        title: 'Complete Catalog - HVAC Equipment',
+        description: 'Explore our complete catalog of air conditioning equipment'
+      }
+    },
     common: {
       learnMore: 'Learn more',
       viewProducts: 'View products',
       backToHome: 'Back to home',
       loading: 'Loading...',
       error: 'Error loading',
+    },
+  },
+  zh: {
+    nav: {
+      home: '首页',
+      catalog: '产品目录',
+      brands: '品牌',
+      products: '产品',
+      faq: '常见问题',
+      about: '关于我们',
+      contact: '联系我们',
+    },
+    home: {
+      title: '空调专家',
+      subtitle: '尼加拉瓜高品质空调和制冷系统',
+      cta: '查看目录',
+      whatsapp: '通过WhatsApp联系',
+      discover: '发现Alaska Cool',
+      productsTitle: '了解我们的产品 | 空调服务',
+      innovation: '为每个空间提供创新和舒适',
+      residential: {
+        title: '住宅',
+        description: '家庭空调解决方案',
+        cta: '查看目录 →',
+      },
+      industrial: {
+        title: '工业',
+        description: '专业安装和维护',
+        cta: '查看目录 →',
+      },
+      ventilation: {
+        title: '通风',
+        description: '高性能通风系统',
+        cta: '查看目录 →',
+      },
+    },
+    brands: {
+      title: '我们的品牌',
+      subtitle: '最佳品牌的官方分销商',
+      nowWe: '现在我们是',
+      authorized: '授权分销商',
+      rheem: {
+        name: 'Rheem',
+        description: '空调系统的全球领导者',
+        tagline: '空调创新',
+      },
+      tempblue: {
+        name: 'TempBlue',
+        description: '高效的空调解决方案',
+        tagline: '舒适解决方案',
+      },
+      comfortstar: {
+        name: 'ComfortStar',
+        description: '保证舒适和质量',
+        tagline: '高能效',
+      },
+      solerpalau: {
+        name: 'Soler & Palau',
+        tagline: '通风专家',
+      },
+    },
+    catalog: {
+      title: '产品目录',
+      subtitle: '找到完美的空调系统',
+      filters: '筛选器',
+      allBrands: '所有品牌',
+      residential: '住宅',
+      commercial: '商业',
+      industrial: '工业',
+    },
+    contact: {
+      title: '联系我们',
+      subtitle: '我们在这里为您提供帮助',
+      phone: '电话',
+      email: '邮箱',
+      address: '地址',
+      whatsapp: 'WhatsApp',
+      contactUs: '联系我们',
+      helpYou: '我们在这里为您提供帮助',
+      expertTeam: '与我们的专家团队取得联系',
+      contactInfo: '联系信息',
+      location: '位置',
+      viewOnMaps: '在谷歌地图上查看',
+      openInMaps: '在谷歌地图中打开',
+      call: '致电',
+      whatsappMessage: '您好，我想了解更多关于您的空调产品和服务的信息。您能帮助我吗？',
+    },
+    about: {
+      title: '关于我们',
+      subtitle: '具有多年经验的空调专家',
+      description: 'Alaska Cool是一家专门从事空调和制冷系统的尼加拉瓜公司。我们是最佳国际品牌的官方分销商。',
+      hero: '十多年来，通过创新的空调解决方案改变尼加拉瓜的空间。',
+      mission: {
+        title: '使命',
+        description: '通过智能空调解决方案创造完美环境，优先考虑能源效率和客户的完全满意。'
+      },
+      vision: {
+        title: '愿景',
+        description: '引领中美洲空调市场的转型，以我们的创新和对可持续发展的承诺而闻名。'
+      },
+      values: {
+        title: '我们的价值观',
+        excellence: {
+          title: '卓越',
+          description: '每个项目和服务的卓越标准'
+        },
+        innovation: {
+          title: '创新',
+          description: '高效解决方案的尖端技术'
+        },
+        trust: {
+          title: '信任',
+          description: '基于透明度的牢固关系'
+        }
+      },
+      story: {
+        title: '我们的故事',
+        paragraph1: 'Alaska Cool始于一个简单的愿景：在尼加拉瓜创造更舒适高效的空间。从当地承诺开始，现已成为创新和质量的国家参考。',
+        paragraph2: '我们代表市场上最负盛名的品牌：TempBlue、Rheem、Comfort Star和Soler & Palau，为每种空调需求提供全面解决方案。',
+        paragraph3: '今天，凭借全国覆盖范围和专业技术团队，我们继续创新，为该地区的空调未来而努力。'
+      },
+      whyUs: {
+        title: '为什么选择Alaska Cool？',
+        experience: '多年经验',
+        brands: '领先品牌',
+        coverage: '全国覆盖',
+        warranty: '完整保修'
+      }
+    },
+    footer: {
+      description: '尼加拉瓜空调和制冷系统专家',
+      links: '链接',
+      followUs: '关注我们',
+      rights: '版权所有',
+      phones: '电话',
+      email: '邮箱',
+      social: '关注我们',
+      developedBy: '开发者',
+    },
+    faq: {
+      title: '常见问题',
+      subtitle: '找到关于我们产品和服务最常见问题的答案',
+      contactWhatsApp: '通过WhatsApp联系',
+      items: [
+        {
+          question: '您们经营哪些类型的空调设备？',
+          answer: '我们经营各种空调设备，包括住宅、工业和商业空调、强制通风系统，以及TempBlue、Rheem、ComfortStar等不同品牌的设备。'
+        },
+        {
+          question: '您们提供安装服务吗？',
+          answer: '是的，我们有专业的技术团队，为我们在尼加拉瓜全国的所有设备进行专业安装。我们为住宅和工业商业设备提供安装服务。'
+        },
+        {
+          question: '您们有维护服务吗？',
+          answer: '当然。我们为尼加拉瓜全国的所有空调设备提供预防性和纠正性维护服务。我们的技术团队经过培训，提供最佳服务并确保您设备的最佳性能。'
+        },
+        {
+          question: '设备的保修期是多长？',
+          answer: '我们为所有设备提供长达1年的保修。我们所有的产品都附有制造商保修和我们专业技术服务的全面支持。'
+        },
+        {
+          question: '我如何知道产品的价格？',
+          answer: '您可以通过WhatsApp直接联系我们，点击我们目录中任何产品的"联系"按钮。您也可以使用下面的联系按钮或访问我们的设施以获得个性化报价。',
+          hasContactButton: true
+        },
+        {
+          question: '您们为大型项目提供报价吗？',
+          answer: '是的，我们在大型工业和商业项目方面有经验。我们提供个性化报价、专业技术咨询和任何规模空调项目的全面解决方案。'
+        },
+        {
+          question: '您们在哪些城市提供服务？',
+          answer: '我们在整个尼加拉瓜提供服务。我们在全国范围内提供完整覆盖，从马那瓜到该国最偏远的城市。无论您身在何处，我们的技术团队都能为您提供服务。'
+        },
+        {
+          question: '我如何为我的空间选择合适的空调？',
+          answer: '选择取决于几个因素，如区域大小、空间使用、人数和环境条件。我们的技术团队可以根据您的具体需求为您建议选择最有效的设备。'
+        }
+      ]
+    },
+    comingSoon: {
+      title: '即将推出',
+      subtitle: '新品牌即将到来',
+      message: '我们很兴奋地宣布新品牌即将加入我们的产品系列。敬请期待这个令人兴奋的新增内容。',
+    },
+    pages: {
+      home: {
+        title: 'Alaska Cool - 智能空调解决方案',
+        description: '尼加拉瓜空调和制冷系统专家'
+      },
+      rheem: {
+        title: 'Rheem - 专业空调',
+        description: '高品质Rheem空调系统'
+      },
+      tempblue: {
+        title: 'Tempblue - 舒适解决方案',
+        description: '高效TempBlue空调设备'
+      },
+      comfortstar: {
+        title: 'ComfortStar - 空调解决方案',
+        description: '高效ComfortStar系统'
+      },
+      catalog: {
+        title: '完整目录 - 空调设备',
+        description: '探索我们完整的空调设备目录'
+      }
+    },
+    common: {
+      learnMore: '了解更多',
+      viewProducts: '查看产品',
+      backToHome: '返回首页',
+      loading: '加载中...',
+      error: '加载错误',
     },
   },
 } as const;

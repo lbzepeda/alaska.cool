@@ -1,0 +1,18 @@
+<!-- MIDEA BRAND PAGE TEMPORARILY DISABLED
+---
+// src/pages/midea.astro
+import BrandPage from "../../components/BrandDetail/BrandPage.astro";
+import Layout from "../../layouts/Layout.astro";
+import { brandsData } from "../../shared/brandsData";
+
+const mideaData = brandsData.midea;
+---
+
+<Layout
+  title="Midea - Climatización Comercial"
+  description="Midea Nicaragua: Soluciones de climatización premium para espacios comerciales. Ofrecemos la más avanzada tecnología Inverter, sistemas Multi-Split y VRF para proyectos empresariales. Venta, instalación y mantenimiento en todo Nicaragua."
+  image="/brands/midea-social.webp"
+>
+  <BrandPage brand={mideaData} brandKey="midea" />
+</Layout>
+-->

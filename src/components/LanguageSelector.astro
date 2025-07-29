@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { siteConfig } from '../config/site';
 
 interface Props {
-  currentLang: 'es' | 'en';
+  currentLang: 'es' | 'en' | 'zh';
   currentPath: string;
   variant?: 'desktop' | 'mobile';
 }
@@ -11,7 +11,7 @@ interface Props {
 const { currentLang, currentPath, variant = 'desktop' } = Astro.props;
 
 // Remove language prefix from path for alternate language
-const cleanPath = currentPath.replace(/^\/(es|en)/, '') || '/';
+const cleanPath = currentPath.replace(/^\/(es|en|zh)/, '') || '/';
 
 const alternateLinks = Object.keys(siteConfig.languages).map(lang => ({
   lang: lang as keyof typeof siteConfig.languages,
