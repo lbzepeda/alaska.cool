@@ -1,8 +1,8 @@
 ---
-import ProductGrid from "../../../components/Catalog/ProductGrid.astro";
-import Layout from "../../../layouts/Layout.astro";
-import { brandMapping, type BrandKey } from "../../../types/product";
-import { getLanguageFromUrl, t } from '../../../i18n/utils';
+import ProductGrid from "../../../../components/Catalog/ProductGrid.astro";
+import Layout from "../../../../layouts/Layout.astro";
+import { brandMapping, type BrandKey } from "../../../../types/product";
+import { getLanguageFromUrl, t } from '../../../../i18n/utils';
 
 export function getStaticPaths() {
   const brands = Object.keys(brandMapping) as BrandKey[];
