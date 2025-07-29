@@ -193,15 +193,15 @@ export const translations = {
       },
       rheem: {
         title: 'Rheem - Climatización Profesional',
-        description: 'Sistemas de climatización Rheem de alta calidad'
+        description: 'Rheem Nicaragua: Líder en soluciones de climatización industrial y comercial. Sistemas Full Inverter de alto rendimiento para grandes espacios, respaldo de fábrica y red de técnicos certificados en todo Nicaragua. Ideal para proyectos comerciales.'
       },
       tempblue: {
         title: 'Tempblue - Soluciones de Confort',
-        description: 'Equipos de climatización TempBlue eficientes'
+        description: 'Tempblue Nicaragua: Especialistas en aires acondicionados residenciales y comerciales. Ofrecemos equipos con tecnología Inverter, alta eficiencia energética y servicio de instalación profesional. Distribuidor autorizado en Nicaragua con garantía y soporte técnico.'
       },
       comfortstar: {
         title: 'ComfortStar - Soluciones de Climatización',
-        description: 'Sistemas ComfortStar de alta eficiencia'
+        description: 'ComfortStar Nicaragua: Aires acondicionados de alta calidad para hogares y oficinas. Tecnología Inverter con máxima eficiencia energética, precios competitivos y garantía local. Disponible en todo Nicaragua con instalación profesional.'
       },
       catalog: {
         title: 'Catálogo Completo - Equipos de Climatización',
@@ -214,6 +214,14 @@ export const translations = {
       backToHome: 'Volver al inicio',
       loading: 'Cargando...',
       error: 'Error al cargar',
+    },
+    brandDetail: {
+      characteristics: 'Características',
+      designedForComfort: 'Diseñado para tu comfort',
+      modelsTitle: 'Modelos WX Inverter',
+      modelsSubtitle: 'Encuentra el aire acondicionado perfecto para tu espacio',
+      frequentQuestions: 'Preguntas Frecuentes',
+      faqSubtitle: 'Todo lo que necesitas saber sobre nuestros sistemas de climatización inteligente'
     },
   },
   en: {
@@ -410,15 +418,15 @@ export const translations = {
       },
       rheem: {
         title: 'Rheem - Professional HVAC',
-        description: 'High-quality Rheem HVAC systems'
+        description: 'Rheem Nicaragua: Leader in industrial and commercial HVAC solutions. High-performance Full Inverter systems for large spaces, factory support and certified technician network throughout Nicaragua. Ideal for commercial projects.'
       },
       tempblue: {
         title: 'Tempblue - Comfort Solutions',
-        description: 'Efficient TempBlue air conditioning equipment'
+        description: 'Tempblue Nicaragua: Specialists in residential and commercial air conditioning. We offer equipment with Inverter technology, high energy efficiency and professional installation service. Authorized distributor in Nicaragua with warranty and technical support.'
       },
       comfortstar: {
         title: 'ComfortStar - HVAC Solutions',
-        description: 'High-efficiency ComfortStar systems'
+        description: 'ComfortStar Nicaragua: High-quality air conditioners for homes and offices. Inverter technology with maximum energy efficiency, competitive prices and local warranty. Available throughout Nicaragua with professional installation.'
       },
       catalog: {
         title: 'Complete Catalog - HVAC Equipment',
@@ -431,6 +439,14 @@ export const translations = {
       backToHome: 'Back to home',
       loading: 'Loading...',
       error: 'Error loading',
+    },
+    brandDetail: {
+      characteristics: 'Features',
+      designedForComfort: 'Designed for your comfort',
+      modelsTitle: 'WX Inverter Models',
+      modelsSubtitle: 'Find the perfect air conditioner for your space',
+      frequentQuestions: 'Frequently Asked Questions',
+      faqSubtitle: 'Everything you need to know about our smart HVAC systems'
     },
   },
   zh: {
@@ -622,15 +638,15 @@ export const translations = {
       },
       rheem: {
         title: 'Rheem - 专业空调',
-        description: '高品质Rheem空调系统'
+        description: 'Rheem尼加拉瓜：工业和商业空调解决方案的领导者。适用于大型空间的高性能全变频系统，工厂支持和遍布尼加拉瓜的认证技术人员网络。适合商业项目。'
       },
       tempblue: {
         title: 'Tempblue - 舒适解决方案',
-        description: '高效TempBlue空调设备'
+        description: 'Tempblue尼加拉瓜：住宅和商业空调专家。我们提供具有变频技术、高能效和专业安装服务的设备。尼加拉瓜授权分销商，提供保修和技术支持。'
       },
       comfortstar: {
         title: 'ComfortStar - 空调解决方案',
-        description: '高效ComfortStar系统'
+        description: 'ComfortStar尼加拉瓜：适用于家庭和办公室的高品质空调。具有最大能效的变频技术，竞争性价格和本地保修。在整个尼加拉瓜提供专业安装服务。'
       },
       catalog: {
         title: '完整目录 - 空调设备',
@@ -643,6 +659,14 @@ export const translations = {
       backToHome: '返回首页',
       loading: '加载中...',
       error: '加载错误',
+    },
+    brandDetail: {
+      characteristics: '特性',
+      designedForComfort: '为您的舒适而设计',
+      modelsTitle: 'WX变频系列',
+      modelsSubtitle: '为您的空间找到完美的空调',
+      frequentQuestions: '常见问题',
+      faqSubtitle: '关于我们智能空调系统您需要了解的一切'
     },
   },
 } as const;

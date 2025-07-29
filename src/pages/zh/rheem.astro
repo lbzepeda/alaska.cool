@@ -4,14 +4,15 @@ import BrandPage from "../../components/BrandDetail/BrandPage.astro";
 import Layout from "../../layouts/Layout.astro";
 import { brandsData } from "../../shared/brandsData";
 import { getLanguageFromUrl, t } from '../../i18n/utils';
+import { getBrandDataWithTranslations } from '../../utils/brandTranslations';
 
 const currentLang = getLanguageFromUrl(Astro.url);
-const rheemData = brandsData.rheem;
+const rheemData = getBrandDataWithTranslations(brandsData.rheem, 'rheem', currentLang);
 ---
 
 <Layout
   title={t(currentLang, 'pages.rheem.title')}
-  description="Rheem Nicaragua: Líder en soluciones de climatización industrial y comercial. Sistemas Full Inverter de alto rendimiento para grandes espacios, respaldo de fábrica y red de técnicos certificados en todo Nicaragua. Ideal para proyectos comerciales."
+  description={t(currentLang, 'pages.rheem.description')}
   image="/brands/rheem-social.webp"
 >
   <BrandPage brand={rheemData} brandKey="rheem" />

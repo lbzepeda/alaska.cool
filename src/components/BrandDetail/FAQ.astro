@@ -1,5 +1,7 @@
 ---
 // FAQ.astro
+import { getLanguageFromUrl, t } from '../../i18n/utils';
+
 interface Props {
   brand: {
     FAQ: {
@@ -14,6 +16,7 @@ interface Props {
 }
 
 const faqs: Props["brand"]["FAQ"] = Astro.props.brand.FAQ;
+const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
 <section
@@ -25,13 +28,12 @@ const faqs: Props["brand"]["FAQ"] = Astro.props.brand.FAQ;
       <h2
         class="text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white"
       >
-        Preguntas Frecuentes
+        {t(currentLang, 'brandDetail.frequentQuestions')}
       </h2>
       <p
         class="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-xl mx-auto"
       >
-        Todo lo que necesitas saber sobre nuestros sistemas de climatización
-        inteligente
+        {t(currentLang, 'brandDetail.faqSubtitle')}
       </p>
 
       <div class="space-y-4">

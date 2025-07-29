@@ -1,5 +1,7 @@
 ---
 // src/components/brand/ProductsSection.astro
+import { getLanguageFromUrl, t } from '../../i18n/utils';
+
 interface Props {
   brand: {
     name: string;
@@ -20,6 +22,7 @@ interface Props {
 }
 
 const { brand } = Astro.props;
+const currentLang = getLanguageFromUrl(Astro.url);
 
 function createWhatsAppMessage(model: Props["brand"]["models"][0]) {
   const message =
@@ -38,10 +41,10 @@ function createWhatsAppMessage(model: Props["brand"]["models"][0]) {
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <div class="text-center max-w-xl mx-auto mb-16">
       <h2 class="text-4xl font-semibold text-slate-900 dark:text-white mb-3">
-        Modelos WX Inverter
+        {t(currentLang, 'brandDetail.modelsTitle')}
       </h2>
       <p class="text-xl font-light text-slate-500 dark:text-slate-400">
-        Encuentra el aire acondicionado perfecto para tu espacio
+        {t(currentLang, 'brandDetail.modelsSubtitle')}
       </p>
 
       <a

@@ -4,14 +4,15 @@ import BrandPage from "../../components/BrandDetail/BrandPage.astro";
 import Layout from "../../layouts/Layout.astro";
 import { brandsData } from "../../shared/brandsData";
 import { getLanguageFromUrl, t } from '../../i18n/utils';
+import { getBrandDataWithTranslations } from '../../utils/brandTranslations';
 
 const currentLang = getLanguageFromUrl(Astro.url);
-const tempblueData = brandsData.tempBlue;
+const tempblueData = getBrandDataWithTranslations(brandsData.tempBlue, 'tempBlue', currentLang);
 ---
 
 <Layout
   title={t(currentLang, 'pages.tempblue.title')}
-  description="Tempblue Nicaragua: Especialistas en aires acondicionados residenciales y comerciales. Ofrecemos equipos con tecnología Inverter, alta eficiencia energética y servicio de instalación profesional. Distribuidor autorizado en Nicaragua con garantía y soporte técnico."
+  description={t(currentLang, 'pages.tempblue.description')}
   image="/brands/tempblue-social.webp"
 >
   <BrandPage brand={tempblueData} brandKey="tempBlue" />
