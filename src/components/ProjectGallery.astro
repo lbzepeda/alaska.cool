@@ -746,6 +746,10 @@ const projectMedia = [
       const mediaProjectType = item.dataset.projectType;
       const mediaPoster = item.dataset.poster;
       
+      // Hide scroll fade indicator when lightbox is open
+      if (fadeIndicator) {
+        (fadeIndicator as HTMLElement).style.display = 'none';
+      }
       
       if (image) image.classList.add('hidden');
       if (video) video.classList.add('hidden');
@@ -805,6 +809,13 @@ const projectMedia = [
     function closeLightbox() {
       if (video && !video.classList.contains('hidden')) {
         (video as HTMLVideoElement).pause();
+      }
+      
+      // Show scroll fade indicator when lightbox is closed
+      if (fadeIndicator) {
+        (fadeIndicator as HTMLElement).style.display = 'block';
+        // Update fade indicator state
+        updateScrollFade();
       }
       
       if (modal) modal.classList.add('hidden');
