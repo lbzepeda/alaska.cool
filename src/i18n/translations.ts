@@ -221,7 +221,17 @@ export const translations = {
       modelsTitle: 'Modelos WX Inverter',
       modelsSubtitle: 'Encuentra el aire acondicionado perfecto para tu espacio',
       frequentQuestions: 'Preguntas Frecuentes',
-      faqSubtitle: 'Todo lo que necesitas saber sobre nuestros sistemas de climatización inteligente'
+      faqSubtitle: 'Todo lo que necesitas saber sobre nuestros sistemas de climatización inteligente',
+      downloadDatasheet: 'Descargar Ficha Técnica',
+      capacity: 'Capacidad',
+      voltage: 'Voltaje',
+      suggestedArea: 'Área Sugerida',
+      recommendedUse: 'Uso Recomendado',
+      noiseLevel: 'Nivel de Ruido',
+      contact: 'Contactar',
+      use: 'Uso',
+      area: 'Área',
+      noise: 'Ruido'
     },
   },
   en: {
@@ -446,7 +456,17 @@ export const translations = {
       modelsTitle: 'WX Inverter Models',
       modelsSubtitle: 'Find the perfect air conditioner for your space',
       frequentQuestions: 'Frequently Asked Questions',
-      faqSubtitle: 'Everything you need to know about our smart HVAC systems'
+      faqSubtitle: 'Everything you need to know about our smart HVAC systems',
+      downloadDatasheet: 'Download Technical Datasheet',
+      capacity: 'Capacity',
+      voltage: 'Voltage',
+      suggestedArea: 'Suggested Area',
+      recommendedUse: 'Recommended Use',
+      noiseLevel: 'Noise Level',
+      contact: 'Contact',
+      use: 'Use',
+      area: 'Area',
+      noise: 'Noise'
     },
   },
   zh: {
@@ -666,7 +686,17 @@ export const translations = {
       modelsTitle: 'WX变频系列',
       modelsSubtitle: '为您的空间找到完美的空调',
       frequentQuestions: '常见问题',
-      faqSubtitle: '关于我们智能空调系统您需要了解的一切'
+      faqSubtitle: '关于我们智能空调系统您需要了解的一切',
+      downloadDatasheet: '下载技术规格书',
+      capacity: '容量',
+      voltage: '电压',
+      suggestedArea: '建议面积',
+      recommendedUse: '推荐用途',
+      noiseLevel: '噪音水平',
+      contact: '联系',
+      use: '用途',
+      area: '面积',
+      noise: '噪音'
     },
   },
 } as const;
