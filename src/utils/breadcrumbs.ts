@@ -1,4 +1,5 @@
-import { getLanguageFromUrl, t } from '../i18n/utils';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/translations';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 export interface BreadcrumbItem {
@@ -18,7 +19,7 @@ export interface BreadcrumbSchema {
   }>;
 }
 
-export function generateBreadcrumbs(pathname: string, currentLang: string = 'es', siteUrl: string = 'https://alaska.cool'): BreadcrumbItem[] {
+export function generateBreadcrumbs(pathname: string, currentLang: Language = 'es'): BreadcrumbItem[] {
   const breadcrumbs: BreadcrumbItem[] = [];
   
   // Always start with home

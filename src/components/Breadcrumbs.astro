@@ -13,7 +13,7 @@ const { pathname = Astro.url.pathname, customBreadcrumbs, showHome = true } = As
 const currentLang = getLanguageFromUrl(Astro.url);
 
 // Generate breadcrumbs
-const breadcrumbs = customBreadcrumbs || generateBreadcrumbs(pathname, currentLang, siteConfig.url);
+const breadcrumbs = customBreadcrumbs || generateBreadcrumbs(pathname, currentLang);
 
 // Generate schema
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteConfig.url);
