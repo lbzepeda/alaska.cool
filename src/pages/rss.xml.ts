@@ -39,13 +39,6 @@ export async function GET(context: APIContext) {
       link: '/tempblue',
       category: 'Productos'
     },
-    {
-      title: 'Sistemas de Ventilación Industrial Soler & Palau',
-      pubDate: new Date('2024-06-15'),
-      description: 'Soluciones de ventilación industrial profesional para aplicaciones comerciales e industriales.',
-      link: '/soler-palau',
-      category: 'Productos'
-    }
   ];
 
   return rss({

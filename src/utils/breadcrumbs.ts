@@ -80,10 +80,6 @@ export function generateBreadcrumbs(pathname: string, currentLang: Language = 'e
         href = getRelativeLocaleUrl(currentLang, currentPath);
         break;
         
-      case 'soler-palau':
-        name = 'Soler & Palau';
-        href = getRelativeLocaleUrl(currentLang, currentPath);
-        break;
         
       default:
         // Capitalize and clean segment

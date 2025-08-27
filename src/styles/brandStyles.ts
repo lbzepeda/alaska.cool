@@ -37,13 +37,4 @@ export const brandStyles = {
     hoverEffects:
       "hover:shadow-lg hover:shadow-violet-100/50 dark:hover:shadow-violet-900/30",
   }, */
-  solerPalau: {
-    heroSection:
-      "bg-gradient-to-br from-cyan-50 via-white to-cyan-50 dark:from-cyan-950 dark:via-black dark:to-cyan-950",
-    cardStyle:
-      "bg-white/80 backdrop-blur-sm dark:bg-white/[0.02] rounded-2xl border border-cyan-100/20 dark:border-white/[0.1] hover:border-cyan-200 dark:hover:border-white/[0.2] hover:bg-gradient-to-br hover:from-white hover:to-cyan-50/50 dark:hover:from-white/[0.04] dark:hover:to-cyan-900/20",
-    accentColor: "text-cyan-600 dark:text-cyan-400",
-    hoverEffects:
-      "hover:shadow-lg hover:shadow-cyan-100/50 dark:hover:shadow-cyan-900/30",
-  },
 };

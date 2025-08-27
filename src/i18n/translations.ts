@@ -58,10 +58,6 @@ export const translations = {
         description: 'Comodidad y calidad garantizada',
         tagline: 'Alta eficiencia energética',
       },
-      solerpalau: {
-        name: 'Soler & Palau',
-        tagline: 'Expertos en ventilación',
-      },
     },
     catalog: {
       title: 'Catálogo de Productos',
@@ -120,7 +116,7 @@ export const translations = {
       story: {
         title: 'Nuestra Historia',
         paragraph1: 'Alaska Cool comenzó como una visión simple: crear espacios más cómodos y eficientes en Nicaragua. Lo que inició como un compromiso local se ha convertido en una referencia nacional de innovación y calidad.',
-        paragraph2: 'Representamos las marcas más prestigiosas del mercado: TempBlue, Rheem, Comfort Star, /* Midea y */ Soler & Palau, ofreciendo soluciones integrales para cada necesidad de climatización.',
+        paragraph2: 'Representamos las marcas más prestigiosas del mercado: TempBlue, Rheem y Comfort Star, ofreciendo soluciones integrales para cada necesidad de climatización.',
         paragraph3: 'Hoy, con cobertura nacional y un equipo técnico especializado, continuamos innovando para crear el futuro de la climatización en la región.'
       },
       whyUs: {
@@ -293,10 +289,6 @@ export const translations = {
         description: 'Guaranteed comfort and quality',
         tagline: 'High Energy Efficiency',
       },
-      solerpalau: {
-        name: 'Soler & Palau',
-        tagline: 'Ventilation Experts',
-      },
     },
     catalog: {
       title: 'Product Catalog',
@@ -355,7 +347,7 @@ export const translations = {
       story: {
         title: 'Our Story',
         paragraph1: 'Alaska Cool began as a simple vision: create more comfortable and efficient spaces in Nicaragua. What started as a local commitment has become a national reference for innovation and quality.',
-        paragraph2: 'We represent the most prestigious brands in the market: TempBlue, Rheem, Comfort Star, /* Midea and */ Soler & Palau, offering comprehensive solutions for every HVAC need.',
+        paragraph2: 'We represent the most prestigious brands in the market: TempBlue, Rheem, and Comfort Star, offering comprehensive solutions for every HVAC need.',
         paragraph3: 'Today, with national coverage and a specialized technical team, we continue innovating to create the future of HVAC in the region.'
       },
       whyUs: {
@@ -523,10 +515,6 @@ export const translations = {
         description: '保证舒适和质量',
         tagline: '高能效',
       },
-      solerpalau: {
-        name: 'Soler & Palau',
-        tagline: '通风专家',
-      },
     },
     catalog: {
       title: '产品目录',
@@ -585,7 +573,7 @@ export const translations = {
       story: {
         title: '我们的故事',
         paragraph1: 'Alaska Cool始于一个简单的愿景：在尼加拉瓜创造更舒适高效的空间。从当地承诺开始，现已成为创新和质量的国家参考。',
-        paragraph2: '我们代表市场上最负盛名的品牌：TempBlue、Rheem、Comfort Star和Soler & Palau，为每种空调需求提供全面解决方案。',
+        paragraph2: '我们代表市场上最负盛名的品牌：TempBlue、Rheem和Comfort Star，为每种空调需求提供全面解决方案。',
         paragraph3: '今天，凭借全国覆盖范围和专业技术团队，我们继续创新，为该地区的空调未来而努力。'
       },
       whyUs: {

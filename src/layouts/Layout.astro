@@ -21,7 +21,7 @@ const currentLang = getLanguageFromUrl(Astro.url);
 const {
   title,
   description = typeof siteConfig.description === 'string' ? siteConfig.description : siteConfig.description[currentLang],
-  image = "/imagen-social-default.webp",
+  image = "https://alaska-cool.com/imagen-social-default.webp",
   canonicalURL = new URL(Astro.url.pathname, 'https://alaska-cool.com').toString(),
 } = Astro.props;
 
@@ -260,7 +260,12 @@ const criticalImages = [
           width: 200,
           height: 200
         },
-        image: "https://alaska-cool.com/logo.webp",
+        image: {
+          "@type": "ImageObject",
+          url: "https://alaska-cool.com/logo.webp",
+          width: 200,
+          height: 200
+        },
         founder: {
           "@type": "Person",
           name: "Alaska Cool"
