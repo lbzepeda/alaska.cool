@@ -46,6 +46,13 @@ export const siteConfig = {
         /* 'Midea', */
         'TempBlue',
         'ComfortStar',
+        'aire acondicionado Managua',
+        'instalación aires acondicionados Nicaragua',
+        'servicio técnico aires',
+        'climatización comercial',
+        'aires residenciales',
+        'ventilación industrial',
+        'distribuidores oficiales',
       ],
       en: [
         'air conditioning',
@@ -57,6 +64,13 @@ export const siteConfig = {
         /* 'Midea', */
         'TempBlue',
         'ComfortStar',
+        'air conditioning Managua',
+        'AC installation Nicaragua',
+        'HVAC technical service',
+        'commercial air conditioning',
+        'residential AC units',
+        'industrial ventilation',
+        'official distributors',
       ],
       zh: [
         '空调',
@@ -68,6 +82,13 @@ export const siteConfig = {
         /* 'Midea', */
         'TempBlue',
         'ComfortStar',
+        '马那瓜空调',
+        '尼加拉瓜空调安装',
+        '空调技术服务',
+        '商业空调',
+        '家用空调',
+        '工业通风',
+        '官方分销商',
       ],
     },
     locale: {

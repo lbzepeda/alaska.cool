@@ -1,0 +1,108 @@
+---
+import { generateBreadcrumbs, generateBreadcrumbSchema, shouldShowBreadcrumbs, type BreadcrumbItem } from '../utils/breadcrumbs';
+import { getLanguageFromUrl } from '../i18n/utils';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  pathname?: string;
+  customBreadcrumbs?: BreadcrumbItem[];
+  showHome?: boolean;
+}
+
+const { pathname = Astro.url.pathname, customBreadcrumbs, showHome = true } = Astro.props;
+const currentLang = getLanguageFromUrl(Astro.url);
+
+// Generate breadcrumbs
+const breadcrumbs = customBreadcrumbs || generateBreadcrumbs(pathname, currentLang, siteConfig.url);
+
+// Generate schema
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteConfig.url);
+
+// Check if we should show breadcrumbs
+const shouldShow = shouldShowBreadcrumbs(pathname);
+
+if (!shouldShow && !customBreadcrumbs) {
+  // Don't render anything for home page
+  return null;
+}
+
+// Filter out home if showHome is false
+const displayBreadcrumbs = showHome ? breadcrumbs : breadcrumbs.slice(1);
+---
+
+{shouldShow || customBreadcrumbs ? (
+  <nav 
+    aria-label={currentLang === 'es' ? 'Navegación de migas de pan' : currentLang === 'en' ? 'Breadcrumb navigation' : '面包屑导航'}
+    class="breadcrumbs"
+  >
+    <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+      {displayBreadcrumbs.map((breadcrumb, index) => (
+        <li class="flex items-center">
+          {index > 0 && (
+            <svg 
+              class="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          )}
+          
+          {index === displayBreadcrumbs.length - 1 ? (
+            <!-- Current page - not a link -->
+            <span 
+              class="font-medium text-gray-900 dark:text-white"
+              aria-current="page"
+            >
+              {breadcrumb.name}
+            </span>
+          ) : (
+            <!-- Previous pages - links -->
+            <a 
+              href={breadcrumb.href}
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+              title={`${currentLang === 'es' ? 'Ir a' : currentLang === 'en' ? 'Go to' : '转到'} ${breadcrumb.name}`}
+            >
+              {breadcrumb.name}
+            </a>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+
+  <!-- Structured data schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+) : null}
+
+<style>
+  .breadcrumbs {
+    @apply mb-6 px-4 sm:px-6 max-w-[1400px] mx-auto;
+  }
+  
+  /* Optional: Add breadcrumb styling for better visual hierarchy */
+  .breadcrumbs ol {
+    @apply flex-wrap;
+  }
+  
+  .breadcrumbs li:first-child a {
+    @apply font-medium;
+  }
+  
+  .breadcrumbs a:hover {
+    @apply underline;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .breadcrumbs {
+      @apply px-4;
+    }
+    
+    .breadcrumbs ol {
+      @apply text-xs;
+    }
+  }
+</style>
