@@ -188,23 +188,23 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - Climatización Inteligente',
+        title: 'Alaska Cool - Climatización Nicaragua',
         description: 'Especialistas en sistemas de climatización y refrigeración en Nicaragua'
       },
       rheem: {
-        title: 'Rheem - Climatización Profesional',
+        title: 'Rheem Nicaragua - Climatización Industrial',
         description: 'Rheem Nicaragua: Líder en soluciones de climatización industrial y comercial. Sistemas Full Inverter de alto rendimiento para grandes espacios, respaldo de fábrica y red de técnicos certificados en todo Nicaragua. Ideal para proyectos comerciales.'
       },
       tempblue: {
-        title: 'Tempblue - Soluciones de Confort',
+        title: 'TempBlue Nicaragua - Aires Acondicionados',
         description: 'Tempblue Nicaragua: Especialistas en aires acondicionados residenciales y comerciales. Ofrecemos equipos con tecnología Inverter, alta eficiencia energética y servicio de instalación profesional. Distribuidor autorizado en Nicaragua con garantía y soporte técnico.'
       },
       comfortstar: {
-        title: 'ComfortStar - Soluciones de Climatización',
+        title: 'ComfortStar Nicaragua - Aires Acondicionados',
         description: 'ComfortStar Nicaragua: Aires acondicionados de alta calidad para hogares y oficinas. Tecnología Inverter con máxima eficiencia energética, precios competitivos y garantía local. Disponible en todo Nicaragua con instalación profesional.'
       },
       catalog: {
-        title: 'Catálogo Completo - Equipos de Climatización',
+        title: 'Catálogo Aires Acondicionados Nicaragua',
         description: 'Explora nuestro catálogo completo de equipos de climatización'
       }
     },
@@ -423,23 +423,23 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - Smart HVAC Solutions',
+        title: 'Alaska Cool - HVAC Nicaragua',
         description: 'Specialists in air conditioning and refrigeration systems in Nicaragua'
       },
       rheem: {
-        title: 'Rheem - Professional HVAC',
+        title: 'Rheem Nicaragua - Industrial HVAC',
         description: 'Rheem Nicaragua: Leader in industrial and commercial HVAC solutions. High-performance Full Inverter systems for large spaces, factory support and certified technician network throughout Nicaragua. Ideal for commercial projects.'
       },
       tempblue: {
-        title: 'Tempblue - Comfort Solutions',
+        title: 'TempBlue Nicaragua - Air Conditioning',
         description: 'Tempblue Nicaragua: Specialists in residential and commercial air conditioning. We offer equipment with Inverter technology, high energy efficiency and professional installation service. Authorized distributor in Nicaragua with warranty and technical support.'
       },
       comfortstar: {
-        title: 'ComfortStar - HVAC Solutions',
+        title: 'ComfortStar Nicaragua - Air Conditioners',
         description: 'ComfortStar Nicaragua: High-quality air conditioners for homes and offices. Inverter technology with maximum energy efficiency, competitive prices and local warranty. Available throughout Nicaragua with professional installation.'
       },
       catalog: {
-        title: 'Complete Catalog - HVAC Equipment',
+        title: 'HVAC Catalog Nicaragua - Air Conditioners',
         description: 'Explore our complete catalog of air conditioning equipment'
       }
     },
@@ -653,23 +653,23 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - 智能空调解决方案',
+        title: 'Alaska Cool - 空调专家尼加拉瓜',
         description: '尼加拉瓜空调和制冷系统专家'
       },
       rheem: {
-        title: 'Rheem - 专业空调',
+        title: 'Rheem尼加拉瓜 - 工业空调',
         description: 'Rheem尼加拉瓜：工业和商业空调解决方案的领导者。适用于大型空间的高性能全变频系统，工厂支持和遍布尼加拉瓜的认证技术人员网络。适合商业项目。'
       },
       tempblue: {
-        title: 'Tempblue - 舒适解决方案',
+        title: 'TempBlue尼加拉瓜 - 空调设备',
         description: 'Tempblue尼加拉瓜：住宅和商业空调专家。我们提供具有变频技术、高能效和专业安装服务的设备。尼加拉瓜授权分销商，提供保修和技术支持。'
       },
       comfortstar: {
-        title: 'ComfortStar - 空调解决方案',
+        title: 'ComfortStar尼加拉瓜 - 空调',
         description: 'ComfortStar尼加拉瓜：适用于家庭和办公室的高品质空调。具有最大能效的变频技术，竞争性价格和本地保修。在整个尼加拉瓜提供专业安装服务。'
       },
       catalog: {
-        title: '完整目录 - 空调设备',
+        title: '空调目录尼加拉瓜 - 设备',
         description: '探索我们完整的空调设备目录'
       }
     },

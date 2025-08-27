@@ -22,7 +22,7 @@ const {
   title,
   description = typeof siteConfig.description === 'string' ? siteConfig.description : siteConfig.description[currentLang],
   image = "/imagen-social-default.webp",
-  canonicalURL = new URL(Astro.url.pathname, 'https://alaska-cool.com'),
+  canonicalURL = new URL(Astro.url.pathname, 'https://alaska-cool.com').toString(),
 } = Astro.props;
 
 const seoTitle = `${title} | ${siteConfig.name} - Aire Acondicionado | Nicaragua`;
@@ -177,7 +177,22 @@ const criticalImages = [
           {
             rel: "alternate",
             hreflang: "es-NI",
-            href: Astro.url.toString(),
+            href: new URL(Astro.url.pathname, 'https://alaska-cool.com').toString(),
+          },
+          {
+            rel: "alternate",
+            hreflang: "en-US",
+            href: new URL('/en' + Astro.url.pathname, 'https://alaska-cool.com').toString(),
+          },
+          {
+            rel: "alternate",
+            hreflang: "zh-CN",
+            href: new URL('/zh' + Astro.url.pathname, 'https://alaska-cool.com').toString(),
+          },
+          {
+            rel: "alternate",
+            hreflang: "x-default",
+            href: new URL(Astro.url.pathname, 'https://alaska-cool.com').toString(),
           },
         ],
       }}

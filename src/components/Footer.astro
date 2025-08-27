@@ -1,5 +1,6 @@
 ---
 import { getLanguageFromUrl, t } from '../i18n/utils';
+import ProtectedEmail from './ProtectedEmail.astro';
 
 const currentLang = getLanguageFromUrl(Astro.url);
 const svgClass = "w-4 h-4";
@@ -65,10 +66,7 @@ const svgClass = "w-4 h-4";
       <!-- Email -->
       <div class="flex flex-col items-center sm:items-start gap-3 text-sm">
         <h4 class="font-medium text-slate-900 dark:text-white">{t(currentLang, 'footer.email')}</h4>
-        <a
-          href="mailto:ventas@alaska-cool.com"
-          class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
-        >
+        <div class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -82,8 +80,12 @@ const svgClass = "w-4 h-4";
             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </svg>
-          ventas@alaska-cool.com
-        </a>
+          <ProtectedEmail 
+            email="ventas@alaska-cool.com" 
+            className="hover:text-blue-600 dark:hover:text-blue-400"
+            subject="Consulta sobre productos de climatización"
+          />
+        </div>
       </div>
 
       <!-- Redes Sociales -->

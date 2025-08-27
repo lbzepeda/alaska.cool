@@ -1,0 +1,49 @@
+---
+// Componente para mostrar emails de forma protegida contra bots
+interface Props {
+  email: string;
+  text?: string;
+  className?: string;
+  subject?: string;
+}
+
+const { email, text, className = "", subject = "" } = Astro.props;
+
+// Ofuscación simple del email
+const emailParts = email.split('@');
+const user = emailParts[0];
+const domain = emailParts[1];
+const obfuscatedEmail = `${user}[at]${domain.replace('.', '[dot]')}`;
+---
+
+<span 
+  class={className}
+  data-email={email}
+  data-subject={subject}
+  data-obfuscated={obfuscatedEmail}
+>
+  {text || obfuscatedEmail}
+</span>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const emailElements = document.querySelectorAll('[data-email]');
+    
+    emailElements.forEach((element) => {
+      const email = element.getAttribute('data-email');
+      const subject = element.getAttribute('data-subject') || '';
+      const obfuscated = element.getAttribute('data-obfuscated');
+      
+      if (email) {
+        // Crear el enlace mailto de forma dinámica
+        const link = document.createElement('a');
+        link.href = `mailto:${email}${subject ? '?subject=' + encodeURIComponent(subject) : ''}`;
+        link.textContent = element.textContent;
+        link.className = element.className;
+        
+        // Reemplazar el elemento span con el enlace
+        element.parentNode?.replaceChild(link, element);
+      }
+    });
+  });
+</script>
