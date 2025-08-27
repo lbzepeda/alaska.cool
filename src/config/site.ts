@@ -5,7 +5,7 @@ export const siteConfig = {
     en: 'Specialists in air conditioning and refrigeration systems in Nicaragua. Official distributors of the best air conditioning brands.',
     zh: '尼加拉瓜空调和制冷系统专家。最佳空调品牌的官方分销商。',
   },
-  url: 'https://alaska.cool',
+  url: 'https://alaska-cool.com',
   defaultLang: 'es' as const,
   languages: {
     es: 'Español',
@@ -15,7 +15,7 @@ export const siteConfig = {
   contact: {
     phone: '+505 7772-6999',
     whatsapp: '50577726999',
-    email: 'info@alaska.cool',
+    email: 'info@alaska-cool.com',
   },
   business: {
     name: 'Alaska Cool Nicaragua',

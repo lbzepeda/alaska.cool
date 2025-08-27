@@ -8,7 +8,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://alaska.cool',
+  site: 'https://alaska-cool.com',
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en", "zh"],

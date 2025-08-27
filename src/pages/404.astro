@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLanguageFromUrl, t } from '../i18n/utils';
+
+const currentLang = getLanguageFromUrl(Astro.url);
+
+Astro.response.status = 404;
+---
+
+<Layout 
+  title="Página no encontrada - 404"
+  description="La página que buscas no existe. Regresa al inicio de Alaska Cool Nicaragua para encontrar nuestros productos y servicios de climatización."
+>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 text-center">
+      <div>
+        <img 
+          class="mx-auto h-24 w-auto" 
+          src="/logo.webp" 
+          alt="Alaska Cool Logo"
+        />
+        <h1 class="mt-6 text-6xl font-extrabold text-gray-900 dark:text-white">
+          404
+        </h1>
+        <h2 class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
+          Página no encontrada
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          Lo sentimos, la página que estás buscando no existe o ha sido movida.
+        </p>
+      </div>
+      
+      <div class="space-y-4">
+        <a 
+          href="/" 
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+        >
+          Volver al inicio
+        </a>
+        
+        <a 
+          href="/catalogo" 
+          class="w-full flex justify-center py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-base font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+        >
+          Ver catálogo
+        </a>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">
+          Enlaces útiles:
+        </h3>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+          <li><a href="/about" class="hover:text-blue-600 transition-colors">Acerca de nosotros</a></li>
+          <li><a href="/rheem" class="hover:text-blue-600 transition-colors">Productos Rheem</a></li>
+          <li><a href="/comfort-star" class="hover:text-blue-600 transition-colors">Comfort Star</a></li>
+          <li><a href="/tempblue" class="hover:text-blue-600 transition-colors">TempBlue</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

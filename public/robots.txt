@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://alaska.cool/sitemap-index.xml
+Sitemap: https://alaska-cool.com/sitemap-index.xml
 
 # Block sensitive files and directories
 Disallow: /api/

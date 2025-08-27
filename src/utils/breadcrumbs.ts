@@ -106,7 +106,7 @@ export function generateBreadcrumbs(pathname: string, currentLang: Language = 'e
   return breadcrumbs;
 }
 
-export function generateBreadcrumbSchema(breadcrumbs: BreadcrumbItem[], siteUrl: string = 'https://alaska.cool'): BreadcrumbSchema {
+export function generateBreadcrumbSchema(breadcrumbs: BreadcrumbItem[], siteUrl: string = 'https://alaska-cool.com'): BreadcrumbSchema {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

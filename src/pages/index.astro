@@ -11,7 +11,10 @@ import { getLanguageFromUrl, t } from '../i18n/utils';
 const currentLang = getLanguageFromUrl(Astro.url);
 ---
 
-<Layout title={t(currentLang, 'pages.home.title')}>
+<Layout 
+  title={t(currentLang, 'pages.home.title')}
+  description="Alaska Cool Nicaragua - Especialistas en sistemas de climatización y refrigeración. Distribuidores oficiales de aires acondicionados, ventilación industrial y soluciones HVAC profesionales."
+>
   <Home />
   <Brand />
   <ComingSoon />

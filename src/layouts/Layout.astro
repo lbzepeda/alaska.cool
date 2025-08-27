@@ -22,7 +22,7 @@ const {
   title,
   description = typeof siteConfig.description === 'string' ? siteConfig.description : siteConfig.description[currentLang],
   image = "/imagen-social-default.webp",
-  canonicalURL = Astro.url,
+  canonicalURL = new URL(Astro.url.pathname, 'https://alaska-cool.com'),
 } = Astro.props;
 
 const seoTitle = `${title} | ${siteConfig.name} - Aire Acondicionado | Nicaragua`;
@@ -103,8 +103,8 @@ const criticalImages = [
         basic: {
           title: seoTitle,
           type: "website",
-          image: image,
-          url: Astro.url,
+          image: image.startsWith('/') ? `https://alaska-cool.com${image}` : image,
+          url: canonicalURL,
         },
         optional: {
           description: description,
@@ -121,7 +121,7 @@ const criticalImages = [
         creator: "@AlaskaCoolNI",
         title: seoTitle,
         description: description,
-        image: image,
+        image: image.startsWith('/') ? `https://alaska-cool.com${image}` : image,
         imageAlt: "Alaska Cool Nicaragua",
       }}
       extend={{
@@ -237,7 +237,7 @@ const criticalImages = [
         name: siteConfig.name,
         description: siteConfig.description,
         url: siteConfig.url,
-        logo: "/logo.webp",
+        logo: "https://alaska-cool.com/logo.webp",
         address: {
           "@type": "PostalAddress",
           addressCountry: "Nicaragua",
