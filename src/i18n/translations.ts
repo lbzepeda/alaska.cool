@@ -15,7 +15,8 @@ export const translations = {
       cta: 'Ver Catálogo',
       whatsapp: 'Contactar por WhatsApp',
       discover: 'Descubra Alaska Cool',
-      productsTitle: 'Conozca Nuestros Productos | Servicios en Climatización',
+      productsTitle: 'Frescura y Confort Garantizados para tu Familia y tu Negocio',
+      heroTitle: 'Aires Acondicionados que Cuidan tu Hogar y Potencian tu Empresa',
       innovation: 'Innovación y confort para cada espacio',
       residential: {
         title: 'Residencial',
@@ -184,8 +185,8 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - Climatización Nicaragua',
-        description: 'Especialistas en sistemas de climatización y refrigeración en Nicaragua'
+        title: 'Aires Acondicionados que Cuidan tu Hogar y Potencian tu Empresa | Alaska Cool',
+        description: 'Alaska Cool Nicaragua - Frescura y confort garantizados para tu familia y tu negocio. Aires acondicionados de confianza, instalación profesional y mantenimiento especializado.'
       },
       rheem: {
         title: 'Rheem Nicaragua - Climatización Industrial',
@@ -246,7 +247,8 @@ export const translations = {
       cta: 'View Catalog',
       whatsapp: 'Contact via WhatsApp',
       discover: 'Discover Alaska Cool',
-      productsTitle: 'Explore Our Products | HVAC Services',
+      productsTitle: 'Guaranteed Comfort and Freshness for Your Family and Business',
+      heroTitle: 'Air Conditioners that Care for Your Home and Power Your Business',
       innovation: 'Innovation and comfort for every space',
       residential: {
         title: 'Residential',
@@ -415,8 +417,8 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - HVAC Nicaragua',
-        description: 'Specialists in air conditioning and refrigeration systems in Nicaragua'
+        title: 'Air Conditioners that Care for Your Home and Power Your Business | Alaska Cool',
+        description: 'Alaska Cool Nicaragua - Guaranteed comfort and freshness for your family and business. Reliable air conditioning, professional installation and specialized maintenance.'
       },
       rheem: {
         title: 'Rheem Nicaragua - Industrial HVAC',
@@ -477,7 +479,8 @@ export const translations = {
       cta: '查看目录',
       whatsapp: '通过WhatsApp联系',
       discover: '发现Alaska Cool',
-      productsTitle: '了解我们的产品 | 空调服务',
+      productsTitle: '为您的家庭和企业提供保证的舒适和清新',
+      heroTitle: '关爱您家庭、增强您企业的空调',
       innovation: '为每个空间提供创新和舒适',
       residential: {
         title: '住宅',
@@ -641,8 +644,8 @@ export const translations = {
     },
     pages: {
       home: {
-        title: 'Alaska Cool - 空调专家尼加拉瓜',
-        description: '尼加拉瓜空调和制冷系统专家'
+        title: '关爱您家庭、增强您企业的空调 | Alaska Cool',
+        description: 'Alaska Cool 尼加拉瓜 - 为您的家庭和企业保证舒适和清新。可靠的空调、专业安装和专业维护。'
       },
       rheem: {
         title: 'Rheem尼加拉瓜 - 工业空调',
