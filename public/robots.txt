@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://alaska.cool/sitemap-index.xml
+
+# Block sensitive files and directories
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_astro/
+Disallow: /node_modules/
+
+# Allow specific assets
+Allow: /assets/
+Allow: /brands/
+Allow: /projects/
+Allow: /partners/
+Allow: /favicon/
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
