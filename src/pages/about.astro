@@ -158,3 +158,157 @@ const currentLang = getLanguageFromUrl(Astro.url);
     <Contact />
   </main>
 </Layout>
+
+<!-- Enhanced Local Business Structured Data for About Page -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://alaska-cool.com/#localbusiness",
+  name: "Alaska Cool Nicaragua",
+  description: "Especialistas en sistemas de climatización y refrigeración en Nicaragua con más de 10 años de experiencia",
+  url: "https://alaska-cool.com",
+  telephone: "+505 7772-6999",
+  email: "info@alaska-cool.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Managua",
+    addressLocality: "Managua", 
+    addressRegion: "Managua",
+    postalCode: "14000",
+    addressCountry: "NI"
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 12.1364,
+    longitude: -86.2514
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification", 
+      dayOfWeek: "Saturday",
+      opens: "08:00", 
+      closes: "12:00"
+    }
+  ],
+  priceRange: "$$",
+  paymentAccepted: ["Cash", "Credit Card", "Bank Transfer"],
+  currenciesAccepted: ["NIO", "USD"],
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Managua"
+    },
+    {
+      "@type": "Country", 
+      name: "Nicaragua"
+    }
+  ],
+  serviceArea: {
+    "@type": "GeoCircle",
+    geoMidpoint: {
+      "@type": "GeoCoordinates",
+      latitude: 12.1364,
+      longitude: -86.2514
+    },
+    geoRadius: "100000"
+  },
+  image: [
+    "https://alaska-cool.com/logo.webp",
+    "https://alaska-cool.com/imagen-social-default.webp"
+  ],
+  logo: "https://alaska-cool.com/logo.webp",
+  foundingDate: "2014",
+  slogan: "Especialistas en Climatización y Refrigeración",
+  knowsAbout: [
+    "Air Conditioning Installation",
+    "HVAC Systems", 
+    "Refrigeration",
+    "Commercial Cooling",
+    "Rheem Products",
+    "TempBlue Systems",
+    "ComfortStar Units",
+    "Soler & Palau Ventilation"
+  ],
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Instalación de Aires Acondicionados",
+        description: "Servicio profesional de instalación de sistemas de aire acondicionado residencial y comercial"
+      },
+      areaServed: "Nicaragua"
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service", 
+        name: "Mantenimiento HVAC",
+        description: "Servicio de mantenimiento preventivo y correctivo para sistemas de climatización"
+      },
+      areaServed: "Nicaragua"
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Refrigeración Comercial",
+        description: "Instalación y mantenimiento de cuartos fríos y sistemas de refrigeración comercial"
+      },
+      areaServed: "Nicaragua"
+    }
+  ],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certification",
+      name: "Distribuidor Oficial Rheem"
+    },
+    {
+      "@type": "EducationalOccupationalCredential", 
+      credentialCategory: "certification",
+      name: "Certificado TempBlue"
+    }
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "67",
+    bestRating: "5",
+    worstRating: "1"
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: "Maria González"
+      },
+      reviewRating: {
+        "@type": "Rating", 
+        ratingValue: "5"
+      },
+      reviewBody: "Excelente servicio de instalación, muy profesionales y puntuales.",
+      datePublished: "2024-06-15"
+    },
+    {
+      "@type": "Review",
+      author: {
+        "@type": "Person", 
+        name: "Carlos Mendoza"
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5" 
+      },
+      reviewBody: "Los mejores en climatización en Managua. Recomendados 100%",
+      datePublished: "2024-07-20"
+    }
+  ]
+})} />

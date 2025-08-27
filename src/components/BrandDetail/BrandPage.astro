@@ -64,6 +64,81 @@ const styles = brandStyles[brandKey];
   <Certification brand={brand} styles={styles} />
 </main>
 
+<!-- Brand and Product Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Brand",
+  name: brand.name,
+  logo: brand.logo,
+  description: brand.description,
+  url: `https://alaska-cool.com/${brandKey}`,
+  manufacturer: {
+    "@type": "Organization", 
+    name: brand.name
+  },
+  slogan: brand.tagline
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${brand.name} Air Conditioners`,
+  description: `Complete catalog of ${brand.name} air conditioning units available in Nicaragua`,
+  numberOfItems: brand.models.length,
+  itemListElement: brand.models.map((model, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Product",
+      name: `${brand.name} ${model.name}`,
+      description: `${model.name} air conditioner with ${model.voltage} voltage and SEER ${model.seer} energy efficiency rating`,
+      brand: {
+        "@type": "Brand",
+        name: brand.name
+      },
+      category: "Air Conditioner",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Voltage",
+          value: model.voltage
+        },
+        {
+          "@type": "PropertyValue", 
+          name: "SEER Rating",
+          value: model.seer.toString()
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Coverage Area",
+          value: model.area
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Noise Level", 
+          value: model.features.noise
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Energy Rating",
+          value: model.features.energyRating
+        }
+      ],
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        seller: {
+          "@type": "Organization",
+          name: "Alaska Cool Nicaragua",
+          url: "https://alaska-cool.com"
+        },
+        areaServed: "Nicaragua"
+      }
+    }
+  }))
+})} />
+
 <style>
   [data-text="reveal"],
   [data-stats="reveal"],

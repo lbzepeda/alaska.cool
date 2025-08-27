@@ -90,6 +90,20 @@ const currentLang = getLanguageFromUrl(Astro.url);
   </div>
 </section>
 
+<!-- FAQ Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer
+    }
+  }))
+})} />
+
 <style>
   details summary::-webkit-details-marker {
     display: none;

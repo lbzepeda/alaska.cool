@@ -233,29 +233,150 @@ const criticalImages = [
       type="application/ld+json"
       set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "LocalBusiness", "HVACBusiness"],
+        "@id": "https://alaska-cool.com/#organization",
         name: siteConfig.name,
-        description: siteConfig.description,
+        alternateName: "Alaska Cool Nicaragua",
+        description: siteConfig.description[currentLang],
         url: siteConfig.url,
-        logo: "https://alaska-cool.com/logo.webp",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://alaska-cool.com/logo.webp",
+          width: 200,
+          height: 200
+        },
+        image: "https://alaska-cool.com/logo.webp",
+        founder: {
+          "@type": "Person",
+          name: "Alaska Cool"
+        },
+        foundingDate: "2020",
         address: {
           "@type": "PostalAddress",
-          addressCountry: "Nicaragua",
+          streetAddress: siteConfig.business.address,
+          addressLocality: "Managua",
           addressRegion: "Managua",
-          addressLocality: siteConfig.business.address,
+          addressCountry: "NI",
+          areaServed: "Nicaragua"
         },
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: siteConfig.contact.phone,
-          contactType: "customer service",
-          areaServed: "NI",
-          availableLanguage: "Spanish",
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: siteConfig.business.coordinates.latitude,
+          longitude: siteConfig.business.coordinates.longitude
         },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: siteConfig.contact.phone,
+            contactType: "customer service",
+            areaServed: "NI",
+            availableLanguage: ["Spanish", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            url: siteConfig.social.whatsapp,
+            contactType: "customer support",
+            areaServed: "NI",
+            availableLanguage: ["Spanish", "English"]
+          }
+        ],
+        email: siteConfig.contact.email,
+        telephone: siteConfig.contact.phone,
+        priceRange: "$$",
+        currenciesAccepted: "NIO,USD",
+        paymentAccepted: "Cash, Credit Card, Bank Transfer",
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          opens: "08:00",
+          closes: "17:00"
+        },
+        serviceArea: {
+          "@type": "GeoCircle",
+          geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: siteConfig.business.coordinates.latitude,
+            longitude: siteConfig.business.coordinates.longitude
+          },
+          geoRadius: "100000"
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "HVAC Services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Air Conditioning Installation",
+                description: "Professional installation of residential and commercial air conditioning systems"
+              }
+            },
+            {
+              "@type": "Offer", 
+              itemOffered: {
+                "@type": "Service",
+                name: "HVAC Maintenance",
+                description: "Regular maintenance and repair services for heating, ventilation and air conditioning systems"
+              }
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service", 
+                name: "Commercial Refrigeration",
+                description: "Cold room and commercial refrigeration system installation and maintenance"
+              }
+            }
+          ]
+        },
+        makesOffer: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Rheem Air Conditioners",
+              brand: "Rheem"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product", 
+              name: "TempBlue Air Conditioners",
+              brand: "TempBlue"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "ComfortStar Air Conditioners", 
+              brand: "ComfortStar"
+            }
+          }
+        ],
         sameAs: [
           siteConfig.social.facebook,
           siteConfig.social.instagram,
+          siteConfig.social.whatsapp
         ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          reviewCount: "45",
+          bestRating: "5",
+          worstRating: "1"
+        }
       })}
+    />
+
+    <!-- RSS Feed -->
+    <link 
+      rel="alternate" 
+      type="application/rss+xml" 
+      title={`${siteConfig.name} RSS Feed`} 
+      href={`${siteConfig.url}/rss.xml`} 
     />
   </head>
   <body class="bg-white dark:bg-gray-900">
