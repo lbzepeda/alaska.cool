@@ -1,31 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
-import { t } from '../../i18n/utils';
-import { getLanguageFromUrl } from '../../i18n/utils';
-
-const currentLang = getLanguageFromUrl(Astro.url);
-
-const hero = {
-  title: 'Soler & Palau',
-  subtitle: 'Professional and Industrial Ventilation',
-  description: 'World leader in ventilation systems. Extractors, industrial fans and professional HVAC solutions.',
-  image: '/brands/soler_palau_hero.webp',
-  alt: 'Soler & Palau - Professional ventilation systems'
-};
 ---
 
 <Layout 
   title="Soler & Palau - Professional Ventilation"
   description="Soler & Palau ventilation systems in Nicaragua. Industrial extractors, professional fans and HVAC solutions."
 >
-  <Hero 
-    title={hero.title}
-    subtitle={hero.subtitle}
-    description={hero.description}
-    image={hero.image}
-    alt={hero.alt}
-  />
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        Soler & Palau
+      </h1>
+      <p class="text-xl md:text-2xl mb-6 text-blue-100">
+        Professional and Industrial Ventilation
+      </p>
+      <p class="text-lg max-w-3xl mx-auto text-blue-50">
+        World leader in ventilation systems. Extractors, industrial fans and professional HVAC solutions.
+      </p>
+    </div>
+  </section>
 
   <section class="py-16 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

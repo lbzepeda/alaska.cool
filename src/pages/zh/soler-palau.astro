@@ -1,31 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
-import { t } from '../../i18n/utils';
-import { getLanguageFromUrl } from '../../i18n/utils';
-
-const currentLang = getLanguageFromUrl(Astro.url);
-
-const hero = {
-  title: 'Soler & Palau',
-  subtitle: '专业工业通风设备',
-  description: '全球通风系统领导者。工业排风扇、专业风机和空调解决方案。',
-  image: '/brands/soler_palau_hero.webp',
-  alt: 'Soler & Palau - 专业通风系统'
-};
 ---
 
 <Layout 
   title="Soler & Palau - 专业通风设备"
   description="尼加拉瓜Soler & Palau通风系统。工业排风扇、专业风机和空调解决方案。"
 >
-  <Hero 
-    title={hero.title}
-    subtitle={hero.subtitle}
-    description={hero.description}
-    image={hero.image}
-    alt={hero.alt}
-  />
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        Soler & Palau
+      </h1>
+      <p class="text-xl md:text-2xl mb-6 text-blue-100">
+        专业工业通风设备
+      </p>
+      <p class="text-lg max-w-3xl mx-auto text-blue-50">
+        全球通风系统领导者。工业排风扇、专业风机和空调解决方案。
+      </p>
+    </div>
+  </section>
 
   <section class="py-16 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
